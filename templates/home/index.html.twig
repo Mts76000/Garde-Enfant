@@ -7,12 +7,10 @@
 <a href="" class="button">Oui</a>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <p>Email: {{ app.user.email }}</p>
+{% endif %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Applications/MAMP/htdocs/nfs-2023-2024/Projet/garde-enfant/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>/Applications/MAMP/htdocs/nfs-2023-2024/Projet/garde-enfant/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+
 {% endblock %}

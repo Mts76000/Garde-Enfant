@@ -8,34 +8,37 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    gap: 5rem;
+    gap: 3rem;
   }
   h2 {
-    font-size: 45px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
     
   }
   a {
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 15px;
     display: block;
-    font-size: 40px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
     color: v.$blanc;
+    width: 75%;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+ 
   .choix {
     color: v.$primary;
-    font-size: 50px;
+    font-size: 24px;
     font-weight: bold;
   }
   .top {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1.5rem;
+    align-items: center;
     h2 {
       color: v.$primary;
     }
@@ -43,11 +46,13 @@
     a {
       background-color: v.$primary;
     }
+ 
   }
   .down {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1.5rem;
+    align-items: center;
     h2 {
       color: v.$orange;
     }

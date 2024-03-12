@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add_recupChild{% endblock %}
+
+{% block body %}
+    <h1>Ajout d'une personne</h1>
+
+    {{ include('recupchild/_form.html.twig') }}
+
+    <a href="{{ path('app_recup_child') }}">back to list</a>
+{% endblock %}

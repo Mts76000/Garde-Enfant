@@ -7,21 +7,33 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
-         <link rel="stylesheet" href="{{ asset('styles/home.scss') }}">
+            <link rel="stylesheet" href="{{ asset('styles/home.scss') }}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% endblock %}
-        
     </head>
     <body>
+
+    <header>
+        <nav>
+            <a href=""><img class="logo"  src="{{ asset('asset/img/logo.png') }}" alt="Logo" class="logo"></a>
+            <a class="burger" href=""><i class="fa-solid fa-bars"></i></a>
+            {# <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul> #}
+        </nav>
+    </header>
+
+
         {% block body %}
-<<<<<<< HEAD
-        <h1>AAA</h1>
-=======
         
->>>>>>> ca23fa9bbbaa361b2de1e66b48084470e87fff4e
         {% endblock %}
 
 
         {{ encore_entry_script_tags('app') }}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        
+        {% endblock %}
     </body>
 </html>

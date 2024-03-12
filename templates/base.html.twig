@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# meta #}
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
@@ -14,16 +15,31 @@
     <body>
 
     <header>
-        <nav>
-            <a href=""><img class="logo"  src="{{ asset('asset/img/logo.png') }}" alt="Logo" class="logo"></a>
-            <a class="burger" href=""><i class="fa-solid fa-bars"></i></a>
-            {# <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul> #}
+    <nav id="burger-menu">
+        <i class="fa-solid fa-xmark close-burger"></i>
+            <ul>
+                <a class="button nav_button" href="">Conexion</a>
+                <a class="button nav_button" href="">Inscription</a>
+                <hr>
+                <li><a class="liste" href="{{ path('app') }}">Accueil</a></li>
+                <li><a class="liste" href="#">Contact</a></li>
+                <li><a class="liste" href="#">Services</a></li>
+            </ul>
         </nav>
+        <nav class="desktop">
+            <a class="logo" href="{{ path('app') }}"><img class="logo" src="{{ asset('asset/img/logo.png') }}" alt="Logo"></a>
+            <a class="burger" href="#"><i class="fa-solid fa-bars"></i></a>
+            <ul class="nav_list"> 
+                <li><a href="{{ path('app') }}">Accueil</a></li>
+                {# <li><a href="{{ path('app_register') }}">Inscription</a></li> #}
+                <li><a href="#">Contact</a></li>    
+            </ul>
+        </nav>
+
+        
     </header>
+
+
 
 
         {% block body %}

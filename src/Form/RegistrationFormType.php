@@ -31,7 +31,8 @@ class RegistrationFormType extends AbstractType
             ->add('roless', ChoiceType::class, [
                 'choices'  => [
                     'Admin' => 'ROLE_ADMIN',
-                    'parent' => 'ROLE_PARENT',
+                    'Professionnelle' => 'ROLE_PRO',
+                    'Parent' => 'ROLE_PARENT',
                 ],
                 'mapped' => false,
                 'expanded' => false

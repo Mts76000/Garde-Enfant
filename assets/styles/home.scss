@@ -10,7 +10,7 @@ section#intro {
           justify-content: space-around;
 
           .intro_text {
-                    text-align: center;
+               text-align: center;
 
 
                h1 {
@@ -159,7 +159,8 @@ section#stats {
      }
 }
 
-section#mentions_legales,section#faq {
+section#mentions_legales,
+section#faq {
 
      .wrap {
           display: flex;
@@ -171,12 +172,27 @@ section#mentions_legales,section#faq {
                color: v.$bleu;
           }
 
+          p {
+               font-size: 20px;
+               padding: 10px 0;
+          }
+
           .separator_orange {
                border: solid 2px v.$orange;
           }
 
           hr {
                margin: 10px 0;
+          }
+
+          summary::-webkit-details-marker {
+               display: none;
+               /* Pour les navigateurs basés sur WebKit (Chrome, Safari, etc.) */
+          }
+
+          summary {
+               list-style: none;
+               /* Pour les autres navigateurs */
           }
      }
 }

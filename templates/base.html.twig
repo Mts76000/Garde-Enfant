@@ -18,8 +18,8 @@
     <nav id="burger-menu">
         <i class="fa-solid fa-xmark close-burger"></i>
             <ul>
-                <a class="button nav_button" href="">Conexion</a>
-                <a class="button nav_button" href="">Inscription</a>
+                <a class="button nav_button" href="">Connexion</a>
+                <a class="button nav_button" href="{{ path('app_register_choix') }}">Inscription</a>
                 <hr>
                 <li><a class="liste" href="{{ path('app') }}">Accueil</a></li>
                 <li><a class="liste" href="#">Contact</a></li>
@@ -31,20 +31,29 @@
             <a class="burger" href="#"><i class="fa-solid fa-bars"></i></a>
             <ul class="nav_list"> 
                 <li><a href="{{ path('app') }}">Accueil</a></li>
-                {# <li><a href="{{ path('app_register') }}">Inscription</a></li> #}
+                <li><a href="{{ path('app_register_choix') }}">Inscription</a></li>
                 <li><a href="#">Contact</a></li>    
             </ul>
         </nav>
 
         
     </header>
-
+<button id="btnTop" style="display: none;"><i class="fa-regular fa-circle-up"></i></button>
 
 
 
         {% block body %}
         
         {% endblock %}
+
+<footer>
+    <div class="wrap">
+        <a class="logo" href="{{ path('app') }}"><img class="logo" src="{{ asset('asset/img/logo_white.png') }}" alt="Logo"></a>
+        <hr class="separator">
+        <span>Tous droits réservé. Pitchoune 2024 &copy</span>
+    </div>
+</footer>
+
 
 
         {{ encore_entry_script_tags('app') }}

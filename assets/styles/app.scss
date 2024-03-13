@@ -29,15 +29,13 @@ body {
     font-family: "Rubik", sans-serif;
     font-size: 18px;
     overflow-x: hidden;
-
 }
 
 .wrap {
-    max-width: 400px;
+    max-width: 350px;
     margin: 0 auto;
     box-sizing: border-box;
-  }
-  
+}
 
 .button {
     font-family: 'Rubik', sans-serif;
@@ -48,18 +46,17 @@ body {
     border-radius: 15px;
     padding: 10px 20px;
     cursor: pointer;
+    display: block;
     transition: all 0.3s ease-in-out;
 
     &:hover {
         background-color: v.$secondary;
         color: v.$bleu;
-        transform: translateY(-5px);
     }
 }
 
 header {
     position: relative;
-
     max-width: 100%;
 
     nav.desktop {
@@ -86,7 +83,7 @@ header {
             transition: all 300ms ease-in-out;
 
             &:hover {
-                transform: scale(1.15);
+                transform: scale(1.05);
             }
         }
 
@@ -108,13 +105,13 @@ header {
 
 #burger-menu {
     display: block;
-    position: absolute;
+    position: fixed;
     background-color: #B3D8CD;
     height: 100vh;
     width: 70%;
     font-size: 1.2rem;
     top: 0;
-    right: -500px;
+    right: -550px;
     transition: right 1s ease-in-out;
     z-index: 50;
     text-align: center;
@@ -135,10 +132,10 @@ header {
     }
 
     a:nth-child(2) {
-        background-color: orange;
+        background-color: v.$orange;
     }
 
-    a.liste{
+    a.liste {
         color: #fff;
         font-weight: 800;
         font-size: 1.5rem;
@@ -163,3 +160,49 @@ header {
     top: 0;
     right: 0;
 }
+
+footer {
+    background-color: v.$orange;
+    color: v.$blanc;
+
+    .wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 35px 0;
+    }
+}
+
+#btnTop {
+    display: block;
+    position: fixed;
+    bottom: 30px;
+    right: 0;
+    background-color: v.$orange;
+    color: #fff;
+    font-size: 25px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: -1px 2px 3px #000;
+    cursor: pointer;
+
+    &:hover {
+        color: v.$orange;
+        background-color: v.$blanc;
+        outline: solid 1px v.$orange;
+    }
+}
+
+
+
+@media screen and (min-width: 500px) {
+
+    #burger-menu {
+        right: -750px;
+    }
+
+}
+
+@media screen and (min-width: 750px) {}

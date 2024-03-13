@@ -19,3 +19,22 @@ closeBtn.addEventListener('click', (e) => {
      e.preventDefault();
      burgerMenu.classList.toggle('active');
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+     var btnTop = document.getElementById('btnTop');
+
+     window.addEventListener('scroll', function () {
+          if (window.pageYOffset > 100) {
+               btnTop.style.display = 'block';
+          } else {
+               btnTop.style.display = 'none';
+          }
+     });
+
+     btnTop.addEventListener('click', function () {
+          window.scrollTo({
+               top: 0,
+               behavior: 'smooth'
+          });
+     });
+});

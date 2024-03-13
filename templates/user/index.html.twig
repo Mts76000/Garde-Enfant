@@ -3,6 +3,7 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
+    <select name="child" id="child"></select>
 
     <section id="pro">
         <div class="wrap">
@@ -19,7 +20,9 @@
             <div class="creneaux">
                 <h2>Vos créneaux :</h2>
             </div>
+            <div class="img">
+                <a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+            </div>
         </div>
     </section>
-
 {% endblock %}

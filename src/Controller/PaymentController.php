@@ -38,29 +38,6 @@ class PaymentController extends AbstractController
         ]);
     }
 
-    #[Route('/payment', name: 'app_payment_cancel')]
-    public function cancel(): Response
-    {
-        return $this->render('payment/cancel.html.twig', [
-            'controller_name' => 'PaymentController',
-        ]);
-    }
-
-    #[Route('/payment', name: 'app_payment_checkout')]
-    public function checkout(): Response
-    {
-        return $this->render('payment/checkout.html.twig', [
-            'controller_name' => 'PaymentController',
-        ]);
-    }
-
-    #[Route('/payment', name: 'app_payment_success')]
-    public function success(): Response
-    {
-        return $this->render('payment/success.html.twig', [
-            'controller_name' => 'PaymentController',
-        ]);
-    }
 }
 
 //https://docs.stripe.com/checkout/quickstart?lang=php

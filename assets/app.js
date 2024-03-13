@@ -2,8 +2,15 @@ import './styles/app.scss';
 import './styles/home.scss';
 import './styles/register_choix.scss';
 import './styles/contact.scss';
+import './styles/register.scss';
 import './styles/user/success.scss';
 import './styles/login.scss';
+
+// pro
+import './styles/pro/dashboard.scss';
+import './styles/pro/message.scss';
+import './styles/pro/detail.scss';
+import './styles/pro/demande.scss';
 
 console.log('ok home');
 
@@ -20,4 +27,23 @@ burgerBtn.addEventListener('click', (e) => {
 closeBtn.addEventListener('click', (e) => {
      e.preventDefault();
      burgerMenu.classList.toggle('active');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+     var btnTop = document.getElementById('btnTop');
+
+     window.addEventListener('scroll', function () {
+          if (window.pageYOffset > 100) {
+               btnTop.style.display = 'block';
+          } else {
+               btnTop.style.display = 'none';
+          }
+     });
+
+     btnTop.addEventListener('click', function () {
+          window.scrollTo({
+               top: 0,
+               behavior: 'smooth'
+          });
+     });
 });

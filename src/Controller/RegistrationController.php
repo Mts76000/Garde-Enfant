@@ -29,6 +29,7 @@ class RegistrationController extends BaseController
                     $form->get('plainPassword')->getData()
                 )
             );
+            
 
             $entityManager->persist($user);
             $entityManager->flush();

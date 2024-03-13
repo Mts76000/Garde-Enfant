@@ -1,0 +1,86 @@
+@use "variables" as v;
+
+#register {
+  height: 80vh;
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 2rem;
+  }
+  h1 {
+    font-size: 32px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3b3b3b;
+  }
+  p {
+    font-size: 15px;
+    text-align: center;
+  }
+  button {
+    padding: 1rem;
+    border-radius: 15px;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: v.$blanc;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: v.$primary;
+    border: none;
+  }
+  .top {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  input {
+    padding: 1rem;
+    border-radius: 10px;
+    border: solid 1px #c0c0c0;
+    width: 100%;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .down {
+    width: 100%;
+    padding: 0rem 2rem;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .a {
+      display: flex;
+      gap: 1rem;
+    }
+    .b {
+      display: flex;
+      gap: 1rem;
+    }
+    .condition {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  #registration_form_agreeTerms{
+    width: 50px;
+}
+
+  .alert {
+    color: red;
+  }
+}

@@ -1,0 +1,63 @@
+@use "../variables" as v;
+
+#message {
+  .wrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .link{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 1.5rem;
+
+  a {
+    padding: 1rem;
+    background-color: v.$primary;
+    color: v.$blanc;
+    display: block;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    font-size: 15px;
+  }
+  
+  .message{
+    background-color: v.$orange;
+      }
+
+  }
+
+   .top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  
+   }
+   .down {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+   }
+
+   h2{
+font-size: 24px;
+color: v.$primary;
+text-transform: uppercase;
+   }
+
+   .img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 50px;
+    }
+  }
+}

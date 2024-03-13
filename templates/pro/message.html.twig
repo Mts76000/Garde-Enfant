@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}message
+
+{% endblock %}
+
+{% block body %}
+
+	<section id="message">
+		<div class="wrap">
+			<div class="link">
+				<div class="top">
+					<a href="{{ path('app_pro_demande') }}">Nouvelle demande</a>
+					<a class="message" href="{{ path('app_pro_message') }}">Voir mes message</a>
+				</div>
+				<div class="down">
+					<a href="{{ path('app_pro_detail') }}">Détail creche</a>
+					<a class="dashboard" href="{{ path('app_pro') }}">Dashboard</a>
+				</div>
+			</div>
+			<div class="creneaux">
+				<h2>Mes messages :</h2>
+			</div>
+			<div class="img">
+				<a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

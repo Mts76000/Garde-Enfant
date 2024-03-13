@@ -8,6 +8,59 @@
     <p>Email: {{ app.user.email }}</p>
     {% endif %} #}
 
+<section id="intro">
+    <div class="wrap">
+        <div class="intro_text">
+            <h1>Votre <span class="text_intro_1">premier</span> choix en garde d'enfants!</h1>
+            <p>Optez pour l'excellence avec notre service de garde d'enfants ! <br>
+            Nous mettons votre enfant au premier plan, offrant un environnement sécurisé et enrichissant pour son développement.</p>
+        </div>
+        <div class="intro_button">
+            <a class="button" href="">Nos Services</a>
+            <a class="button" href="">Commencer</a>
+        </div>
+    </div>
+</section>
+<section id="banner">
+    <div class="wrap">
+        <i class="fa-solid fa-lock"></i>
+        <h2>Sécurité et services garantie</h2>
+        <a class="button" href="">En savoir plus</a>
+    </div>
+</section>
+<section id="services">
+    <div class="wrap">
+        <img src="{{ asset('asset/img/main_img_1.png') }}" alt="exemple 1">
+        <img src="{{ asset('asset/img/main_img_2.png') }}" alt="exemple 2">
+        <img src="{{ asset('asset/img/main_img_3.png') }}" alt="exemple 3">
+    </div>
+</section>
+
+<hr class="hr_separator">
+
+<section id="stats">
+    <div class="wrap">
+        <div class="stat">
+            <span>+ de 5000</span>
+            <h4>Parents approuve et recommande</h4>
+        </div>
+        <hr class="separator_stat">
+        <div class="stat">
+            <span>+ de 300</span>
+            <h4>Oragnisme partenaires</h4>
+        </div>
+        <hr class="separator_stat">
+        <div class="stat">
+            <span>200</span>
+            <h4>Partenaires en France</h4>
+        </div>
+        <hr class="separator_stat">
+        <div class="stat">
+            <span>0</span>
+            <h4>Probleme</h4>
+        </div>
+    </div>
+</section>
 
 
 {% endblock %}

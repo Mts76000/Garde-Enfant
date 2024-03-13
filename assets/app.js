@@ -1,11 +1,11 @@
 import './styles/app.scss';
 import './styles/home.scss';
-import './styles/register_choix.scss';
 import './styles/contact.scss';
+
+// connexion / inscription
 import './styles/register.scss';
-import './styles/user/success.scss';
-import './styles/user/index.scss';
 import './styles/login.scss';
+import './styles/register_choix.scss';
 
 // pro
 import './styles/pro/dashboard.scss';
@@ -14,7 +14,9 @@ import './styles/pro/detail.scss';
 import './styles/pro/demande.scss';
 
 // user
-import './styles/user/user.scss';
+import './styles/user/rdv.scss';
+import './styles/user/success.scss';
+import './styles/user/index.scss';
 
 
 

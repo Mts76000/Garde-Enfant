@@ -3,18 +3,23 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <section id="pro">
+        <div class="wrap">
+            <div class="link">
+                <div class="top">
+                    <a  href="{{ path('app_pro_demande') }}">Prendre un rdv</a>
+                    <a href="{{ path('app_pro_message') }}">Ajouter un pitchoune</a>
+                </div>
+                <div class="down">
+                    <a href="{{ path('app_pro_detail') }}">Mes infos</a>
+                    <a class="dashboard" href="{{ path('app_pro') }}">Ajouter un tuteur</a>
+                </div>
+            </div>
+            <div class="creneaux">
+                <h2>Vos créneaux :</h2>
+            </div>
+        </div>
+    </section>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/Applications/MAMP/htdocs/nfs-2023-2024/Projet/garde-enfant/src/Controller/UserController.php</code></li>
-        <li>Your template at <code>/Applications/MAMP/htdocs/nfs-2023-2024/Projet/garde-enfant/templates/user/index.html.twig</code></li>
-    </ul>
-</div>
 {% endblock %}

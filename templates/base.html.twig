@@ -24,6 +24,7 @@
                 <li><a class="liste" href="{{ path('app') }}">Accueil</a></li>
                 <li><a class="liste" href="#">Contact</a></li>
                 <li><a class="liste" href="#">Services</a></li>
+                <li><a class="liste" href="{{ path('app_mentions') }}">Mentions Légales</a></li>
             </ul>
         </nav>
         <nav class="desktop">
@@ -38,21 +39,15 @@
 
         
     </header>
-<button id="btnTop" style="display: none;"><i class="fa-regular fa-circle-up"></i></button>
+
 
 
 
         {% block body %}
         
         {% endblock %}
+<button id="btnTop" style="display: none;"><i class="fa-regular fa-circle-up"></i></button>
 
-<footer>
-    <div class="wrap">
-        <a class="logo" href="{{ path('app') }}"><img class="logo" src="{{ asset('asset/img/logo_white.png') }}" alt="Logo"></a>
-        <hr class="separator">
-        <span>Tous droits réservé. Pitchoune 2024 &copy</span>
-    </div>
-</footer>
 
 
 

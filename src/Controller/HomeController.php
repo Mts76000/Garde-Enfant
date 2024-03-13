@@ -17,4 +17,14 @@ class HomeController extends AbstractController
        
         ]);
     }
+
+    #[Route('/mentions', name: 'app_mentions')]
+    public function mention(): Response
+    {
+        // $user = $this->getUser();
+        // dd($user);
+        return $this->render('home/mentions.html.twig', [
+       
+        ]);
+    }
 }

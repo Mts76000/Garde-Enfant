@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %} Pitchoune {% endblock %}
 
 {% block body %}
 
@@ -61,6 +61,14 @@
         </div>
     </div>
 </section>
+
+<footer>
+    <div class="wrap">
+        <a class="logo" href="{{ path('app') }}"><img class="logo" src="{{ asset('asset/img/logo_white.png') }}" alt="Logo"></a>
+        <hr class="separator">
+        <span>Tous droits réservé. Pitchoune 2024 &copy</span>
+    </div>
+</footer>
 
 
 {% endblock %}

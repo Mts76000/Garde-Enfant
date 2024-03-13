@@ -158,3 +158,21 @@ section#stats {
           }
      }
 }
+
+section#mentions_legales {
+
+     .wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: 25px 0;
+
+          h2 {
+               color: v.$bleu;
+          }
+
+          .separator_orange {
+               border: solid 2px v.$orange;
+          }
+     }
+}

@@ -36,7 +36,8 @@ class RegistrationController extends BaseController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_login');
+            // return $this->redirectToRoute('app_register_success');
+            return $this->redirectToRoute('app_register_success');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -50,6 +51,22 @@ class RegistrationController extends BaseController
         //  $user = $this->getUser();
         //  dd($user);
         return $this->render('registration/index.html.twig', [
+       
+        ]);
+    } 
+    
+    
+    #[Route('/succes_register', name: 'app_register_success')]
+    public function success(): Response
+    {
+       
+        
+   
+        // sleep(5);
+        
+        //  return $this->redirectToRoute('app_login');
+         
+        return $this->render('registration/success.html.twig', [
        
         ]);
     }

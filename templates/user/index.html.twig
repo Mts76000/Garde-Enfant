@@ -3,17 +3,18 @@
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-    <select name="child" id="child"></select>
 
-    <section id="pro">
+
+    <section id="user">
         <div class="wrap">
+            <select name="child" id="child"></select>
             <div class="link">
                 <div class="top">
                     <a  href="{{ path('app_pro_demande') }}">Prendre un rdv</a>
-                    <a href="{{ path('app_pro_message') }}">Ajouter un pitchoune</a>
+                    <a href="{{ path('app_pro_message') }}">Ajouter un enfant</a>
                 </div>
                 <div class="down">
-                    <a href="{{ path('app_pro_detail') }}">Mes infos</a>
+                    <a class="info" href="{{ path('app_pro_detail') }}">Mes infos</a>
                     <a class="dashboard" href="{{ path('app_pro') }}">Ajouter un tuteur</a>
                 </div>
             </div>

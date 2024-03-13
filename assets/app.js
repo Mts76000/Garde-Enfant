@@ -4,6 +4,7 @@ import './styles/register_choix.scss';
 import './styles/contact.scss';
 import './styles/register.scss';
 import './styles/user/success.scss';
+import './styles/user/index.scss';
 import './styles/login.scss';
 
 // pro

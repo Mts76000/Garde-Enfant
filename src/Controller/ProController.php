@@ -42,11 +42,5 @@ class ProController extends AbstractController
         ]);
     }  
     
-    #[Route('/info', name: 'app_pro_info')]
-    public function info(): Response
-    {
-        return $this->render('pro/info.html.twig', [
-            'controller_name' => 'ProController',
-        ]);
-    }
+    
 }

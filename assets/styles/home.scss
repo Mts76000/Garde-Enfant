@@ -159,7 +159,7 @@ section#stats {
      }
 }
 
-section#mentions_legales {
+section#mentions_legales,section#faq {
 
      .wrap {
           display: flex;
@@ -173,6 +173,10 @@ section#mentions_legales {
 
           .separator_orange {
                border: solid 2px v.$orange;
+          }
+
+          hr {
+               margin: 10px 0;
           }
      }
 }

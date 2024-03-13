@@ -13,18 +13,20 @@ class HomeController extends AbstractController
     {
         // $user = $this->getUser();
         // dd($user);
-        return $this->render('home/index.html.twig', [
-       
-        ]);
+        return $this->render('home/index.html.twig', []);
     }
 
     #[Route('/mentions', name: 'app_mentions')]
     public function mention(): Response
     {
-        // $user = $this->getUser();
-        // dd($user);
-        return $this->render('home/mentions.html.twig', [
-       
-        ]);
+
+        return $this->render('home/mentions.html.twig', []);
+    }
+
+    #[Route('/faq', name: 'app_faq')]
+    public function faq(): Response
+    {
+
+        return $this->render('home/faq.html.twig', []);
     }
 }

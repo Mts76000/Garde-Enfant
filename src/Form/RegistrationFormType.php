@@ -21,7 +21,7 @@ class RegistrationFormType extends AbstractType
             ->add('nom', TextType::class,[
                 'constraints' => [
                     new Length([
-                        'min' => 6,
+                        'min' => 2,
                         'minMessage' => 'Votre nom doit comporter au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
@@ -31,7 +31,7 @@ class RegistrationFormType extends AbstractType
             ->add('prenom', TextType::class,[
                 'constraints' => [
                     new Length([
-                        'min' => 6,
+                        'min' => 2,
                         'minMessage' => 'Votre prenom doit comporter au moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
@@ -94,4 +94,4 @@ class RegistrationFormType extends AbstractType
         ]);
     }
 }
- 
+

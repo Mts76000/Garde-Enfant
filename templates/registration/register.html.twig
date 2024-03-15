@@ -42,10 +42,10 @@
 				<div class="b">
 					<div class="adresse">
 
-				{{ form_widget(registrationForm.adresse, {
+						{{ form_widget(registrationForm.adresse, {
     'attr': {'placeholder': 'Adresse'}
 }) }}
-{{ form_errors(registrationForm.adresse) }}
+						{{ form_errors(registrationForm.adresse) }}
 
 
 					</div>
@@ -72,7 +72,7 @@
 					{{ form_widget(registrationForm.plainPassword, {
                     'attr': {'placeholder': 'Mot de passe'},
                 }) }}
-				{{ form_errors(registrationForm.plainPassword) }}
+					{{ form_errors(registrationForm.plainPassword) }}
 				</div>
 
 				<div class="condition">
@@ -80,9 +80,8 @@
 					{{ form_widget(registrationForm.agreeTerms, {
     'attr': {'class': 'form-control', 'placeholder': 'Accepter les conditions'}
 }) }}
-</div>
+				</div>
 				{{ form_errors(registrationForm.agreeTerms) }}
-				
 
 
 				<button type="submit" class="btn">Inscription</button>

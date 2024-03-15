@@ -18,8 +18,19 @@
         <nav id="burger-menu">
             <i class="fa-solid fa-xmark close-burger"></i>
             <ul>
-                <a class="button nav_button" href="{{ path('app_login') }}">Connexion</a>
-                <a class="button nav_button" href="{{ path('app_register_choix') }}">Inscription</a>
+                {% if app.user == false %}
+                    <a class="button nav_button" href="{{ path('app_login') }}">Connexion</a>
+                    <a class="button nav_button" href="{{ path('app_register_choix') }}">Inscription</a>
+                {% else %}
+                    <a class="button nav_button" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="button nav_button" href="{{ path('app_admin') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    {% elseif is_granted('ROLE_PRO') %}
+                        <a class="button nav_button" href="{{ path('app_pro') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <a class="button nav_button" href="{{ path('app_user') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    {% endif %}
+                {% endif %}
                 <hr>
                 <li><a class="liste" href="{{ path('app') }}">Accueil</a></li>
                 <li><a class="liste" href="{{ path('app_contact') }}">Contact</a></li>
@@ -37,7 +48,7 @@
                 <li><a class="liste" href="{{ path('app_faq') }}">F.A.Q</a></li>  
             </ul>
         </nav>
-        
+    
     </header>
 
 

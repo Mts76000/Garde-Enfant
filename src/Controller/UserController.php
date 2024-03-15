@@ -44,6 +44,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $enfant->setUser($this->getUser());
+        
             $entityManager->persist($enfant);
             $entityManager->flush();
 

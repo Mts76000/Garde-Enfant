@@ -5,6 +5,7 @@
   .wrap {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 2rem;
   }
@@ -59,6 +60,10 @@
     img {
       width: 50px;
     }
+  }
+  select {
+    width: 70%;
+    padding: .4rem;
   }
 }
 

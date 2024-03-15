@@ -17,6 +17,7 @@ import './styles/pro/demande.scss';
 import './styles/user/rdv.scss';
 import './styles/user/success.scss';
 import './styles/user/index.scss';
+import './styles/user/addchild.scss';
 
 
 

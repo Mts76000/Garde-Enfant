@@ -14,9 +14,8 @@
 			</div>
 			<div class="down">
 
-				{{ form_errors(registrationForm) }}
 
-				{{ form_start(registrationForm) }}
+				{{ form_start(registrationForm, {attr: {'novalidate': 'novalidate'}}) }}
 
 				{{ form_label(registrationForm.roless, 'Choix du role :') }}
 				{{ form_widget(registrationForm.roless, {
@@ -25,51 +24,65 @@
 
 				<div class="a">
 
-					{{ form_widget(registrationForm.nom, {
+					<div class="nom">
+						{{ form_widget(registrationForm.nom, {
                     'attr': {'placeholder': 'Nom'}
                 }) }}
+						{{ form_errors(registrationForm.nom) }}
 
-					{{ form_widget(registrationForm.prenom, {
+					</div>
+					<div class="prenom">
+						{{ form_widget(registrationForm.prenom, {
                     'attr': {'placeholder': 'Prénom'}
                 }) }}
-
+						{{ form_errors(registrationForm.prenom) }}
+					</div>
 				</div>
 
 				<div class="b">
+					<div class="adresse">
 
-					{{ form_widget(registrationForm.adresse, {
-                    'attr': {'placeholder': 'Adresse'}
-                }) }}
+				{{ form_widget(registrationForm.adresse, {
+    'attr': {'placeholder': 'Adresse'}
+}) }}
+{{ form_errors(registrationForm.adresse) }}
 
-					{{ form_widget(registrationForm.ZIP, {
+
+					</div>
+					<div class="ZIP">
+						{{ form_widget(registrationForm.ZIP, {
                     'attr': {'placeholder': 'Code Postal'}
                 }) }}
-
+						{{ form_errors(registrationForm.ZIP) }}
+					</div>
 				</div>
 
 				<div class="email">
 
 					{{ form_widget(registrationForm.email, {
                     'attr': {'placeholder': 'Email'}
+					
                 }) }}
 
+					{{ form_errors(registrationForm.email) }}
 				</div>
 
 				<div class="pass">
 
 					{{ form_widget(registrationForm.plainPassword, {
                     'attr': {'placeholder': 'Mot de passe'},
-                    'label': 'Password'
                 }) }}
+				{{ form_errors(registrationForm.plainPassword) }}
 				</div>
 
 				<div class="condition">
-				{{ form_label(registrationForm.agreeTerms, 'Accepter les conditions') }}
-				{{ form_widget(registrationForm.agreeTerms, {
+					{{ form_label(registrationForm.agreeTerms, 'Accepter les conditions') }}
+					{{ form_widget(registrationForm.agreeTerms, {
     'attr': {'class': 'form-control', 'placeholder': 'Accepter les conditions'}
 }) }}
 </div>
-
+				{{ form_errors(registrationForm.agreeTerms) }}
+				
 
 
 				<button type="submit" class="btn">Inscription</button>

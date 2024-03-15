@@ -20,7 +20,7 @@
     margin-bottom: 15px;
   }
 
-  // Styles pour les champs de formulaire
+ 
   .form-control {
     padding: 1rem;
     border-radius: 10px;
@@ -33,7 +33,7 @@
     height: 130px;
   }
 
-  // Styles pour les messages d'erreur
+
   .error {
     color: red;
   }
@@ -44,7 +44,13 @@
 
   }
 
-  // Styles pour le bouton Envoyer
+  input:focus {
+    outline: none;
+  }
+  textarea:focus {
+    outline: none;
+  }
+
   .btn {
     padding: 1rem;
     border-radius: 15px;

@@ -1,7 +1,7 @@
 @use "variables" as v;
 
 #register {
-  height: 80vh;
+  // height: 80vh;
   .wrap {
     display: flex;
     flex-direction: column;
@@ -11,6 +11,7 @@
     gap: 2rem;
   }
   h1 {
+    padding-top: 3rem;
     font-size: 32px;
     text-align: center;
     text-transform: uppercase;
@@ -32,6 +33,7 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: v.$primary;
     border: none;
+    margin-bottom: 3rem;
   }
   .top {
     display: flex;
@@ -83,4 +85,10 @@
   .alert {
     color: red;
   }
+
+ul li{
+  color: red;
+  text-align: center;
+ 
+}
 }

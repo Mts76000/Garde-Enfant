@@ -1,5 +1,6 @@
 import './styles/app.scss';
 import './styles/home.scss';
+
 import './styles/contact.scss';
 
 // connexion / inscription
@@ -19,6 +20,9 @@ import './styles/user/success.scss';
 import './styles/user/index.scss';
 
 
+
+
+import './styles/recupChild.scss';
 
 
 console.log('ok home');

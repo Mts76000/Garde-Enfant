@@ -16,10 +16,13 @@ class UserFixtures extends Fixture
         $this->passwordHasher = $passwordHasher;
     }
 
-    
+    public const ADMIN_USER_REFERENCE = 'admin';
+
 
     public function load(ObjectManager $manager): void
     {
+
+
         $admin = new User();
         $admin->setEmail('admin@admin.fr');
         $hashedPassword = $this->passwordHasher->hashPassword(
@@ -28,6 +31,10 @@ class UserFixtures extends Fixture
         );
         $admin->setPassword($hashedPassword);
         $admin->setRoles(array('ROLE_ADMIN'));
+        $admin->setNom('Bertollucci');
+        $admin->setPrenom('michel');
+        $admin->setZIP(75320);
+        $admin->setAdresse('Rue des rosiers');
         $manager->persist($admin);
 
         // role
@@ -35,5 +42,8 @@ class UserFixtures extends Fixture
         // parent
 
         $manager->flush();
+
+
+        $this->addReference(self::ADMIN_USER_REFERENCE, $admin);
     }
 }

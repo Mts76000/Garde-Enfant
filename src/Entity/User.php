@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -53,6 +55,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     #[Assert\NotBlank]
     private ?int $ZIP = null;
+
+    #[ORM\OneToMany(targetEntity: Child::class, mappedBy: 'user')]
+    private Collection $childs;
+
+    public function __construct()
+    {
+        $this->childs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -175,6 +185,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setZIP(int $ZIP): static
     {
         $this->ZIP = $ZIP;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Child>
+     */
+    public function getChilds(): Collection
+    {
+        return $this->childs;
+    }
+
+    public function addChild(Child $child): static
+    {
+        if (!$this->childs->contains($child)) {
+            $this->childs->add($child);
+            $child->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChild(Child $child): static
+    {
+        if ($this->childs->removeElement($child)) {
+            // set the owning side to null (unless already changed)
+            if ($child->getUser() === $this) {
+                $child->setUser(null);
+            }
+        }
 
         return $this;
     }

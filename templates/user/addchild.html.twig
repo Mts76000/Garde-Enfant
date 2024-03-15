@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouté un enfant{% endblock %}
+
+{% block body %}
+
+
+<section id="addchild" class="wrap">
+    <h1>AJOUTÉ UN ENFANT</h1>
+    {{ form_start(form) }}
+    <div class="namesurname">
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+    </div>
+    <div class="agegenre">
+        {{ form_row(form.age) }}
+        {{ form_row(form.genre) }}
+    </div>
+    {{ form_row(form.consigne_alimentaire) }}
+    {{ form_row(form.traitement) }}
+    {{ form_row(form.vaccin) }}
+    {{ form_row(form.alergie) }}
+    <button class="btn" type="submit">Ajouter</button>
+    {{ form_end(form) }}
+
+</section>
+
+{% endblock %}

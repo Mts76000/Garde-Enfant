@@ -32,6 +32,13 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+        $this->setStatus('pending');
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;

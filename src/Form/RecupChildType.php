@@ -13,9 +13,8 @@ class RecupChildType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('lastName', TextType::class,['label' => 'Nom'])
+            ->add('lastName',TextType::class,['label' => 'Nom'])
             ->add('firstName',TextType::class,['label' => 'Prénom'])
-            //->add('created_at')
         ;
     }
 

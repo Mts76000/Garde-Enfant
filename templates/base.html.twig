@@ -27,7 +27,7 @@
                         <a class="button nav_button" href="{{ path('app_admin') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
                     {% elseif is_granted('ROLE_PRO') %}
                         <a class="button nav_button" href="{{ path('app_pro') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-                    {% elseif is_granted('ROLE_USER') %}
+                    {% elseif is_granted('ROLE_PARENT') %}
                         <a class="button nav_button" href="{{ path('app_user') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
                     {% endif %}
                 {% endif %}

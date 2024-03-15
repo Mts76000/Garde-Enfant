@@ -17,7 +17,7 @@ class ProController extends AbstractController
     }
     
     
-    #[Route('/messsage', name: 'app_pro_message')]
+    #[Route('/pro_messsage', name: 'app_pro_message')]
     public function message(): Response
     {
         return $this->render('pro/message.html.twig', [
@@ -26,7 +26,7 @@ class ProController extends AbstractController
     } 
 
 
-    #[Route('/detail', name: 'app_pro_detail')]
+    #[Route('/pro_detail', name: 'app_pro_detail')]
     public function detail(): Response
     {
         return $this->render('pro/detail.html.twig', [
@@ -34,7 +34,7 @@ class ProController extends AbstractController
         ]);
     }
 
-    #[Route('/demande', name: 'app_pro_demande')]
+    #[Route('/pro_demande', name: 'app_pro_demande')]
     public function demande(): Response
     {
         return $this->render('pro/demande.html.twig', [

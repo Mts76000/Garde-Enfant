@@ -3,11 +3,27 @@
 {% block title %}Hello AdminController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
 
-  
+<section id="dashboard">
+    <div class="wrap">
+        <div class="link">
+            <div class="top">
+				<a  href="{{ path('app_pro_demande') }}">Liste Utilisateurs</a>
+				<a href="{{ path('app_pro_message') }}">Messagerie</a>
+                </div>
+                <div class="down">
+				<a href="{{ path('app_pro_detail') }}">Liste RDV.</a>
+				<a  href="{{ path('app_pro') }}">Demandes Pro.</a>
+                </div>
+			</div>
+            <div class="Stat">
+                <h2>Statistique :</h2>
+            </div>
+			<div class="img">
+			<a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
+    </div>
+</section>
+
 {% endblock %}

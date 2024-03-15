@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# meta #}
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <link rel="icon" href="{{ asset('asset/img/logo_carre.png') }}" type="image/png">
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('styles/home.scss') }}">
@@ -15,11 +15,22 @@
     <body>
 
     <header>
-    <nav id="burger-menu">
-        <i class="fa-solid fa-xmark close-burger"></i>
+        <nav id="burger-menu">
+            <i class="fa-solid fa-xmark close-burger"></i>
             <ul>
-                <a class="button nav_button" href="{{ path('app_login') }}">Conexion</a>
-                <a class="button nav_button" href="{{ path('app_register_choix') }}">Inscription</a>
+                {% if app.user == false %}
+                    <a class="button nav_button" href="{{ path('app_login') }}">Connexion</a>
+                    <a class="button nav_button" href="{{ path('app_register_choix') }}">Inscription</a>
+                {% else %}
+                    <a class="button nav_button" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="button nav_button" href="{{ path('app_admin') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    {% elseif is_granted('ROLE_PRO') %}
+                        <a class="button nav_button" href="{{ path('app_pro') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <a class="button nav_button" href="{{ path('app_user') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    {% endif %}
+                {% endif %}
                 <hr>
                 <li><a class="liste" href="{{ path('app') }}">Accueil</a></li>
                 <li><a class="liste" href="{{ path('app_contact') }}">Contact</a></li>
@@ -37,8 +48,7 @@
                 <li><a class="liste" href="{{ path('app_faq') }}">F.A.Q</a></li>  
             </ul>
         </nav>
-
-        
+    
     </header>
 
 

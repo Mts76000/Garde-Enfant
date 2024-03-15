@@ -4,19 +4,36 @@ namespace App\Entity;
 
 use App\Repository\RecupChildRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecupChildRepository::class)]
 class RecupChild
 {
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le prenom doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le prenom doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le nom doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $firstName = null;
 
     public function getId(): ?int
@@ -24,9 +41,6 @@ class RecupChild
         return $this->id;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $param)
-    {
-    }
 
     public function getLastName(): ?string
     {

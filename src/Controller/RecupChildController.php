@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\RecupChild;
+use App\Form\RecupChildType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -29,10 +33,10 @@ class RecupChildController extends AbstractController
             $entityManager->persist($recupChild);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_RecupChild_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_recup_child', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('RecupChild/new.html.twig', [
+        return $this->render('recup_child/new.html.twig', [
             'RecupChild' => $recupChild,
             'form' => $form,
         ]);

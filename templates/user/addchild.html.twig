@@ -5,16 +5,29 @@
 {% block body %}
 
 
-<section id="addchild" class="wrap">
+
+<section id="addchild" class="form" >
+<div class="wrap">
+<div class="info">
     <h1>AJOUTÉ UN ENFANT</h1>
     {{ form_start(form) }}
+    </div>
     <div class="namesurname">
         {{ form_row(form.nom) }}
         {{ form_row(form.prenom) }}
     </div>
     <div class="agegenre">
-        {{ form_row(form.age) }}
-        {{ form_row(form.genre) }}
+        {{ form_row(form.age,{
+            'attr':{
+                'class':'age'
+            }
+        
+        }) }}
+        {{ form_row(form.genre,{
+            'attr':{
+                'class':'genre'
+            }
+        }) }}
     </div>
     {{ form_row(form.consigne_alimentaire) }}
     {{ form_row(form.traitement) }}
@@ -23,6 +36,7 @@
     <button class="btn" type="submit">Ajouter</button>
     {{ form_end(form) }}
 
+</div>
 </section>
 
 {% endblock %}

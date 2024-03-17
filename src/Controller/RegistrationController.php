@@ -48,15 +48,6 @@ class RegistrationController extends BaseController
         ]);
     }
 
-    #[Route('/inscription', name: 'app_register_choix')]
-    public function index(): Response
-    {
-        //  $user = $this->getUser();
-        //  dd($user);
-        return $this->render('registration/index.html.twig', [
-       
-        ]);
-    } 
     
     
     #[Route('/succes_register', name: 'app_register_success')]

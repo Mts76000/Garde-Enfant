@@ -1,72 +1,12 @@
 @use "variables" as v;
 
 #contact {
-  height: 80vh;
-  .wrap {
+  height: 90vh;
+   .nom_prenom {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    gap: 2rem;
-  }
-  h1 {
-    font-size: 32px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #3b3b3b;
-  }
-  .form-group {
-    margin-bottom: 15px;
-  }
-
- 
-  .form-control {
-    padding: 1rem;
-    border-radius: 10px;
-    border: solid 1px #c0c0c0;
-    width: 100%;
-  }
-
-  textarea {
-    resize: none;
-    height: 130px;
-  }
-
-
-  .error {
-    color: red;
-  }
-
-  .nom_prenom {
-    display: flex;
-    gap: .6rem;
+    gap: 1rem;
 
   }
 
-  input:focus {
-    outline: none;
-  }
-  textarea:focus {
-    outline: none;
-  }
-
-  .btn {
-    padding: 1rem;
-    border-radius: 15px;
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    color: v.$blanc;
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: v.$primary;
-    border: none;
-
-    &:hover {
-      background-color: #0056b3;
-    }
-  }
 }
 

@@ -20,7 +20,7 @@
             <ul>
                 {% if app.user == false %}
                     <a class="button nav_button" href="{{ path('app_login') }}">Connexion</a>
-                    <a class="button nav_button" href="{{ path('app_register_choix') }}">Inscription</a>
+                    <a class="button nav_button" href="{{ path('app_register') }}">Inscription</a>
                 {% else %}
                     <a class="button nav_button" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
                     {% if is_granted('ROLE_ADMIN') %}

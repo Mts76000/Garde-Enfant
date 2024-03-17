@@ -5,20 +5,22 @@
 {% block body %}
 
 
-    <section id="user">
+    <section id="user" class="bouton">
         <div class="wrap">
+        <div class="select">
             <select name="child" id="child">
                 <option value="1">Mathis</option>
                 <option value="2">Bilel</option>
             </select>
+            </div>
             <div class="link">
                 <div class="top">
-                    <a  href="{{ path('app_pro_demande') }}">Prendre un rdv</a>
-                    <a href="{{ path('app_pro_message') }}">Ajouter un enfant</a>
+                    <a  href="{{ path('app_user_rdv') }}">Prendre un rdv</a>
+                    <a href="{{ path('app_user_child') }}">Ajouter un enfant</a>
                 </div>
                 <div class="down">
-                    <a class="info" href="{{ path('app_pro_detail') }}">Mes infos</a>
-                    <a class="dashboard" href="{{ path('app_pro') }}">Ajouter un tuteur</a>
+                    <a class="info" href="{{ path('app_recup_child_index') }}">Voir les tuteur</a>
+                    <a class="dashboard" href="{{ path('app_recup_child_new') }}">Ajouter un tuteur</a>
                 </div>
             </div>
             <div class="creneaux">

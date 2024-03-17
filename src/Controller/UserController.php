@@ -22,7 +22,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/rdv', name: 'app_rdv')]
+    #[Route('/user_rdv', name: 'app_user_rdv')]
     public function rdv(): Response
     {
 
@@ -32,7 +32,7 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/enfant', name: 'app_child')]
+    #[Route('/user_enfant', name: 'app_user_child')]
     public function addChild(Request $request, EntityManagerInterface $entityManager): Response
     {
 
@@ -58,7 +58,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/success', name: 'app_user_success')]
+    #[Route('/user_success', name: 'app_user_success')]
     public function success(): Response
     {
         return $this->render('user/success.html.twig', [

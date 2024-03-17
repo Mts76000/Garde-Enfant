@@ -1,11 +1,11 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Admin{% endblock %}
 
 {% block body %}
 
 
-<section id="dashboard">
+<section id="dashboard" class="bouton">
     <div class="wrap">
         <div class="link">
             <div class="top">
@@ -13,8 +13,8 @@
 				<a href="{{ path('app_pro_message') }}">Messagerie</a>
                 </div>
                 <div class="down">
-				<a href="{{ path('app_pro_detail') }}">Liste RDV.</a>
-				<a  href="{{ path('app_pro') }}">Demandes Pro.</a>
+				<a href="{{ path('app_pro_detail') }}">Liste RDV</a>
+				<a  href="{{ path('app_pro') }}">Demandes Pro</a>
                 </div>
 			</div>
             <div class="Stat">

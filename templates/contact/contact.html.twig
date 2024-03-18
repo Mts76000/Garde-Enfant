@@ -12,6 +12,7 @@
 			<h1>NOUS CONTACTEZ</h1>
 			<div class="nom_prenom">
 				<div class="form-group">
+				{{ form_start(form, {attr: {'novalidate': 'novalidate', 'class': 'wrap'}}) }}
 					{{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
 					{% if form_errors(form.nom) %}
 						<span class="error">{{ form_errors(form.nom) }}</span>

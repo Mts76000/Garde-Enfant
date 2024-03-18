@@ -1,6 +1,6 @@
 @use "variables" as v;
 
-#recupChild {
+.recupChild {
   height: 80vh;
   text-align: center;
   .wrap {
@@ -11,12 +11,14 @@
       gap: 1rem;
     }
 
-  #recup_child{
-    display: flex;
-      flex-direction: column;
-      gap: 1rem;
-  }
+ 
   }
 
 
+
+}
+#recup_child{
+  display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }

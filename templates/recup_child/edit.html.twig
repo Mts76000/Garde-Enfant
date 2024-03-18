@@ -3,15 +3,17 @@
 {% block title %}Edit RecupChild{% endblock %}
 
 {% block body %}
-    <section id="recupChild">
-        <div class="wrap">
-            <h1>Personne de confiance</h1>
 
-            {{ include('recup_child/_form.html.twig', {'button_label': 'Modifier'}) }}
+    <section id="addchild" class="form recupChild">
+		<div class="wrap">
+			<div class="info">
+				<h1>Personne de confiance</h1>
 
-            <a href="{{ path('app_recup_child_index') }}">Retour</a>
 
-            {{ include('recup_child/_delete_form.html.twig') }}
-        </div>
-    </section>
+   {{ include('recup_child/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
+				<div class="img">
+					<a href="{{ path('app_recup_child_index') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+				</div>
 {% endblock %}

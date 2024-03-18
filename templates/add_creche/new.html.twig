@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AddCreche{% endblock %}
+
+{% block body %}
+    <h1>Create new AddCreche</h1>
+
+    {{ include('add_creche/_form.html.twig') }}
+
+    <a href="{{ path('app_add_creche_index') }}">back to list</a>
+{% endblock %}

@@ -69,6 +69,7 @@ class FullChildType extends AbstractType
                 'Oui' => '1',
                 'Non' => '0',
             ],
+            'placeholder' => 'Vaccin a jour ? ',
         ])
         ->add('alergie', TextareaType::class, [
             'attr' => ['placeholder' => 'Allergie'],

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\FullChildRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FullChildRepository::class)]
 class FullChild
@@ -15,27 +16,66 @@ class FullChild
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le nom doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $nom = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le prenom doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le prenom doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $age = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $genre = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+     #[Assert\Length(
+        min: 2,
+        max: 500,
+        minMessage: ' doit contenir au moins {{ limit }} caractères',
+        maxMessage: ' doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $consigne_alimentaire = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 500,
+        minMessage: ' doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $traitement = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?int $vaccin = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank] 
+    #[Assert\Length(
+        min: 2,
+        max: 500,
+        minMessage: 'doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $alergie = null;
 
 

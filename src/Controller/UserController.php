@@ -36,9 +36,5 @@ class UserController extends AbstractController
         return $this->render('user/success.html.twig', []);
     }
 
-    #[Route('/user_listing_enfant', name: 'app_user_listing_enfant')]
-    public function listing_enfant(): Response
-    {
-        return $this->render('user/listing_enfant.html.twig', []);
-    }
+  
 }

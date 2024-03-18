@@ -34,7 +34,7 @@ class FullChildController extends AbstractController
             $entityManager->persist($fullChild);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_full_child_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_full_child_success');
         }
 
         return $this->render('full_child/new.html.twig', [
@@ -79,4 +79,14 @@ class FullChildController extends AbstractController
 
         return $this->redirectToRoute('app_full_child_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/okkkk', name: 'app_full_child_success', methods: ['GET'])]
+    public function success(): Response
+    {
+        return $this->render('full_child/success.html.twig', [
+          
+        ]);
+    }
 }
+

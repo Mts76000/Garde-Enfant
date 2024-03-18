@@ -15,16 +15,17 @@
 				</div>
 			</div>
 			<div class="listing">
+
+
 				{% for full_child in full_children %}
-
-
 					<div class="child">
+
 						<div class="left">
 							<i class="fa-solid fa-child-reaching"></i>
 						</div>
 						<div class="right">
 
-							<p>{{ full_child.nom }}</p>
+							<p>{{ full_child.prenom }}</p>
 
 							<div class="btn">
 								<a class="edit" href="{{ path('app_full_child_edit', {'id': full_child.id}) }}">editer</a>

@@ -48,6 +48,7 @@ class AddCreche
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
+
     private ?\DateTimeImmutable $modified_at = null;
 
     public function getId(): ?int
@@ -151,17 +152,17 @@ class AddCreche
         return $this;
     }
 
-    public function getAgrement(): ?string
-    {
-        return $this->agrement;
-    }
+//    public function getAgrement(): ?string
+//    {
+//        return $this->agrement;
+//    }
 
-    public function setAgrement(?string $agrement): static
-    {
-        $this->agrement = $agrement;
-
-        return $this;
-    }
+//    public function setAgrement(?string $agrement): static
+//    {
+//        $this->agrement = $agrement;
+//
+//        return $this;
+//    }
 
     public function getStatus(): ?string
     {
@@ -195,6 +196,18 @@ class AddCreche
     public function setModifiedAt(?\DateTimeImmutable $modified_at): static
     {
         $this->modified_at = $modified_at;
+
+        return $this;
+    }
+
+
+    public function getBrochureFilename(): ?string
+    {
+        return $this->agrement;
+    }
+    public function setBrochureFilename(string $brochureFilename): static
+    {
+        $this->agrement = $brochureFilename;
 
         return $this;
     }

@@ -66,7 +66,7 @@ class DocumentController extends AbstractController
 
             // ... persist the $product variable or any other work
 
-            return $this->redirectToRoute('app_document_new');
+            return $this->redirectToRoute('app_document_index');
         }
 
         return $this->render('document/new.html.twig', [

@@ -6,8 +6,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use App\Form\ChildFormType;
-use App\Entity\Child;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -32,36 +30,15 @@ class UserController extends AbstractController
     }
 
 
-    #[Route('/user_enfant', name: 'app_user_child')]
-    public function addChild(Request $request, EntityManagerInterface $entityManager): Response
-    {
-
-        $enfant = new Child();
-
-        $form = $this->createForm(ChildFormType::class, $enfant);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $enfant->setUser($this->getUser());
-        
-            $entityManager->persist($enfant);
-            $entityManager->flush();
-
-            // Rediriger l'utilisateur vers une autre page après l'enregistrement
-            return $this->redirectToRoute('app_user');
-        }
-
-        // Rendre le formulaire dans la vue Twig
-        return $this->render('user/addchild.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
     #[Route('/user_success', name: 'app_user_success')]
     public function success(): Response
     {
-        return $this->render('user/success.html.twig', [
-        ]);
+        return $this->render('user/success.html.twig', []);
+    }
+
+    #[Route('/user_listing_enfant', name: 'app_user_listing_enfant')]
+    public function listing_enfant(): Response
+    {
+        return $this->render('user/listing_enfant.html.twig', []);
     }
 }

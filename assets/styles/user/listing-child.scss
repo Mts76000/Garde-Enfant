@@ -1,0 +1,59 @@
+@use "../variables" as v;
+
+#listing-child {
+ 
+  .form {
+    .btn {
+      margin-bottom: 2rem;
+    }
+  }
+  .link {
+    display: flex;
+    align-items: center;
+    padding-top: 0rem;
+    a {
+      width: 75%;
+    }
+  }
+  .listing {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 15px;
+    padding: 2rem;
+    .child {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      .left {
+        width: 15%;
+        i {
+          font-size: 2rem;
+        }
+      }
+      .right {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        p {
+          font-weight: 500;
+        }
+        .btn {
+          display: flex;
+          gap: 1rem;
+          .edit {
+            background-color: v.$orange;
+          }
+          .sup {
+            background-color: v.$primary;
+          }
+          a {
+            text-align: center;
+            display: block;
+            color: v.$blanc;
+            border-radius: 25px;
+            padding: 0.3rem 1rem;
+          }
+        }
+      }
+    }
+  }
+}

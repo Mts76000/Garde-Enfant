@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ChildRepository;
+use App\Repository\FullChildRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ChildRepository::class)]
-class Child
+#[ORM\Entity(repositoryClass: FullChildRepository::class)]
+class FullChild
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -38,21 +38,10 @@ class Child
     #[ORM\Column(type: Types::TEXT)]
     private ?string $alergie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'childs')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -150,17 +139,4 @@ class Child
 
         return $this;
     }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
 }

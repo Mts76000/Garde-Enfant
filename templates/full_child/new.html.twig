@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout enfant{% endblock %}
+
+{% block body %}
+    <section id="addchild" class="form" >
+<div class="wrap">
+<div class="info">
+    <h1>AJOUTÉ UN ENFANT</h1>
+   
+
+    {{ include('full_child/_form.html.twig') }}
+
+    	 <div class="img">
+                <a href="{{ path('app_full_child_index') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+            </div>
+
+
+{% endblock %}

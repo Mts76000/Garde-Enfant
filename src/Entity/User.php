@@ -57,15 +57,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     private ?int $ZIP = null;
 
-    #[ORM\OneToMany(targetEntity: Child::class, mappedBy: 'user')]
-    private Collection $childs;
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
     public function __construct()
     {
-        $this->childs = new ArrayCollection();
         $this->setCreatedAt(new DateTimeImmutable());
         $this->setStatus(('new'));
     }
@@ -203,27 +200,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->childs;
     }
 
-    public function addChild(Child $child): static
-    {
-        if (!$this->childs->contains($child)) {
-            $this->childs->add($child);
-            $child->setUser($this);
-        }
+  
 
-        return $this;
-    }
-
-    public function removeChild(Child $child): static
-    {
-        if ($this->childs->removeElement($child)) {
-            // set the owning side to null (unless already changed)
-            if ($child->getUser() === $this) {
-                $child->setUser(null);
-            }
-        }
-
-        return $this;
-    }
+   
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {

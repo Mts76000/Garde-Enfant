@@ -82,6 +82,14 @@ class FullChild
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $status = null;
+
+    public function __construct()
+    {
+        $this->setStatus('new');
+    }
+
 
     public function getId(): ?int
     {
@@ -192,6 +200,18 @@ class FullChild
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

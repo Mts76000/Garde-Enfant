@@ -24,10 +24,10 @@ class UserFixtures extends Fixture
 
 
         $admin = new User();
-        $admin->setEmail('admin@admin.fr');
+        $admin->setEmail('admin@admin.com');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,
-            'michel'
+            'admin'
         );
         $admin->setPassword($hashedPassword);
         $admin->setRoles(array('ROLE_ADMIN'));
@@ -35,8 +35,9 @@ class UserFixtures extends Fixture
         $admin->setPrenom('michel');
         $admin->setZIP(75320);
         $admin->setAdresse('Rue des rosiers');
-        $manager->persist($admin);
-
+        $manager->persist($admin); 
+    
+       
         // role
 
         // parent
@@ -45,5 +46,6 @@ class UserFixtures extends Fixture
 
 
         $this->addReference(self::ADMIN_USER_REFERENCE, $admin);
+
     }
 }

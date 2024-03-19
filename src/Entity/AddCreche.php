@@ -30,6 +30,9 @@ class AddCreche
     private ?string $tarif = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $maxEnfant = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
@@ -114,6 +117,16 @@ class AddCreche
         $this->tarif = $tarif;
 
         return $this;
+    }
+
+    public function getMaxEnfant(): ?string
+    {
+        return $this->maxEnfant;
+    }
+
+    public function setMaxEnfant(?string $maxEnfant): void
+    {
+        $this->maxEnfant = $maxEnfant;
     }
 
     public function getAdresse(): ?string

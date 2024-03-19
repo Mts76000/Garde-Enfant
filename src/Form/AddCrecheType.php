@@ -34,6 +34,12 @@ class AddCrecheType extends AbstractType
                     'label' => false,
                 ])
 
+            ->add('maxEnfant',TextType::class,
+                [
+                    'attr' => array('placeholder' => 'Nombre de place'),
+                    'label' => false,
+                ])
+
             ->add('adresse',TextType::class,
                 [
                     'attr' => array('placeholder' => 'Adresse'),

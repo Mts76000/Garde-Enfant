@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\AddCrecheRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AddCrecheRepository::class)]
 class AddCreche
@@ -18,40 +19,95 @@ class AddCreche
     private ?int $id_user = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le nom doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le siret doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le siret doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $siret = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 1,
+        max: 50,
+        minMessage: 'Le tarif doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le tarif doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $tarif = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nombre de place doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le nombre de place doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $maxEnfant = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'L\'adresse doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'L\'adresse doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'L\'email doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'L\'email doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le numéro de telephone doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le numéro de telephone doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $agrement = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le status doit contenir au moins {{ limit }} caractères',
+        maxMessage: 'Le status doit contenir au maximum {{ limit }} caractères',
+    )]
     private ?string $status = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
-
     private ?\DateTimeImmutable $modified_at = null;
 
     public function getId(): ?int

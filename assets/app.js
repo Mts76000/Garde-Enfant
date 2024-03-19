@@ -14,6 +14,8 @@ import "./styles/pro/dashboard.scss";
 import "./styles/pro/message.scss";
 import "./styles/pro/detail.scss";
 import "./styles/pro/demande.scss";
+import "./styles/pro/demande.scss";
+import "./styles/pro/addCreche.scss";
 
 // user
 import "./styles/user/rdv.scss";

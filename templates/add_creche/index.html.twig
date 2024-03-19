@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AddCreche index{% endblock %}
+
+{% block body %}
+    <section id="addCreche">
+        <div class="wrap">
+            <div class="addCreche">
+                <h1>AddCreche index</h1>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Id_user</th>
+                        <th>Nom</th>
+                        <th>Siret</th>
+                        <th>Description</th>
+                        <th>Tarif</th>
+                        <th>Max enfant</th>
+                        <th>Adresse</th>
+                        <th>Email</th>
+                        <th>Telephone</th>
+                        <th>Status</th>
+                        <th>Created_at</th>
+                        <th>Modified_at</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for add_creche in add_creches %}
+                        <tr>
+                            <td>{{ add_creche.id }}</td>
+                            <td>{{ add_creche.idUser }}</td>
+                            <td>{{ add_creche.nom }}</td>
+                            <td>{{ add_creche.siret }}</td>
+                            <td>{{ add_creche.description }}</td>
+                            <td>{{ add_creche.tarif }}</td>
+                            <td>{{ add_creche.maxEnfant }}</td>
+                            <td>{{ add_creche.adresse }}</td>
+                            <td>{{ add_creche.email }}</td>
+                            <td>{{ add_creche.telephone }}</td>
+                            <td>{{ add_creche.status }}</td>
+                            <td>{{ add_creche.createdAt ? add_creche.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ add_creche.modifiedAt ? add_creche.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('app_add_creche_show', {'id': add_creche.id}) }}">show</a>
+                                <a href="{{ path('app_add_creche_edit', {'id': add_creche.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="14">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+                <a href="{{ path('app_add_creche_new') }}">Create new</a>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

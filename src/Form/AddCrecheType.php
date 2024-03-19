@@ -64,11 +64,12 @@ class AddCrecheType extends AbstractType
 //                    'label' => false,
 //                ])
 
-            ->add('status',TextType::class,
-                [
-                    'attr' => array('placeholder' => 'Status'),
-                    'label' => false,
-                ])
+//            ->add('status',TextType::class,
+//                [
+//                    'attr' => array('placeholder' => 'Status'),
+//                    'label' => false,
+//                ])
+
             ->add('brochure', FileType::class, [
                 'label' => false,
 

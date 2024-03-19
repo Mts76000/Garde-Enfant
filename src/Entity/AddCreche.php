@@ -94,14 +94,7 @@ class AddCreche
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $agrement = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
-    #[Assert\Length(
-        min: 2,
-        max: 50,
-        minMessage: 'Le status doit contenir au moins {{ limit }} caractères',
-        maxMessage: 'Le status doit contenir au maximum {{ limit }} caractères',
-    )]
+    #[ORM\Column]
     private ?string $status = null;
 
     #[ORM\Column]
@@ -238,7 +231,7 @@ class AddCreche
         return $this->status;
     }
 
-    public function setStatus(?string $status): static
+    public function setStatus(string $status): static
     {
         $this->status = $status;
 

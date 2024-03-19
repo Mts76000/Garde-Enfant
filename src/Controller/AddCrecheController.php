@@ -33,6 +33,7 @@ class AddCrecheController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $addCreche->setStatus('waiting');
             $addCreche->setCreatedAt(new \DateTimeImmutable());
             /** @var UploadedFile $brochureFile */
             $brochureFile = $form->get('brochure')->getData();

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FullChild{% endblock %}
+
+{% block body %}
+    <h1>FullChild</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ full_child.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ full_child.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ full_child.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{ full_child.age }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ full_child.genre }}</td>
+            </tr>
+            <tr>
+                <th>Consigne_alimentaire</th>
+                <td>{{ full_child.consigneAlimentaire }}</td>
+            </tr>
+            <tr>
+                <th>Traitement</th>
+                <td>{{ full_child.traitement }}</td>
+            </tr>
+            <tr>
+                <th>Vaccin</th>
+                <td>{{ full_child.vaccin }}</td>
+            </tr>
+            <tr>
+                <th>Alergie</th>
+                <td>{{ full_child.alergie }}</td>
+            </tr>
+            <tr>
+                <th>User_id</th>
+                <td>{{ full_child.userId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_full_child_index') }}">back to list</a>
+
+    <a href="{{ path('app_full_child_edit', {'id': full_child.id}) }}">edit</a>
+
+    {{ include('full_child/_delete_form.html.twig') }}
+{% endblock %}

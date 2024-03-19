@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RecupChild index
+{% endblock %}
+
+{% block body %}
+
+	<section id="listing-child" class="bouton">
+		<div class="wrap">
+			<div class="titre">
+				<h1>Mes Tuteurs</h1>
+				<div class="link">
+					<a href="{{ path('app_recup_child_new') }}">Ajouter un tuteur</a>
+				</div>
+			</div>
+			<div class="listing">
+
+
+				{% for recup_child in recup_children %}
+					<div class="child">
+
+						<div class="left">
+							<i class="fa-solid fa-user-group"></i>
+						</div>
+						<div class="right">
+
+							<p>{{ recup_child.lastName }}
+								{{ recup_child.firstName }}</p>
+
+							<div class="btn">
+								<a class="edit" href="{{ path('app_recup_child_edit', {'id': recup_child.id}) }}">editer</a>
+								<a class="sup" href="{{ path('app_recup_child_delete', {'id': recup_child.id}) }}">supprimer</a>
+
+							</div>
+						</div>
+
+					</div>
+				{% else %}
+
+
+					<div class="link">
+						<p style="text-align: center;">Aucun tuteur</p>
+					</div>
+
+				{% endfor %}
+			</div>
+
+		</div>
+	</section>
+{% endblock %}

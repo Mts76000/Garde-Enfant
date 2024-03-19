@@ -1,86 +1,23 @@
 @use "../variables" as v;
 
-
 #addchild {
-  height: 80vh;
-  .wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    gap: 2rem;
-  }
-  h1 {
-    font-size: 32px;
-    text-align: center;
-    text-transform: uppercase;
-    color: #3b3b3b;
-  }
-  .form-group {
-    margin-bottom: 15px;
-  }
 
-  // Styles pour les champs de formulaire
-  input {
-    margin: .4rem 0;
-    padding: .6rem;
-    border-radius: 10px;
-    border: solid 1px #c0c0c0;
-    width: 100%;
+  .btn {
+    margin-bottom: 2rem;
   }
-
-  select {
-    margin: .4rem 0;
-    padding: .6rem;
-    border-radius: 10px;
-    border: solid 1px #c0c0c0;
-    width: 100%;
-  }
-
-  textarea {
-    margin: .4rem 0;
-    padding: .6rem;
-    border-radius: 10px;
-    border: solid 1px #c0c0c0;
-    width: 100%;    resize: none;
-    height: 130px;
-  }
-
-  // Styles pour les messages d'erreur
-  .error {
-    color: red;
-  }
-
+  
   .namesurname {
     display: flex;
-    gap: .6rem;
-    input {
-
-    }
+    gap: 1rem;
   }
 
   .agegenre {
     display: flex;
-    gap: .6rem;
-  }
-
-  // Styles pour le bouton Envoyer
-  .btn {
-    padding: 1rem;
-    border-radius: 15px;
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    color: v.$blanc;
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: v.$primary;
-    border: none;
-
-    &:hover {
-      background-color: #0056b3;
+    justify-content: center;
+    gap: 1rem;
+    .age{
+      width: 150px;
     }
+    
   }
 }

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -56,12 +57,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank]
     private ?int $ZIP = null;
 
-    #[ORM\OneToMany(targetEntity: Child::class, mappedBy: 'user')]
-    private Collection $childs;
+
+    #[ORM\Column(length: 255)]
+    private ?string $status = null;
 
     public function __construct()
     {
-        $this->childs = new ArrayCollection();
+        $this->setCreatedAt(new DateTimeImmutable());
+        $this->setStatus(('new'));
     }
 
     public function getId(): ?int
@@ -197,25 +200,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->childs;
     }
 
-    public function addChild(Child $child): static
+  
+
+   
+
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
-        if (!$this->childs->contains($child)) {
-            $this->childs->add($child);
-            $child->setUser($this);
-        }
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    {
+        $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function removeChild(Child $child): static
+    public function getStatus(): ?string
     {
-        if ($this->childs->removeElement($child)) {
-            // set the owning side to null (unless already changed)
-            if ($child->getUser() === $this) {
-                $child->setUser(null);
-            }
-        }
+        return $this->status;
+    }
+
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
+
+   
 }

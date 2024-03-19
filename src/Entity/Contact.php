@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
@@ -15,15 +16,43 @@ class Contact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez entrer un nom.')]
+    #[Assert\Length(
+        min: 2,
+        max: 40,
+        minMessage: 'Le nom doit avoir au moins {{ limit }} caractères.',
+        maxMessage: 'Le nom ne peut pas dépasser {{ limit }} caractères.'
+    )]
+
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez entrer un prénom.')]
+    #[Assert\Length(
+        min: 3,
+        max: 30,
+        minMessage: 'Le prénom doit avoir au moins {{ limit }} caractères.',
+        maxMessage: 'Le prénom ne peut pas dépasser {{ limit }} caractères.'
+    )]
+
     private ?string $prenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Email(
+        message: "l'email {{ value }} n'est pas valid.",
+    )]
     private ?string $email = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(message: 'Veuillez entrer votre message.')]
+    #[Assert\Length(
+        min: 5,
+        max: 2500,
+        minMessage: 'Le message doit avoir au moins {{ limit }} caractères.',
+        maxMessage: 'Le message ne peut pas dépasser {{ limit }} caractères.'
+    )]
+
     private ?string $message = null;
 
     #[ORM\Column]

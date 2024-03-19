@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes enfants
+{% endblock %}
+
+{% block body %}
+
+
+	<section id="listing-child" class="bouton">
+		<div class="wrap">
+			<div class="titre">
+				<h1>Mes enfants</h1>
+				<div class="link">
+					<a href="{{ path('app_full_child_new') }}">Ajouter un enfant</a>
+				</div>
+			</div>
+			<div class="listing">
+
+
+				{% for full_child in full_children %}
+					<div class="child">
+
+						<div class="left">
+							<i class="fa-solid fa-child-reaching"></i>
+						</div>
+						<div class="right">
+
+							<p>{{ full_child.prenom }}</p>
+
+							<div class="btn">
+								<a class="edit" href="{{ path('app_full_child_edit', {'id': full_child.id}) }}">editer</a>
+								<a class="sup" href="{{ path('app_full_child_delete', {'id': full_child.id}) }}">supprimer</a>
+
+							</div>
+						</div>
+
+					</div>
+				{% else %}
+
+
+					<div class="link">
+						<p style="text-align: center;">Aucun enfant</p>
+						<a href="{{ path('app_full_child_new') }}">Ajouter un enfant</a>
+					</div>
+
+				{% endfor %}
+			</div>
+
+		</div>
+	</section>
+{% endblock %}

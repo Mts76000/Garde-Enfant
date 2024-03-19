@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +25,7 @@ class RegistrationController extends BaseController
             
             // encode the plain password
             $user->setRoles(array($form->get('roless')->getData()));
+            // $user->setCR(new DateTimeImmutable());
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
@@ -46,15 +48,6 @@ class RegistrationController extends BaseController
         ]);
     }
 
-    #[Route('/inscription', name: 'app_register_choix')]
-    public function index(): Response
-    {
-        //  $user = $this->getUser();
-        //  dd($user);
-        return $this->render('registration/index.html.twig', [
-       
-        ]);
-    } 
     
     
     #[Route('/succes_register', name: 'app_register_success')]

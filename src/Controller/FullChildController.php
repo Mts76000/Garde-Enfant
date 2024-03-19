@@ -18,8 +18,11 @@ class FullChildController extends AbstractController
     #[Route('/', name: 'app_full_child_index', methods: ['GET'])]
     public function index(FullChildRepository $fullChildRepository): Response
     {
+        $user = $this->getUser();
+        $enfants = $user->getFullChildren();
+
         return $this->render('full_child/index.html.twig', [
-            'full_children' => $fullChildRepository->findAll(),
+            'full_children' => $enfants,
         ]);
     }
 
@@ -31,6 +34,10 @@ class FullChildController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            $fullChild->setUser($user);
+
+
             $entityManager->persist($fullChild);
             $entityManager->flush();
 
@@ -43,7 +50,7 @@ class FullChildController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_full_child_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_full_child_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(FullChild $fullChild): Response
     {
         return $this->render('full_child/show.html.twig', [
@@ -72,7 +79,7 @@ class FullChildController extends AbstractController
     #[Route('/{id}', name: 'app_full_child_delete', methods: ['POST'])]
     public function delete(Request $request, FullChild $fullChild, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$fullChild->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $fullChild->getId(), $request->request->get('_token'))) {
             $entityManager->remove($fullChild);
             $entityManager->flush();
         }
@@ -81,12 +88,9 @@ class FullChildController extends AbstractController
     }
 
 
-    #[Route('/okkkk', name: 'app_full_child_success', methods: ['GET'])]
+    #[Route('/success', name: 'app_full_child_success', methods: ['GET'])]
     public function success(): Response
     {
-        return $this->render('full_child/success.html.twig', [
-          
-        ]);
+        return $this->render('full_child/success.html.twig', []);
     }
 }
-

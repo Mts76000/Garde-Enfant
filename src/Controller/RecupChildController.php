@@ -55,8 +55,11 @@ class RecupChildController extends AbstractController
     {
         $form = $this->createForm(RecupChildType::class, $recupChild);
         $form->handleRequest($request);
-
+        //dd($form);
         if ($form->isSubmitted() && $form->isValid()) {
+            
+
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_recup_child_index', [], Response::HTTP_SEE_OTHER);

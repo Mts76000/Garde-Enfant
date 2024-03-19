@@ -91,6 +91,7 @@ class FullChildController extends AbstractController
     #[Route('/success', name: 'app_full_child_success', methods: ['GET'])]
     public function success(): Response
     {
+        
         return $this->render('full_child/success.html.twig', []);
     }
 }

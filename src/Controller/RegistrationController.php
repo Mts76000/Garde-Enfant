@@ -52,14 +52,7 @@ class RegistrationController extends BaseController
     
     #[Route('/succes_register', name: 'app_register_success')]
     public function success(): Response
-    {
-       
-        
-   
-        // sleep(5);
-        
-        //  return $this->redirectToRoute('app_login');
-         
+    {         
         return $this->render('registration/success.html.twig', [
        
         ]);

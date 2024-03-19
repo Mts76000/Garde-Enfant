@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FullChildRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -78,9 +80,13 @@ class FullChild
     )]
     private ?string $alergie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'fullChildren')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
+    #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'id_child', orphanRemoval: true)]
+    private Collection $child;
+
+    public function __construct()
+    {
+        $this->child = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -180,18 +186,6 @@ class FullChild
     public function setAlergie(string $alergie): static
     {
         $this->alergie = $alergie;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): static
-    {
-        $this->user = $user;
 
         return $this;
     }

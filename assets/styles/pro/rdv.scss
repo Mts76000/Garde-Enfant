@@ -1,0 +1,14 @@
+@use "../variables" as v;
+
+#new_rdv {
+  .wrap {
+    .form {
+      form {
+        label {
+          display: block;
+          padding: 1rem 0.5rem 0.2rem ;
+        }
+      }
+    }
+  }
+}

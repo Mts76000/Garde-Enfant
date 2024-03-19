@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FullChildRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -77,6 +79,14 @@ class FullChild
         maxMessage: 'doit contenir au maximum {{ limit }} caractères',
     )]
     private ?string $alergie = null;
+
+    #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'id_child', orphanRemoval: true)]
+    private Collection $child;
+
+    public function __construct()
+    {
+        $this->child = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -176,6 +186,36 @@ class FullChild
     public function setAlergie(string $alergie): static
     {
         $this->alergie = $alergie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rdv>
+     */
+    public function getChild(): Collection
+    {
+        return $this->child;
+    }
+
+    public function addChild(Rdv $child): static
+    {
+        if (!$this->child->contains($child)) {
+            $this->child->add($child);
+            $child->setIdChild($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChild(Rdv $child): static
+    {
+        if ($this->child->removeElement($child)) {
+            // set the owning side to null (unless already changed)
+            if ($child->getIdChild() === $this) {
+                $child->setIdChild(null);
+            }
+        }
 
         return $this;
     }

@@ -1,43 +1,50 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Contact index{% endblock %}
+{% block title %}Contact index
+{% endblock %}
 
 {% block body %}
 
-    <section id="messagerie" class="wrap">
-        <h1>MES MESSAGE :</h1>
+	<section id="messagerie" class="bouton">
+		<div class="wrap">
+			<div class="titre">
+				<h1>MES MESSAGE :</h1>
 
+			</div>
+			<div class="messagerie">
+				{% for contact in contacts %}
+					<div class="message-box">
+						<div class="top">
+							<p>{{ contact.createdAt ? contact.createdAt|date('H : i') : '' }}</p>
+							<p>{{ contact.createdAt ? contact.createdAt|date('m/d') : '' }}</p>
+						</div>
+						<div class="bot">
+							<div class="letter">
+								<i class="fa-solid fa-envelope" style="color: #000000;"></i>
+							</div>
+							<div class="description">
+                            <div class="info">
+								<div class="titre">
+									<h2>{{ contact.nom }}
+										{{ contact.prenom }}</h2>
+								</div>
+								<div>
+									<p class="text-limit">{{ contact.message }}</p>
+								</div>
+                                </div>
+								<div class="bouton">
+									<a class="edit" href="{{ path('app_messagerie_show', {'id': contact.id}) }}">Detail</a>
+									{{ include('messagerie/_delete_form.html.twig') }}
+								</div>
+							</div>
+						</div>
 
-        <div class="messagerie">
-            {% for contact in contacts %}
-            <div class="message-box">
-                <div class="message">
-                    <div class="top">
-                        <p>{{ contact.createdAt ? contact.createdAt|date('H : i') : '' }}</p>
-                        <p>{{ contact.createdAt ? contact.createdAt|date('m/d') : '' }}</p>
-                    </div>
-                    <div class="bot">
-                        <div class="letter">
-                            <i class="fa-solid fa-envelope" style="color: #000000;"></i>
-                        </div>
-                        <div class="description">
-                            <div class="titre">
-                            <h2>{{ contact.nom }} {{ contact.prenom }}</h2>
-                            </div>
-                            <div>
-                            <p class="text-limit">{{ contact.message }}</p>
-                            </div>
-                            <div class="bouton">
-                                <a class="edit" href="{{ path('app_messagerie_show', {'id': contact.id}) }}">show</a>
-                                {{ include('messagerie/_delete_form.html.twig') }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% else %}
-        </div>
-        {% endfor %}
-    </section>
+					</div>
+				{% else %}
+					<p>aucun message</p>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
 
 {% endblock %}

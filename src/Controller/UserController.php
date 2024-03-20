@@ -15,8 +15,12 @@ class UserController extends AbstractController
     #[Route('/user', name: 'app_user')]
     public function index(): Response
     {
+        $user = $this->getUser();
+        $enfants = $user->getFullChildren();
+
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController',
+            'full_children' => $enfants,
         ]);
     }
 

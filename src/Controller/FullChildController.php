@@ -19,7 +19,6 @@ class FullChildController extends AbstractController
     public function index(FullChildRepository $fullChildRepository): Response
     {
         $user = $this->getUser();
-        // dd($user);
         $enfants = $user->getFullChildren();
 
         return $this->render('full_child/index.html.twig', [

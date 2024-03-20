@@ -47,6 +47,14 @@ class AdminController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_admin_demande_show', methods: ['GET'])]
+    public function show(AddCreche $addCreche): Response
+    {
+        return $this->render('admin/show.html.twig', [
+            'add_creche' => $addCreche,
+        ]);
+    }
+
     #[Route('/app_admin_detail', name: 'app_admin_detail')]
     public function detail(): Response
     {

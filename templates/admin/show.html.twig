@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}AddCreche{% endblock %}
+{% block title %}Detail Creche{% endblock %}
 
 {% block body %}
     <h1>AddCreche</h1>
@@ -40,10 +40,6 @@
                 <td>{{ add_creche.telephone }}</td>
             </tr>
             <tr>
-                <th>Agrement</th>
-                <td>{{ add_creche.agrement }}</td>
-            </tr>
-            <tr>
                 <th>Status</th>
                 <td>{{ add_creche.status }}</td>
             </tr>
@@ -58,9 +54,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_add_creche_index') }}">back to list</a>
+    <a href="{{ asset('uploads/brochures/' ~ add_creche.brochureFilename) }}">View brochure (PDF)</a>
+    <a href="{{ path('app_admin_demande') }}">back to list</a>
 
-    <a href="{{ path('app_add_creche_edit', {'id': add_creche.id}) }}">edit</a>
-
-    {{ include('add_creche/_delete_form.html.twig') }}
 {% endblock %}

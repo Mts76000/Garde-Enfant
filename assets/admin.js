@@ -2,6 +2,7 @@ import './styles/app.scss';
 import './styles/admin.scss';
 import "./styles/form.scss";
 import "./styles/bouton.scss";
+import "./styles/user/listing-child.scss";
 
 const burgerBtn = document.querySelector('.burger');
 const closeBtn = document.querySelector('.close-burger');

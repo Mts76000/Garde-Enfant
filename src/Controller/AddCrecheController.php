@@ -85,6 +85,14 @@ class AddCrecheController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/public', name: 'app_add_creche_public_show', methods: ['GET'])]
+    public function public_show(AddCreche $addCreche): Response
+    {
+        return $this->render('add_creche/public_show.html.twig', [
+            'add_creche' => $addCreche,
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_add_creche_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, AddCreche $addCreche, EntityManagerInterface $entityManager): Response
     {

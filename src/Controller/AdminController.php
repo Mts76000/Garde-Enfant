@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Repository\AddCrecheRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\AddCreche;
 
 class AdminController extends AbstractController
 {
@@ -34,11 +36,14 @@ class AdminController extends AbstractController
     }
 
     #[Route('/app_admin_demande', name: 'app_admin_demande')]
-    public function demande(): Response
+    public function demande(AddCrecheRepository $addCrecheRepository): Response
     {
+
+
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        return $this->render('admin/message.html.twig', [
+        return $this->render('admin/demande.html.twig', [
             'controller_name' => 'AdminController',
+            'add_creches' => $addCrecheRepository->findBy(['status' => 'waiting']),
         ]);
     }
 

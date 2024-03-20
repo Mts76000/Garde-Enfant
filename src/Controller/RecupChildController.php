@@ -30,10 +30,14 @@ class RecupChildController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             $entityManager->persist($recupChild);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_recup_child_index', [], Response::HTTP_SEE_OTHER);
+
+
+           return $this->redirectToRoute('app_recup_child_success');
         }
 
         return $this->render('recup_child/new.html.twig', [
@@ -42,7 +46,7 @@ class RecupChildController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_recup_child_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_recup_child_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(RecupChild $recupChild): Response
     {
         return $this->render('recup_child/show.html.twig', [
@@ -55,8 +59,11 @@ class RecupChildController extends AbstractController
     {
         $form = $this->createForm(RecupChildType::class, $recupChild);
         $form->handleRequest($request);
-
+        //dd($form);
         if ($form->isSubmitted() && $form->isValid()) {
+            
+
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_recup_child_index', [], Response::HTTP_SEE_OTHER);
@@ -77,5 +84,12 @@ class RecupChildController extends AbstractController
         }
 
         return $this->redirectToRoute('app_recup_child_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/success', name: 'app_recup_child_success', methods: ['GET'])]
+    public function success(): Response
+    {
+        
+        return $this->render('recup_child/success.html.twig', []);
     }
 }

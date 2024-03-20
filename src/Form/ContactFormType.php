@@ -18,7 +18,6 @@ class ContactFormType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('email', EmailType::class)
             ->add('message', TextareaType::class);
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

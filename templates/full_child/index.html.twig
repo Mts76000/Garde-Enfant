@@ -18,34 +18,35 @@
 
 
 				{% for full_child in full_children %}
-					<div class="child">
 
-						<div class="left">
-							<i class="fa-solid fa-child-reaching"></i>
-						</div>
-						<div class="right">
-
-							<p>{{ full_child.prenom }}</p>
-
-							<div class="btn">
-								<a class="edit" href="{{ path('app_full_child_edit', {'id': full_child.id}) }}">editer</a>
-								<a class="sup" href="{{ path('app_full_child_delete', {'id': full_child.id}) }}">supprimer</a>
-
+				
+					{% if full_child.status == 'new' %}
+						<div class="child">
+							<div class="left">
+								<i class="fa-solid fa-child-reaching"></i>
+							</div>
+							<div class="right">
+								<p>{{ full_child.prenom }}</p>
+								<div class="btn">
+									<a class="edit" href="{{ path('app_full_child_edit', {'id': full_child.id}) }}">editer</a>
+									<a class="sup" href="{{ path('app_full_child_sup', {'id': full_child.id}) }}">supprimer</a>
+								</div>
 							</div>
 						</div>
-
-					</div>
+					{% endif %}
 				{% else %}
-
-
 					<div class="link">
 						<p style="text-align: center;">Aucun enfant</p>
-						<a href="{{ path('app_full_child_new') }}">Ajouter un enfant</a>
 					</div>
 
 				{% endfor %}
-			</div>
+				{# 
+												{% endif %} #}
 
+			</div>
+			<div class="img">
+				<a href="{{ path('app_user') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
 		</div>
 	</section>
 {% endblock %}

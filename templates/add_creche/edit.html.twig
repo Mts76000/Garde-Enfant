@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit AddCreche{% endblock %}
+
+{% block body %}
+    <section id="addCreche" class="form">
+        <div class="wrap">
+            <h1>Edit AddCreche</h1>
+
+            {{ include('add_creche/_form.html.twig', {'button_label': 'Update'}) }}
+
+            <a href="{{ path('app_add_creche_index') }}">back to list</a>
+
+            {{ include('add_creche/_delete_form.html.twig') }}
+        </div>
+    </section>
+{% endblock %}

@@ -61,10 +61,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    #[ORM\OneToMany(targetEntity: FullChild::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $fullChildren;
+
     public function __construct()
     {
         $this->setCreatedAt(new DateTimeImmutable());
         $this->setStatus(('new'));
+        $this->fullChildren = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -225,6 +229,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setStatus(string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FullChild>
+     */
+    public function getFullChildren(): Collection
+    {
+        return $this->fullChildren;
+    }
+
+    public function addFullChild(FullChild $fullChild): static
+    {
+        if (!$this->fullChildren->contains($fullChild)) {
+            $this->fullChildren->add($fullChild);
+            $fullChild->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFullChild(FullChild $fullChild): static
+    {
+        if ($this->fullChildren->removeElement($fullChild)) {
+            // set the owning side to null (unless already changed)
+            if ($fullChild->getUser() === $this) {
+                $fullChild->setUser(null);
+            }
+        }
 
         return $this;
     }

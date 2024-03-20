@@ -1,19 +1,16 @@
-@use "variables" as v;
+@use "../variables" as v;
 
-.recupChild {
+#addCreche {
   height: 80vh;
   text-align: center;
   .wrap {
     gap: 2rem;
-    .recup {
+    .addCreche{
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
   }
-}
-#recup_child {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+
+
 }

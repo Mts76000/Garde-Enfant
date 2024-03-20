@@ -1,17 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New RecupChild{% endblock %}
+{% block title %}Personne de confiance{% endblock %}
 
 {% block body %}
     <section id="recupChild" class="form">
         <div class="wrap">
-            <h1>Personne de confiance</h1>
+            <div class="info">
+                <h1>Personne de confiance</h1>
+                {{ include('recup_child/_form.html.twig') }}
 
-          
+                <div class="img">
+                    <a href="{{ path('app_full_child_index') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+                </div>
 
-            {{ include('recup_child/_form.html.twig') }}
-
-            <a href="{{ path('app_recup_child_index') }}">Retour</a>
             </div>
         </div>
     </section>

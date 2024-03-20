@@ -38,9 +38,6 @@ class AddCreche
     )]
     private ?string $siret = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
-
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(
@@ -144,17 +141,17 @@ class AddCreche
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
+//    public function getDescription(): ?string
+//    {
+//        return $this->description;
+//    }
+//
+//    public function setDescription(string $description): static
+//    {
+//        $this->description = $description;
+//
+//        return $this;
+//    }
 
     public function getTarif(): ?string
     {

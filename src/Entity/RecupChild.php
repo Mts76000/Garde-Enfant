@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RecupChildRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -39,9 +41,17 @@ class RecupChild
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    #[ORM\ManyToOne(inversedBy: 'user')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'id_user', orphanRemoval: true)]
+    private Collection $id_user;
+
 
     public function __construct()
     {
+        $this->id_user = new ArrayCollection();
         $this->setStatus('new');
     }
 
@@ -86,4 +96,17 @@ class RecupChild
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 }

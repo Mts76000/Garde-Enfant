@@ -17,8 +17,13 @@ class RecupChildController extends AbstractController
     #[Route('/', name: 'app_recup_child_index', methods: ['GET'])]
     public function index(RecupChildRepository $recupChildRepository): Response
     {
+
+        $user = $this->getUser();
+        $tuteur = $user->getUser();
+
         return $this->render('recup_child/index.html.twig', [
-            'recup_children' => $recupChildRepository->findAll(),
+            // 'recup_children' => $recupChildRepository->findAll(),
+            'recup_children' => $tuteur,
         ]);
     }
 
@@ -31,6 +36,8 @@ class RecupChildController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $user = $this->getUser();
+            $recupChild->setUser($user);
 
             $entityManager->persist($recupChild);
             $entityManager->flush();

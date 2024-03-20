@@ -1,8 +1,13 @@
 import './styles/app.scss';
-import './styles/admin.scss';
 import "./styles/form.scss";
 import "./styles/bouton.scss";
+
 import "./styles/user/listing-child.scss";
+
+
+import "./styles/admin/message.scss";
+import "./styles/admin/user.scss";
+
 
 const burgerBtn = document.querySelector('.burger');
 const closeBtn = document.querySelector('.close-burger');

@@ -1,0 +1,36 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <section id="adminuser" class="wrap">
+        <h1>Utilisateurs :</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.status }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
+                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+{% endblock %}

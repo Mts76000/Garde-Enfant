@@ -36,6 +36,15 @@ class RecupChild
     )]
     private ?string $firstName = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $status = null;
+
+
+    public function __construct()
+    {
+        $this->setStatus('new');
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -62,6 +71,18 @@ class RecupChild
     public function setFirstName(string $firstName): static
     {
         $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

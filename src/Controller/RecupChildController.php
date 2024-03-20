@@ -46,13 +46,13 @@ class RecupChildController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_recup_child_show', methods: ['GET'], requirements: ['id' => '\d+'])]
-    public function show(RecupChild $recupChild): Response
-    {
-        return $this->render('recup_child/show.html.twig', [
-            'recup_child' => $recupChild,
-        ]);
-    }
+    // #[Route('/{id}', name: 'app_recup_child_show', methods: ['GET'], requirements: ['id' => '\d+'])]
+    // public function show(RecupChild $recupChild): Response
+    // {
+    //     return $this->render('recup_child/show.html.twig', [
+    //         'recup_child' => $recupChild,
+    //     ]);
+    // }
 
     #[Route('/{id}/edit', name: 'app_recup_child_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, RecupChild $recupChild, EntityManagerInterface $entityManager): Response
@@ -85,6 +85,18 @@ class RecupChildController extends AbstractController
 
         return $this->redirectToRoute('app_recup_child_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/{id}/sup', name: 'app_recup_child_sup', methods: ['GET'])]
+    public function sup(Request $request, RecupChild $recupChild, EntityManagerInterface $entityManager): Response
+    {
+        $recupChild->setStatus('delete');
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_recup_child_index', [], Response::HTTP_SEE_OTHER);
+        return $this->render('full_child/sup.html.twig', []);
+    }
+
 
     #[Route('/success', name: 'app_recup_child_success', methods: ['GET'])]
     public function success(): Response

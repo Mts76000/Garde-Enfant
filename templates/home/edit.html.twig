@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Edit 
+{% endblock %}
+
+{% block body %}
+	<section id="edituser" class="wrap">
+		<h1>Edit User</h1>
+
+		{{ include('home/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+	</section>
+
+{% endblock %}

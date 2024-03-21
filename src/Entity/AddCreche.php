@@ -17,7 +17,7 @@ class AddCreche
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $id_user = null;
 
     #[ORM\Column(length: 255)]
@@ -30,41 +30,53 @@ class AddCreche
     )]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 14)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 2,
-        max: 50,
+        min: 9,
+        max: 14,
         minMessage: 'Le siret doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le siret doit contenir au maximum {{ limit }} caractères',
     )]
-    private ?string $siret = null;
+    #[Assert\Regex(
+        pattern: "/^\d+$/",
+        message: "Ce champ ne doit contenir que des chiffres"
+    )]
+    private ?int $siret = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 6)]
     #[Assert\NotBlank]
     #[Assert\Length(
         min: 1,
-        max: 50,
+        max: 6,
         minMessage: 'Le tarif doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le tarif doit contenir au maximum {{ limit }} caractères',
     )]
-    private ?string $tarif = null;
+    #[Assert\Regex(
+    pattern: "/^\d+[\.,]?\d*$/",
+    message: "Ce champ ne doit contenir que des chiffres, des points ou des virgules"
+    )]
+    private ?float $tarif = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 4)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 2,
-        max: 50,
+        min: 4,
+        max: 1,
         minMessage: 'Le nombre de place doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le nombre de place doit contenir au maximum {{ limit }} caractères',
     )]
-    private ?string $maxEnfant = null;
+    #[Assert\Regex(
+        pattern: "/^\d+$/",
+        message: "Ce champ ne doit contenir que des chiffres"
+    )]
+    private ?int $maxEnfant = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 2,
-        max: 50,
+        min: 3,
+        max: 255,
         minMessage: 'L\'adresse doit contenir au moins {{ limit }} caractères',
         maxMessage: 'L\'adresse doit contenir au maximum {{ limit }} caractères',
     )]
@@ -72,6 +84,9 @@ class AddCreche
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Assert\Email(
+        message: 'Veuillez entrer une adresse mail valide'
+    )]
     #[Assert\Length(
         min: 2,
         max: 50,
@@ -88,6 +103,10 @@ class AddCreche
         minMessage: 'Le numéro de telephone doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le numéro de telephone doit contenir au maximum {{ limit }} caractères',
     )]
+    #[Assert\Regex(
+        pattern: "/^\d+$/",
+        message: "Ce champ ne doit contenir que des chiffres"
+    )]
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -97,9 +116,11 @@ class AddCreche
     private ?string $status = null;
 
     #[ORM\Column]
+    #[Assert\DateTime]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\DateTime]
     private ?\DateTimeImmutable $modified_at = null;
 
     #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'pro', orphanRemoval: true)]

@@ -44,7 +44,7 @@ class UserFixtures extends Fixture
             'password'
         );
         $user->setPassword($hashedPassword);
-        $user->setRoles(['ROLE_USER']);
+        $user->setRoles(['ROLE_PARENT']);
         $user->setNom('Doe');
         $user->setPrenom('John');
         $user->setZIP(12345);

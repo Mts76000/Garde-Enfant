@@ -17,7 +17,7 @@ class AddCreche
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $id_user = null;
 
     #[ORM\Column(length: 255)]
@@ -61,8 +61,8 @@ class AddCreche
     #[ORM\Column(length: 4)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 4,
-        max: 1,
+        min: 1,
+        max: 4,
         minMessage: 'Le nombre de place doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le nombre de place doit contenir au maximum {{ limit }} caractères',
     )]
@@ -109,7 +109,12 @@ class AddCreche
     )]
     private ?string $telephone = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
+    #[Assert\File(
+        mimeTypes: "application/pdf",
+        mimeTypesMessage:"Veuillez télécharger un fichier au format PDF",
+        uploadErrorMessage:"Une erreur est survenue lors de l'envoi du fichier"
+     )]
     private ?string $agrement = null;
 
     #[ORM\Column]

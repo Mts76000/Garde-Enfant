@@ -107,7 +107,6 @@ class DocumentController extends AbstractController
             $entityManager->remove($document);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('app_document_index', [], Response::HTTP_SEE_OTHER);
     }
 }

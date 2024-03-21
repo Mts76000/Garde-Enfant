@@ -1,0 +1,41 @@
+{% extends 'essai.html.twig' %}
+
+{% block title %}ProTime index{% endblock %}
+
+{% block body %}
+    <h1>ProTime index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_pro</th>
+                <th>Jour</th>
+                <th>Heure_debut</th>
+                <th>Heure_fin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pro_time in pro_times %}
+            <tr>
+                <td>{{ pro_time.id }}</td>
+                <td>{{ pro_time.idPro }}</td>
+                <td>{{ pro_time.jour }}</td>
+                <td>{{ pro_time.heureDebut ? pro_time.heureDebut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ pro_time.heureFin ? pro_time.heureFin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_pro_time_show', {'id': pro_time.id}) }}">show</a>
+                    <a href="{{ path('app_pro_time_edit', {'id': pro_time.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_pro_time_new') }}">Create new</a>
+{% endblock %}

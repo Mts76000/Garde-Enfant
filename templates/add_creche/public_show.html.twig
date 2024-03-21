@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AddCreche{% endblock %}
+{% block title %}{{ add_creche.nom }} - Pitchoune{% endblock %}
 
 {% block body %}
     {# <h1>AddCreche</h1>
@@ -91,10 +91,12 @@
                 <span><b>Adresse:</b> {{ add_creche.adresse }}  </span>
             </div>
             <div id="map" style="width: 80vw; height: 300px; margin: 0 auto;"></div>
+                
 
             <div class="img">
-                <a href="{{ path('app_rdv_new', {'id': add_creche.id}) }}">Réserver</a>
                 <a href="{{ path('app_rdv_index') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+                <a class="button" href="{{ path('app_rdv_new', {'id': add_creche.id}) }}">Réserver</a>
+                <a href="{{ path('app_contact_creche_new', {'id': add_creche.id}) }}"><img class="back" src="{{ asset('asset/img/message.png') }}" alt=""></a>
             </div>
         </div>
     </section>

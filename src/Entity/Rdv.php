@@ -24,7 +24,11 @@ class Rdv
 
     #[ORM\ManyToOne(inversedBy: 'child')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?FullChild $id_child = null;
+    private ?FullChild $child = null;
+
+    #[ORM\ManyToOne(inversedBy: 'pro')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?AddCreche $pro = null;
 
     public function getId(): ?int
     {
@@ -57,12 +61,24 @@ class Rdv
 
     public function getIdChild(): ?FullChild
     {
-        return $this->id_child;
+        return $this->child;
     }
 
-    public function setIdChild(?FullChild $id_child): static
+    public function setIdChild(?FullChild $child): static
     {
-        $this->id_child = $id_child;
+        $this->child = $child;
+
+        return $this;
+    }
+
+    public function getPro(): ?AddCreche
+    {
+        return $this->pro;
+    }
+
+    public function setPro(?AddCreche $pro): static
+    {
+        $this->pro = $pro;
 
         return $this;
     }

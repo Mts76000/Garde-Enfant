@@ -110,10 +110,9 @@ class AddCreche
     private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\File(
-        mimeTypes: "application/pdf",
-        mimeTypesMessage:"Veuillez télécharger un fichier au format PDF",
-        uploadErrorMessage:"Une erreur est survenue lors de l'envoi du fichier"
+    #[Assert\Length(
+        min: 2,
+        minMessage: 'Veuillez uploader un document pdf',
      )]
     private ?string $agrement = null;
 

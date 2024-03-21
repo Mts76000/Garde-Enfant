@@ -39,6 +39,7 @@ class AddCrecheController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $addCreche->setStatus('waiting');
+//            $addCreche->setIdUser($user->getUserIdentifier());<---------------------------
             $addCreche->setCreatedAt(new \DateTimeImmutable());
             /** @var UploadedFile $brochureFile */
             $brochureFile = $form->get('brochure')->getData();
@@ -68,7 +69,7 @@ class AddCrecheController extends AbstractController
                 $entityManager->flush();
 
             } else {
-                $addCreche->setBrochureFilename('default_filename.pdf');
+                $addCreche->setBrochureFilename('default_filename.pdf');//<------------ Possibilité d'erreur
             }
 
 

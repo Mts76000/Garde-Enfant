@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\AddCreche;
-use App\Entity\Rdv;
 use App\Form\AddCrecheType;
 use App\Repository\AddCrecheRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,7 +20,6 @@ class AddCrecheController extends AbstractController
     #[Route('/', name: 'app_add_creche_index', methods: ['GET'])]
     public function index(AddCrecheRepository $addCrecheRepository): Response
     {
-        
         return $this->render('add_creche/index.html.twig', [
             'add_creches' => $addCrecheRepository->findAll(),
         ]);

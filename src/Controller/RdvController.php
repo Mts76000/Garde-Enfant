@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Rdv;
 use App\Form\RdvType;
+use App\Entity\AddCreche;
 use App\Repository\AddCrecheRepository;
 use App\Repository\RdvRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,13 +28,17 @@ class RdvController extends AbstractController
     #[Route('/new-rdv/{id}', name: 'app_rdv_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, $id): Response
     {
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
+
         $rdv = new Rdv();
-        $form = $this->createForm(RdvType::class, $rdv);
+
+        $addCreche = $entityManager->getRepository(AddCreche::class)->find($id);
+        $rdv->setPro($addCreche);
+        $form = $this->createForm(RdvType::class, $rdv, ['user' => $user]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-
             $rdv->setStatus('open');
             $entityManager->persist($rdv);
             $entityManager->flush();
@@ -43,7 +48,7 @@ class RdvController extends AbstractController
 
         return $this->render('rdv/new.html.twig', [
             'rdv' => $rdv,
-            'form' => $form,
+            'form' => $form->createView(),
             'id' => $id,
         ]);
     }

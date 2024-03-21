@@ -74,6 +74,8 @@ section#rdv_index {
 
 section#single_pro_public {
 
+	
+
 	.wrap {
 		text-align: center;
 
@@ -83,6 +85,13 @@ section#single_pro_public {
 			color: #6ECCAF;
 			text-transform: uppercase;
 		}
+
+		.img {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		padding: 1rem 0;
+	}
 
 		.container_horaire {
 			display: flex;

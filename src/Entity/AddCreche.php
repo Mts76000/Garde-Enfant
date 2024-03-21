@@ -42,7 +42,7 @@ class AddCreche
         pattern: "/^\d+$/",
         message: "Ce champ ne doit contenir que des chiffres"
     )]
-    private ?int $siret = null;
+    private ?string $siret = null;
 
     #[ORM\Column(length: 6)]
     #[Assert\NotBlank]
@@ -56,7 +56,7 @@ class AddCreche
     pattern: "/^\d+[\.,]?\d*$/",
     message: "Ce champ ne doit contenir que des chiffres, des points ou des virgules"
     )]
-    private ?float $tarif = null;
+    private ?string $tarif = null;
 
     #[ORM\Column(length: 4)]
     #[Assert\NotBlank]
@@ -70,7 +70,7 @@ class AddCreche
         pattern: "/^\d+$/",
         message: "Ce champ ne doit contenir que des chiffres"
     )]
-    private ?int $maxEnfant = null;
+    private ?string $maxEnfant = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]

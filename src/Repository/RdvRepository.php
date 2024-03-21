@@ -45,4 +45,13 @@ class RdvRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findValidatedRdvs(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.status = :status')
+            ->setParameter('status', 'validated')
+            ->getQuery()
+            ->getResult();
+    }
 }

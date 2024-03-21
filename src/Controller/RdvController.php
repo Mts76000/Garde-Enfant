@@ -20,10 +20,12 @@ class RdvController extends AbstractController
     public function index(RdvRepository $rdvRepository, AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
+        $validatedRdvs = $rdvRepository->findValidatedRdvs();
         return $this->render('rdv/index.html.twig', [
             'rdvs' => $rdvRepository->findAll(),
-            'add_creches' => $addCrecheRepository->findAll(),
+            'add_creches' => $addCrecheRepository->findBy(['status' => 'validated']),
             'user' => $user,
+            // 'validated_rdvs' => $validatedRdvs,
         ]);
     }
 

@@ -32,10 +32,6 @@ class UserType extends AbstractType
             ->add('ZIP', null, [
                 'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'form-label']
-            ])
-            ->add('status', null, [
-                'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => 'form-label']
             ]);
     }
 

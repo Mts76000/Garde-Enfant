@@ -17,8 +17,11 @@ class AdminUserController extends AbstractController
     #[Route('/', name: 'app_admin_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
+
+        $user = $this->getUser();
         return $this->render('admin_user/index.html.twig', [
             'users' => $userRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
@@ -39,12 +42,14 @@ class AdminUserController extends AbstractController
         return $this->render('admin_user/new.html.twig', [
             'user' => $user,
             'form' => $form,
+            
         ]);
     }
 
     #[Route('/{id}', name: 'app_admin_user_show', methods: ['GET'])]
     public function show(User $user): Response
     {
+        
         return $this->render('admin_user/show.html.twig', [
             'user' => $user,
         ]);

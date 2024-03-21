@@ -20,9 +20,12 @@ class AddCrecheController extends AbstractController
     #[Route('/', name: 'app_add_creche_index', methods: ['GET'])]
     public function index(AddCrecheRepository $addCrecheRepository): Response
     {
+
         $user = $this->getUser();
+
         return $this->render('add_creche/index.html.twig', [
             'add_creches' => $addCrecheRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
@@ -76,6 +79,7 @@ class AddCrecheController extends AbstractController
         return $this->render('add_creche/new.html.twig', [
             'add_creche' => $addCreche,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -85,6 +89,7 @@ class AddCrecheController extends AbstractController
         $user = $this->getUser();
         return $this->render('add_creche/show.html.twig', [
             'add_creche' => $addCreche,
+            'user' => $user,
         ]);
     }
 
@@ -94,6 +99,7 @@ class AddCrecheController extends AbstractController
         $user = $this->getUser();
         return $this->render('add_creche/public_show.html.twig', [
             'add_creche' => $addCreche,
+            'user' => $user,
         ]);
     }
 
@@ -114,6 +120,7 @@ class AddCrecheController extends AbstractController
         return $this->render('add_creche/edit.html.twig', [
             'add_creche' => $addCreche,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -126,6 +133,8 @@ class AddCrecheController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_add_creche_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_add_creche_index', [
+            'user' => $user,
+        ], Response::HTTP_SEE_OTHER);
     }
 }

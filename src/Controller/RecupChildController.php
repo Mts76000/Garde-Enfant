@@ -24,6 +24,7 @@ class RecupChildController extends AbstractController
         return $this->render('recup_child/index.html.twig', [
             // 'recup_children' => $recupChildRepository->findAll(),
             'recup_children' => $tuteur,
+            'user' => $user,
         ]);
     }
 
@@ -33,6 +34,7 @@ class RecupChildController extends AbstractController
         $recupChild = new RecupChild();
         $form = $this->createForm(RecupChildType::class, $recupChild);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -50,6 +52,7 @@ class RecupChildController extends AbstractController
         return $this->render('recup_child/new.html.twig', [
             'recup_child' => $recupChild,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -66,6 +69,7 @@ class RecupChildController extends AbstractController
     {
         $form = $this->createForm(RecupChildType::class, $recupChild);
         $form->handleRequest($request);
+        $user = $this->getUser();
         //dd($form);
         if ($form->isSubmitted() && $form->isValid()) {
             
@@ -79,6 +83,7 @@ class RecupChildController extends AbstractController
         return $this->render('recup_child/edit.html.twig', [
             'recup_child' => $recupChild,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -108,7 +113,9 @@ class RecupChildController extends AbstractController
     #[Route('/success', name: 'app_recup_child_success', methods: ['GET'])]
     public function success(): Response
     {
-        
-        return $this->render('recup_child/success.html.twig', []);
+        $user = $this->getUser();
+        return $this->render('recup_child/success.html.twig', [
+            'user' => $user,
+        ]);
     }
 }

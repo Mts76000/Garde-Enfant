@@ -49,7 +49,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_demande_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_admin_demande_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(AddCreche $addCreche): Response
     {
         return $this->render('admin/show.html.twig', [
@@ -68,7 +68,7 @@ class AdminController extends AbstractController
     #[Route('/{id}/validate', name: 'app_admin_demande_validate', methods: ['GET'])]
     public function validatePro(Request $request, AddCreche $addCreche, EntityManagerInterface $entityManager): Response
     {
-        if ($addCreche->getStatus() === 'waiting' | 'noValidate') {
+        if ($addCreche->getStatus() === 'waiting' || $addCreche->getStatus() === 'noValidate') {
             $addCreche->setStatus('validate');
 
             $entityManager->persist($addCreche);
@@ -83,7 +83,7 @@ class AdminController extends AbstractController
     #[Route('/{id}/novalidate', name: 'app_admin_demande_novalidate', methods: ['GET'])]
     public function noValidatePro(Request $request, AddCreche $addCreche, EntityManagerInterface $entityManager): Response
     {
-        if ($addCreche->getStatus() === 'waiting' | 'validate') {
+        if ($addCreche->getStatus() === 'waiting' || $addCreche->getStatus() === 'validate') {
             $addCreche->setStatus('noValidate');
 
             $entityManager->persist($addCreche);

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AddCrecheRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -99,6 +101,14 @@ class AddCreche
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $modified_at = null;
+
+    #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'pro', orphanRemoval: true)]
+    private Collection $pro;
+
+    public function __construct()
+    {
+        $this->pro = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -267,6 +277,36 @@ class AddCreche
     public function setBrochureFilename(string $brochureFilename): static
     {
         $this->agrement = $brochureFilename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, rdv>
+     */
+    public function getPro(): Collection
+    {
+        return $this->pro;
+    }
+
+    public function addPro(rdv $pro): static
+    {
+        if (!$this->pro->contains($pro)) {
+            $this->pro->add($pro);
+            $pro->setPro($this);
+        }
+
+        return $this;
+    }
+
+    public function removePro(rdv $pro): static
+    {
+        if ($this->pro->removeElement($pro)) {
+            // set the owning side to null (unless already changed)
+            if ($pro->getPro() === $this) {
+                $pro->setPro(null);
+            }
+        }
 
         return $this;
     }

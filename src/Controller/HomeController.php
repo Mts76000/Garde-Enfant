@@ -29,22 +29,28 @@ class HomeController extends AbstractController
     #[Route('/mentions', name: 'app_mentions')]
     public function mention(): Response
     {
+        $user = $this->getUser();
 
-        return $this->render('home/mentions.html.twig', []);
+        return $this->render('home/mentions.html.twig', [
+            'user' => $user,
+        ]);
+    
     }
 
     #[Route('/faq', name: 'app_faq')]
     public function faq(): Response
     {
-
-        return $this->render('home/faq.html.twig', []);
+        $user = $this->getUser();
+        return $this->render('home/faq.html.twig', [
+            'user' => $user,
+        ]);
     }
 
     #[Route('/contact', name: 'app_contact')]
     public function contact(Request $request,EntityManagerInterface $entityManager): Response
     {
         $contact = new Contact();
-
+        $user = $this->getUser();
         $form = $this->createForm(ContactFormType::class, $contact);
 
         $form->handleRequest($request);
@@ -57,12 +63,14 @@ class HomeController extends AbstractController
 
         return $this->render('contact/contact.html.twig', [
             'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 

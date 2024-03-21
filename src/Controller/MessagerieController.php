@@ -17,16 +17,20 @@ class MessagerieController extends AbstractController
     #[Route('/', name: 'app_messagerie_index', methods: ['GET'])]
     public function index(ContactRepository $contactRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('messagerie/index.html.twig', [
             'contacts' => $contactRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
     #[Route('/{id}', name: 'app_messagerie_show', methods: ['GET'])]
     public function show(Contact $contact): Response
     {
+        $user = $this->getUser();
         return $this->render('messagerie/show.html.twig', [
             'contact' => $contact,
+            'user' => $user,
         ]);
     }
 
@@ -35,6 +39,7 @@ class MessagerieController extends AbstractController
     {
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
@@ -45,6 +50,7 @@ class MessagerieController extends AbstractController
         return $this->render('messagerie/edit.html.twig', [
             'contact' => $contact,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 

@@ -21,15 +21,19 @@ class UserController extends AbstractController
         return $this->render('user/index.html.twig', [
             'controller_name' => 'UserController',
             'full_children' => $enfants,
+            'user' => $user,
         ]);
     }
 
     #[Route('/user_rdv', name: 'app_user_rdv')]
     public function rdv(): Response
     {
+        $user = $this->getUser();
 
         return $this->render('user/rdv.html.twig', [
             'controller_name' => 'UserController',
+            'user' => $user,
+            
         ]);
     }
 
@@ -37,7 +41,10 @@ class UserController extends AbstractController
     #[Route('/user_success', name: 'app_user_success')]
     public function success(): Response
     {
-        return $this->render('user/success.html.twig', []);
+        $user = $this->getUser();
+        return $this->render('user/success.html.twig', [
+            'user' => $user,
+        ]);
     }
 
   

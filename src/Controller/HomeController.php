@@ -9,15 +9,21 @@ use Symfony\Component\Routing\Attribute\Route;
 use App\Form\ContactFormType;
 use App\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserRepository;
+use App\Entity\User;
+use App\Form\UserType;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app')]
     public function index(): Response
     {
-        // $user = $this->getUser();
+        $user = $this->getUser();
         // dd($user);
-        return $this->render('home/index.html.twig', []);
+        return $this->render('home/index.html.twig', [
+            'user' => $user,
+        ]);
+        
     }
 
     #[Route('/mentions', name: 'app_mentions')]
@@ -53,4 +59,24 @@ class HomeController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app');
+        }
+
+        return $this->render('home/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+    
 }

@@ -29,6 +29,11 @@
                     {% endfor %}
                     </tbody>
                 </table>
+    <div>
+        <a  href="{{ path('app_admin_proValidate') }}">Liste des utilisateurs déja validés</a>
+        <a  href="{{ path('app_admin_proNoValidate') }}">Liste des utilisateurs refusés</a>
+    </div>
+
 
 
 {% endblock %}

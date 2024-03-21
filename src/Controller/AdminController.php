@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Repository\AddCrecheRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\AddCreche;
@@ -61,6 +63,57 @@ class AdminController extends AbstractController
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/message.html.twig', [
             'controller_name' => 'AdminController',
+        ]);
+    }
+    #[Route('/{id}/validate', name: 'app_admin_demande_validate', methods: ['GET'])]
+    public function validatePro(Request $request, AddCreche $addCreche, EntityManagerInterface $entityManager): Response
+    {
+        if ($addCreche->getStatus() === 'waiting' | 'noValidate') {
+            $addCreche->setStatus('validate');
+
+            $entityManager->persist($addCreche);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_admin_demande');
+        }
+
+        return new Response('Le professionnel n\'est pas en attente.');
+    }
+
+    #[Route('/{id}/novalidate', name: 'app_admin_demande_novalidate', methods: ['GET'])]
+    public function noValidatePro(Request $request, AddCreche $addCreche, EntityManagerInterface $entityManager): Response
+    {
+        if ($addCreche->getStatus() === 'waiting' | 'validate') {
+            $addCreche->setStatus('noValidate');
+
+            $entityManager->persist($addCreche);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_admin_demande');
+        }
+
+        return new Response('Le professionnel n\'est pas en attente.');
+    }
+
+    #[Route('/app_admin_proValidate', name: 'app_admin_proValidate')]
+    public function proValidate(AddCrecheRepository $addCrecheRepository): Response
+    {
+
+
+        // $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        return $this->render('admin/proValidate.html.twig', [
+            'controller_name' => 'AdminController',
+            'ValidatePros' => $addCrecheRepository->findBy(['status' => 'validate']),
+        ]);
+    }
+
+    #[Route('/app_admin_proNoValidate', name: 'app_admin_proNoValidate')]
+    public function proNoValidate(AddCrecheRepository $addCrecheRepository): Response
+    {
+        // $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        return $this->render('admin/proNoValidate.html.twig', [
+            'controller_name' => 'AdminController',
+            'NoValidatePros' => $addCrecheRepository->findBy(['status' => 'noValidate']),
         ]);
     }
 }

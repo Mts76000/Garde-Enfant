@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AddCrecheRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -100,6 +102,11 @@ class AddCreche
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $modified_at = null;
 
+    #[ORM\ManyToOne(inversedBy: 'pro')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?ContactCreche $pro = null;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -141,17 +148,6 @@ class AddCreche
         return $this;
     }
 
-//    public function getDescription(): ?string
-//    {
-//        return $this->description;
-//    }
-//
-//    public function setDescription(string $description): static
-//    {
-//        $this->description = $description;
-//
-//        return $this;
-//    }
 
     public function getTarif(): ?string
     {
@@ -211,18 +207,6 @@ class AddCreche
         return $this;
     }
 
-//    public function getAgrement(): ?string
-//    {
-//        return $this->agrement;
-//    }
-
-//    public function setAgrement(?string $agrement): static
-//    {
-//        $this->agrement = $agrement;
-//
-//        return $this;
-//    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -270,4 +254,17 @@ class AddCreche
 
         return $this;
     }
+
+    public function getPro(): ?ContactCreche
+    {
+        return $this->pro;
+    }
+
+    public function setPro(?ContactCreche $pro): static
+    {
+        $this->pro = $pro;
+
+        return $this;
+    }
+
 }

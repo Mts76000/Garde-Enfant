@@ -18,8 +18,10 @@ class RdvController extends AbstractController
     #[Route('/', name: 'app_rdv_index', methods: ['GET'])]
     public function index(RdvRepository $rdvRepository, AddCrecheRepository $addCrecheRepository): Response
     {
+
+
         return $this->render('rdv/index.html.twig', [
-            'rdvs' => $rdvRepository->findAll(),
+            //'rdvs' => $rdvRepository->findAll(),
             'add_creches' => $addCrecheRepository->findAll(),
         ]);
     }

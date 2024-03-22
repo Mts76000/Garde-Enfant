@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProTimeType extends AbstractType
+class ProTimeTypeOld extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -31,7 +31,6 @@ class ProTimeType extends AbstractType
             ->add('heure_debut', ChoiceType::class, [
                 'label' => 'Heure de début',
                 'choices' => $this->generateHours(),
-
             ])
             ->add('heure_fin', ChoiceType::class, [
                 'label' => 'Heure de fin',

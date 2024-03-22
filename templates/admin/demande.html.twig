@@ -1,39 +1,50 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Pro en attente{% endblock %}
+{% block title %}Pro en attente
+{% endblock %}
 
 {% block body %}
 
-                <h1>En attente de validation</h1>
+	<section id="messagerie" class="bouton">
+		<div class="wrap">
+			<div class="titre">
+				<h1>Demande pro :</h1>
 
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Status</th>
-                        <th>Created_at</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for add_creche in add_creches %}
-                        <tr>
-                            <td>{{ add_creche.nom }}</td>
-                            <td>{{ add_creche.status }}</td>
-                            <td>{{ add_creche.createdAt ? add_creche.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                            <a href="{{ path('app_admin_demande_show', {'id': add_creche.id}) }}">show</a>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="14">no records found</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-    <div>
-        <a  href="{{ path('app_admin_proValidate') }}">Liste des utilisateurs déja validés</a>
-        <a  href="{{ path('app_admin_proNoValidate') }}">Liste des utilisateurs refusés</a>
-    </div>
+			</div>
+			<div class="messagerie">
+				{% for add_creche in add_creches %}
+					<div class="message-box">
+						<div class="top">
+							<p>{{ add_creche.createdAt ? add_creche.createdAt|date('H : i') : '' }}</p>
+							<p>{{ add_creche.createdAt ? add_creche.createdAt|date('m/d') : '' }}</p>
+						</div>
+						<div class="bot">
+							<div class="letter">
+								<i class="fa-solid fa-house"></i>
+							</div>
+							<div class="description">
+								<div class="info">
+									<div class="titre">
+										<h2>{{ add_creche.nom }}
+										</h2>
+									</div>
+									<div>
+										<p>{{ add_creche.adresse }}</p>
+									</div>
+								</div>
+								<div class="bouton demande-btn">
+									<a class="sup" href="{{ path('app_admin_demande_show', {'id': add_creche.id}) }}">voir plus</a>
+								</div>
+							</div>
+						</div>
 
+					</div>
+				{% else %}
+					<p>aucune demande</p>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
 
 
 {% endblock %}

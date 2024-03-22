@@ -7,6 +7,7 @@ import "./styles/user/listing-child.scss";
 
 import "./styles/admin/message.scss";
 import "./styles/admin/user.scss";
+import "./styles/admin/singleC.scss";
 
 
 const burgerBtn = document.querySelector('.burger');

@@ -1,60 +1,67 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Detail Creche{% endblock %}
+{% block title %}Detail Creche
+{% endblock %}
 
 {% block body %}
-    <h1>AddCreche</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ add_creche.id }}</td>
-            </tr>
-            <tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ add_creche.nom }}</td>
-            </tr>
-            <tr>
-                <th>Siret</th>
-                <td>{{ add_creche.siret }}</td>
-            </tr>
-            <tr>
-                <th>Tarif</th>
-                <td>{{ add_creche.tarif }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ add_creche.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ add_creche.email }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ add_creche.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ add_creche.status }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ add_creche.createdAt ? add_creche.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Modified_at</th>
-                <td>{{ add_creche.modifiedAt ? add_creche.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ asset('uploads/brochures/' ~ add_creche.brochureFilename) }}">View brochure (PDF)</a>
-    <a href="{{ path('app_admin_demande') }}">back to list</a>
-    <a href="{{ path('app_admin_demande_validate', {'id': add_creche.id}) }}" class="btn btn-primary">Valider le professionnel</a>
-    <a href="{{ path('app_admin_demande_novalidate', {'id': add_creche.id}) }}" class="btn btn-primary">Refuser le professionnel</a>
 
 
-{% endblock %}
+	<section id="singleC">
+		<div class="wrap">
+			<div class="titre">
+				<h1>{{ add_creche.nom }}</h1>
+			</div>
+			<div class="content">
+				<div class="content-titre">
+					<h2>Coordonnée :</h2>
+				</div>
+				<div class="content-info">
+					<div class="tel">
+						<p>Tel :</p>
+						<p>{{ add_creche.telephone }}</p>
+					</div>
+					<div class="mail">
+						<p>Email :</p>
+						<p>{{ add_creche.email }}</p>
+					</div>
+				</div>
+				<div class="content-titre">
+					<h2>Information :</h2>
+				</div>
+				<div class="content-info">
+					<div class="adresse">
+						<p>Adresse :</p>
+						<p>{{ add_creche.adresse }}</p>
+					</div>
+					<div class="siret">
+						<p>Siret :</p>
+						<p>{{ add_creche.siret }}</p>
+					</div>
+					<div class="tarif">
+						<p>Tarif :</p>
+						<p>{{ add_creche.tarif }}
+							/heure</p>
+					</div>
+					<div class="max-user">
+						<p>Capaciter :</p>
+						<p>{{ add_creche.maxEnfant }}
+							enfant</p>
+					</div>
+
+				</div>
+			</div>
+            <div class="bouton">
+			<div class="link">
+				<a href="{{ path('app_admin_demande_validate', {'id': add_creche.id}) }}" class="accept">Accepter</a>
+				<a href="{{ path('app_admin_demande_novalidate', {'id': add_creche.id}) }}" class="refu">Refuser</a>
+			</div>
+			<div class="img">
+				<a href="{{ path('app_admin_demande') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
+		</div>
+		</div>
+	</div>
+</section>
+
+
+{# <a href="{{ asset('uploads/brochures/' ~ add_creche.brochureFilename) }}">View brochure (PDF)</a> #}{% endblock %}

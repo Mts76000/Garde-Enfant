@@ -1,0 +1,39 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Pro en attente{% endblock %}
+
+{% block body %}
+
+                <h1>En attente de validation</h1>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Status</th>
+                        <th>Created_at</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for add_creche in add_creches %}
+                        <tr>
+                            <td>{{ add_creche.nom }}</td>
+                            <td>{{ add_creche.status }}</td>
+                            <td>{{ add_creche.createdAt ? add_creche.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <a href="{{ path('app_admin_demande_show', {'id': add_creche.id}) }}">show</a>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="14">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+    <div>
+        <a  href="{{ path('app_admin_proValidate') }}">Liste des utilisateurs déja validés</a>
+        <a  href="{{ path('app_admin_proNoValidate') }}">Liste des utilisateurs refusés</a>
+    </div>
+
+
+
+{% endblock %}

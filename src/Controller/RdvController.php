@@ -21,11 +21,12 @@ class RdvController extends AbstractController
     {
         $user = $this->getUser();
         $validatedRdvs = $rdvRepository->findValidatedRdvs();
+
         return $this->render('rdv/index.html.twig', [
             'rdvs' => $rdvRepository->findAll(),
             'add_creches' => $addCrecheRepository->findBy(['status' => 'validated']),
             'user' => $user,
-            // 'validated_rdvs' => $validatedRdvs,
+
         ]);
     }
 
@@ -54,6 +55,8 @@ class RdvController extends AbstractController
             'rdv' => $rdv,
             'form' => $form->createView(),
             'id' => $id,
+            'user' => $user,
+
         ]);
     }
 

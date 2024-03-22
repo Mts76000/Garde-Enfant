@@ -41,8 +41,8 @@ class ProTimeType extends AbstractType
     {
         $hours = [];
         for ($i = 0; $i < 24; $i++) {
-            $hour = str_pad($i, 2, '0', STR_PAD_LEFT); // Formatage pour avoir deux chiffres
-            $hours["$hour:00"] = "$hour:00"; // Ajout de l'heure au format HH:00
+            $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+            $hours["$hour:00"] = "$hour:00";
         }
         return $hours;
     }

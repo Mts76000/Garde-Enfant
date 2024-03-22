@@ -41,7 +41,6 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
             'user' => $user,
         ]);
-
     }
 
     #[Route('/app_admin_demande', name: 'app_admin_demande')]
@@ -54,12 +53,16 @@ class AdminController extends AbstractController
         return $this->render('admin/demande.html.twig', [
             'controller_name' => 'AdminController',
             'add_creches' => $addCrecheRepository->findBy(['status' => 'waiting']),
+            'user' => $user,
+
         ]);
     }
 
     #[Route('/{id}', name: 'app_admin_demande_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(AddCreche $addCreche): Response
     {
+        $user = $this->getUser();
+
         return $this->render('admin/show.html.twig', [
             'add_creche' => $addCreche,
             'user' => $user,
@@ -109,22 +112,29 @@ class AdminController extends AbstractController
     #[Route('/app_admin_proValidate', name: 'app_admin_proValidate')]
     public function proValidate(AddCrecheRepository $addCrecheRepository): Response
     {
+        $user = $this->getUser();
 
 
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/proValidate.html.twig', [
             'controller_name' => 'AdminController',
             'ValidatePros' => $addCrecheRepository->findBy(['status' => 'validate']),
+            'user' => $user,
+
         ]);
     }
 
     #[Route('/app_admin_proNoValidate', name: 'app_admin_proNoValidate')]
     public function proNoValidate(AddCrecheRepository $addCrecheRepository): Response
     {
+        $user = $this->getUser();
+
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/proNoValidate.html.twig', [
             'controller_name' => 'AdminController',
             'NoValidatePros' => $addCrecheRepository->findBy(['status' => 'noValidate']),
+            'user' => $user,
+
         ]);
     }
 }

@@ -15,12 +15,12 @@ class ChildFixtures extends Fixture implements DependentFixtureInterface
         // $manager->persist($product);
 
         $child = new FullChild();
-        $child->setNom('Dounard');
+        $child->setNom('Dounar');
         $child->setUser($this->getReference(UserFixtures::ADMIN_USER_REFERENCE));
         $child->setPrenom('Bilel');
         $child->setAge('6');
-        $child->setGenre('Femelle');
-        $child->setConsigneAlimentaire('hallal');
+        $child->setGenre('Male');
+        $child->setConsigneAlimentaire('Hallal');
         $child->setTraitement('Aucun');
         $child->setVaccin(1);
         $child->setAlergie('Fraise, Salade, Avocat, Polène');

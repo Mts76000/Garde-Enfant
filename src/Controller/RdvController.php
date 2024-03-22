@@ -6,6 +6,7 @@ use App\Entity\Rdv;
 use App\Form\RdvType;
 use App\Entity\AddCreche;
 use App\Repository\AddCrecheRepository;
+use App\Repository\FullChildRepository;
 use App\Repository\RdvRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,7 +30,7 @@ class RdvController extends AbstractController
     }
 
     #[Route('/new-rdv/{id}', name: 'app_rdv_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, $id): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FullChildRepository  $fullChildRepository, int $id): Response
     {
         $user = $this->getUser(); // Récupérer l'utilisateur connecté
 
@@ -48,6 +49,8 @@ class RdvController extends AbstractController
 
             return $this->redirectToRoute('app_rdv_success', [], Response::HTTP_SEE_OTHER);
         }
+
+        dd($user);
 
         return $this->render('rdv/new.html.twig', [
             'rdv' => $rdv,

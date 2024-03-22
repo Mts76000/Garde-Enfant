@@ -25,19 +25,6 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/user_rdv', name: 'app_user_rdv')]
-    public function rdv(): Response
-    {
-        $user = $this->getUser();
-
-        return $this->render('user/rdv.html.twig', [
-            'controller_name' => 'UserController',
-            'user' => $user,
-            
-        ]);
-    }
-
-
     #[Route('/user_success', name: 'app_user_success')]
     public function success(): Response
     {
@@ -46,6 +33,4 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
-
-  
 }

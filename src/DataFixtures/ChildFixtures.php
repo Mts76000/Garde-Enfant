@@ -20,7 +20,7 @@ class ChildFixtures extends Fixture
         $child->setGenre('Femelle');
         $child->setConsigneAlimentaire('hallal');
         $child->setTraitement('Aucun');
-        $child->setVaccin('à jour');
+        $child->setVaccin(1);
         $child->setAlergie('Fraise, Salade, Avocat, Polène');
         $child->setStatus('new');
 
@@ -34,7 +34,7 @@ class ChildFixtures extends Fixture
         $child->setGenre('Mâle');
         $child->setConsigneAlimentaire('Vegan');
         $child->setTraitement('Lithium');
-        $child->setVaccin('à jour');
+        $child->setVaccin(0);
         $child->setAlergie('Chat');
         $child->setStatus('new');
 
@@ -48,7 +48,7 @@ class ChildFixtures extends Fixture
         $child->setGenre('?');
         $child->setConsigneAlimentaire('');
         $child->setTraitement('');
-        $child->setVaccin('');
+        $child->setVaccin('0');
         $child->setAlergie('Chat');
         $child->setStatus('new');
 

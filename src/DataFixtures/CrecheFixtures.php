@@ -42,6 +42,7 @@ class CrecheFixtures extends Fixture
         $manager->persist($creche2);
 
         $creche3 = new AddCreche();
+        $creche3->setId(1);
         $creche3->setIdUser(1);
         $creche3->setNom('Pitchoune');
         $creche3->setSiret(04475);

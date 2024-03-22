@@ -140,6 +140,13 @@ class AddCreche
         return $this->id;
     }
 
+    public function setId(?int $id): static
+    {
+        $this->id_user = $id;
+
+        return $this;
+    }
+
     public function getIdUser(): ?int
     {
         return $this->id_user;

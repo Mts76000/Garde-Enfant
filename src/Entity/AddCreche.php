@@ -135,6 +135,8 @@ class AddCreche
         $this->pro = new ArrayCollection();
     }
 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -183,17 +185,6 @@ class AddCreche
         return $this;
     }
 
-//    public function getDescription(): ?string
-//    {
-//        return $this->description;
-//    }
-//
-//    public function setDescription(string $description): static
-//    {
-//        $this->description = $description;
-//
-//        return $this;
-//    }
 
     public function getTarif(): ?string
     {
@@ -253,18 +244,6 @@ class AddCreche
         return $this;
     }
 
-//    public function getAgrement(): ?string
-//    {
-//        return $this->agrement;
-//    }
-
-//    public function setAgrement(?string $agrement): static
-//    {
-//        $this->agrement = $agrement;
-//
-//        return $this;
-//    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -313,10 +292,12 @@ class AddCreche
         return $this;
     }
 
+
     /**
      * @return Collection<int, rdv>
      */
     public function getPro(): Collection
+
     {
         return $this->pro;
     }
@@ -328,8 +309,10 @@ class AddCreche
             $pro->setPro($this);
         }
 
+
         return $this;
     }
+
 
     public function removePro(rdv $pro): static
     {
@@ -342,4 +325,5 @@ class AddCreche
 
         return $this;
     }
+
 }

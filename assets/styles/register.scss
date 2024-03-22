@@ -1,0 +1,30 @@
+@use "variables" as v;
+
+#register {
+  .wrap {
+    gap: 2rem;
+  }
+
+  .down {
+    width: 100%;
+    padding: 0rem 2rem;
+    .a {
+      display: flex;
+      gap: 1rem;
+    }
+    .b {
+      display: flex;
+      gap: 1rem;
+    }
+    .condition {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  #registration_form_agreeTerms {
+    width: 50px;
+  }
+}

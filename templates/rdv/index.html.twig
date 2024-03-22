@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des crèches - Pitchoune{% endblock %}
+
+{% block body %}
+    {# <h1>Rdv index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rdv in rdvs %}
+            <tr>
+                <td>{{ rdv.id }}</td>
+                <td>{{ rdv.date ? rdv.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ rdv.status }}</td>
+                <td>
+                    <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}">show</a>
+                    <a href="{{ path('app_rdv_edit', {'id': rdv.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rdv_new') }}">Create new</a> #}
+
+    <section id="rdv_index" class="form">
+    <div class="wrap">
+            <h2> CHOISISSEZ votre crèche:</h2>
+            <div class="search_bar">
+                <input type="search" name="" id="" placeholder="Search">
+            </div>
+            <div class="creche_container">
+
+            {% for add_creche in add_creches %}
+                <a href="{{ path('app_add_creche_public_show', {'id': add_creche.id}) }}" class="box_creche">
+                    <div class="creche_text">
+                        <h4>{{ add_creche.nom }}</h4>
+                    </div>
+                    <div class="creche_data">
+                        <i class="fa-solid fa-building-user"></i>
+                        <span>?/{{ add_creche.maxEnfant }}</span>
+                    </div>
+                </a>
+            {% else %}
+                    <tr>
+                        <td colspan="14">Aucune créche trouvée.</td>
+                    </tr>
+            {% endfor %}
+
+            </div>
+
+            <div class="img">
+                <a href="{{ path('app_rdv_index') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

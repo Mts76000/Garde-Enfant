@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réserver une garde - Pitchoune{% endblock %}
+
+{% block body %}
+<section id="new_rdv" class="form">
+    <div class="wrap">
+            <h1>Réserver une garde</h1>
+            <div class="form down">
+                {{ include('rdv/_form.html.twig') }}
+            
+                <div class="img">
+                    <a href="{{ path('app_rdv_index') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+                </div>
+            </div>
+            {{ id }}
+        </div>
+    </section>
+{% endblock %}

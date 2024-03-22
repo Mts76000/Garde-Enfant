@@ -1,20 +1,93 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_errors(registrationForm) }}
+	<section id="register" class="form">
+		<div class="wrap">
+			<div class="top">
+				<h1>Inscription</h1>
+				<p>Vous devez vous inscrire pour continuer
+				</p>
+			</div>
+			<div class="down">
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}      
-        {{ form_row(registrationForm.roless) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+				{{ form_start(registrationForm, {attr: {'novalidate': 'novalidate'}}) }}
+
+				{{ form_label(registrationForm.roless, 'Choix du role :') }}
+				{{ form_widget(registrationForm.roless, {
+    'attr': {'class': 'form-control', }
+}) }}
+
+				<div class="a">
+
+					<div class="nom">
+						{{ form_widget(registrationForm.nom, {
+                    'attr': {'placeholder': 'Nom'}
+                }) }}
+						{{ form_errors(registrationForm.nom) }}
+
+					</div>
+					<div class="prenom">
+						{{ form_widget(registrationForm.prenom, {
+                    'attr': {'placeholder': 'Prénom'}
+                }) }}
+						{{ form_errors(registrationForm.prenom) }}
+					</div>
+				</div>
+
+				<div class="b">
+					<div class="adresse">
+
+						{{ form_widget(registrationForm.adresse, {
+    'attr': {'placeholder': 'Adresse'}
+}) }}
+						{{ form_errors(registrationForm.adresse) }}
+
+
+					</div>
+					<div class="ZIP">
+						{{ form_widget(registrationForm.ZIP, {
+                    'attr': {'placeholder': 'Code Postal'}
+                }) }}
+						{{ form_errors(registrationForm.ZIP) }}
+					</div>
+				</div>
+
+				<div class="email">
+
+					{{ form_widget(registrationForm.email, {
+                    'attr': {'placeholder': 'Email'}
+					
+                }) }}
+
+					{{ form_errors(registrationForm.email) }}
+				</div>
+
+				<div class="pass">
+
+					{{ form_widget(registrationForm.plainPassword, {
+                    'attr': {'placeholder': 'Mot de passe'},
+                }) }}
+					{{ form_errors(registrationForm.plainPassword) }}
+				</div>
+
+				<div class="condition">
+					{{ form_label(registrationForm.agreeTerms, 'Accepter les conditions') }}
+					{{ form_widget(registrationForm.agreeTerms, {
+    'attr': {'class': 'form-control', 'placeholder': 'Accepter les conditions'}
+}) }}
+				</div>
+				{{ form_errors(registrationForm.agreeTerms) }}
+
+
+				<button type="submit" class="btn">Inscription</button>
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</section>
+
 {% endblock %}

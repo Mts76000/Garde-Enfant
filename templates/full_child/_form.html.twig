@@ -1,0 +1,26 @@
+{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+ </div>
+    <div class="namesurname">
+        {{ form_row(form.nom) }}
+        {{ form_row(form.prenom) }}
+    </div>
+    <div class="agegenre">
+        {{ form_row(form.age,{
+            'attr':{
+                'class':'age'
+            }
+        
+        }) }}
+        {{ form_row(form.genre,{
+            'attr':{
+                'class':'genre'
+            }
+        }) }}
+    </div>
+    {{ form_row(form.consigne_alimentaire) }}
+    {{ form_row(form.traitement) }}
+    {{ form_row(form.vaccin) }}
+    {{ form_row(form.alergie) }}
+    <button class="btn">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(form) }}
+

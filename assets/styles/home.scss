@@ -1,0 +1,199 @@
+@use 'variables' as v;
+
+
+
+section#intro {
+
+     .wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          justify-content: space-around;
+
+          .intro_text {
+               text-align: center;
+
+
+               h1 {
+                    margin-top: 15px;
+                    padding: 5px 0;
+                    font-size: 35px;
+                    line-height: 1.3;
+                    color: v.$bleu;
+
+                    .text_intro_1 {
+                         color: v.$primary;
+                    }
+               }
+
+               p {
+                    font-size: 17px;
+                    font-weight: normal;
+                    font-stretch: normal;
+                    font-style: normal;
+                    line-height: 1.5;
+                    letter-spacing: normal;
+                    color: #6e6e6e;
+               }
+          }
+
+          .intro_button {
+               display: flex;
+               flex-direction: column;
+               gap: 20px;
+
+               .button {
+                    font-size: 18px;
+                    line-height: 1.3;
+                    text-align: center;
+                    padding: 20px 15px;
+               }
+
+               a:nth-child(2) {
+                    background-color: v.$orange;
+
+                    &:hover {
+                         background-color: v.$blanc;
+                         color: v.$orange;
+                         outline: 2px v.$orange solid;
+                    }
+               }
+          }
+     }
+}
+
+section#banner {
+     background-color: v.$orange;
+     margin: 50px 0;
+
+     .wrap {
+          padding: 50px 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+          color: v.$blanc;
+
+          h2 {
+               font-size: 26px;
+               font-weight: bold;
+               text-align: center;
+          }
+
+          .button {
+               font-size: 18px;
+               line-height: 1.3;
+               text-align: center;
+               padding: 20px 45px;
+          }
+     }
+}
+
+section#services {
+     margin: 50px 0;
+
+     .wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+     }
+}
+
+.hr_separator {
+     width: 50%;
+     margin: 0 auto;
+     border: 3px solid v.$orange;
+}
+
+section#stats {
+     display: flex;
+     justify-content: center;
+     width: 100%;
+
+     .wrap {
+          margin: 50px 0;
+          width: 100%;
+          background: rgba(255, 255, 255, 0.55);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          border-radius: 25px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .stat {
+               padding: 50px 0;
+               text-align: center;
+               display: flex;
+               flex-direction: column;
+               gap: 10px;
+
+               span {
+                    font-size: 25px;
+                    font-weight: bold;
+                    color: v.$primary;
+               }
+
+               h4 {
+                    font-size: 26px;
+                    font-weight: bold;
+                    color: v.$bleu;
+               }
+
+               p {
+                    font-size: 17px;
+                    color: #6e6e6e;
+               }
+
+               .separator {
+                    width: 100px;
+                    margin: 0 auto;
+                    border: 3px solid v.$blanc;
+               }
+
+          }
+
+          .separator_stat {
+               border: solid 0.5px v.$orange;
+               width: 100%;
+          }
+     }
+}
+
+section#mentions_legales,
+section#faq {
+
+     .wrap {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: 25px 0;
+
+          h2 {
+               color: v.$bleu;
+          }
+
+          p {
+               font-size: 20px;
+               padding: 10px 0;
+          }
+
+          .separator_orange {
+               border: solid 2px v.$orange;
+          }
+
+          hr {
+               margin: 10px 0;
+          }
+
+          summary::-webkit-details-marker {
+               display: none;
+               /* Pour les navigateurs basés sur WebKit (Chrome, Safari, etc.) */
+          }
+
+          summary {
+               list-style: none;
+               /* Pour les autres navigateurs */
+          }
+     }
+}

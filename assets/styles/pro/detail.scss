@@ -1,0 +1,9 @@
+@use "../variables" as v;
+
+#detail {
+  .link {
+    .detail {
+      background-color: v.$orange;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}dashboard
+
+{% endblock %}
+
+{% block body %}
+
+	<section id="pro" class="bouton">
+		<div class="wrap">
+			<div class="link">
+            <div class="top">
+				<a  href="{{ path('app_pro_demande') }}">Nouvelle demande</a>
+				<a href="{{ path('app_contact_creche_index') }}">Voir mes message</a>
+                </div>
+                <div class="down">
+				<a href="{{ path('app_pro_detail') }}">Détail creche</a>
+				<a  href="">Payement</a>
+                </div>
+				<div class="down">
+				<a href="">Gérer les enfants</a>
+				<a  href="}">Fin creneaux</a>
+                </div>
+			</div>
+            <div class="creneaux">
+            <h2>Vos créneaux :</h2>
+            </div>
+			<div class="img">
+			<a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
+		</div>
+	</section>
+	
+{% endblock %}

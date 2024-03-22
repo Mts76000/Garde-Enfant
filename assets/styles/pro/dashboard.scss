@@ -1,0 +1,9 @@
+@use "../variables" as v;
+
+#pro{
+.link {
+  .dashboard {
+    background-color: v.$orange;
+  }
+}
+}

@@ -1,0 +1,16 @@
+@use "../variables" as v;
+
+#addCreche {
+  height: 80vh;
+  text-align: center;
+  .wrap {
+    gap: 2rem;
+    .addCreche{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+
+}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}success
+{% endblock %}
+
+{% block body %}
+	<meta http-equiv="refresh" content="3;url={{ path('app_full_child_index') }}">
+
+
+	<section id="success">
+		<div class="wrap">
+			<div class="suc">
+				<img class="img-suc" src="{{ asset('asset/img/Success-Icon.svg') }}" alt="suc-img">
+                <div class="text">
+				<p>Votre enfant a été ajouté avec succès</p>
+                </div>
+			</div>
+			<div class="bouton">
+				<a href="{{ path('app') }}">Retour</a>
+			</div>
+		</div>
+	</section>
+
+
+{% endblock %}

@@ -1,4 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
+const autoprefixer = require('autoprefixer');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -55,8 +56,14 @@ Encore
         config.corejs = '3.23';
     })
 
-    // enables Sass/SCSS support
     .enableSassLoader()
+    .enablePostCssLoader((options) => {
+        options.postcssOptions = {
+            plugins: [
+                autoprefixer()
+            ]
+        };
+    })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -70,6 +77,6 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
+    ;
 
 module.exports = Encore.getWebpackConfig();

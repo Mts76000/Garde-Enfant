@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RecupChild index
+{% endblock %}
+
+{% block body %}
+
+	<section id="listing-child" class="bouton">
+		<div class="wrap">
+			<div class="titre">
+				<h1>Mes Tuteurs</h1>
+				<div class="link">
+					<a href="{{ path('app_recup_child_new') }}">Ajouter un tuteur</a>
+				</div>
+			</div>
+			<div class="listing">
+
+				{% set hasNewChild = false %}
+				{% for recup_child in recup_children %}
+
+					{% if recup_child.status == 'new' %}
+
+						{% set hasNewChild = true %}
+						<div class="child">
+
+							<div class="left">
+								<i class="fa-solid fa-user-group"></i>
+							</div>
+							<div class="right">
+
+								<p>{{ recup_child.lastName }}
+									{{ recup_child.firstName }}</p>
+
+								<div class="btn">
+									<a class="edit" href="{{ path('app_recup_child_edit', {'id': recup_child.id}) }}">editer</a>
+									<a class="sup" href="{{ path('app_recup_child_sup', {'id': recup_child.id}) }}">supprimer</a>
+
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+
+				{% if not hasNewChild %}
+
+					<p style="text-align: center;">Aucun tuteur</p>
+
+				{% endif %}
+			</div>
+			<div class="img">
+				<a href="{{ path('app_user') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
+		</div>
+	</section>
+{% endblock %}

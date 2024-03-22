@@ -1,0 +1,12 @@
+@use "variables" as v;
+
+#contact {
+  height: 90vh;
+   .nom_prenom {
+    display: flex;
+    gap: 1rem;
+
+  }
+
+}
+

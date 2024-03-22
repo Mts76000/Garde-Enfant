@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}403 - Pitchoune{% endblock %}
+
+{% block body %}
+     <section id="page403">
+          <div class="wrap">
+               <h1>Erreur 403</h1>
+               <p>Votre accèes à cette page n'est pas autorisé.</p>
+          
+               <div class="bouton">
+			     <a class="button" href="{{ path('app') }}">Retour</a>
+		     </div>
+          </div>
+     </section>
+{% endblock %}

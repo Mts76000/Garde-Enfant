@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RecupChild{% endblock %}
+
+{% block body %}
+    <h1>RecupChild</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ recup_child.id }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ recup_child.lastName }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ recup_child.firstName }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_recup_child_index') }}">Retour</a>
+
+    <a href="{{ path('app_recup_child_edit', {'id': recup_child.id}) }}">Editer</a>
+
+    {{ include('recup_child/_delete_form.html.twig') }}
+{% endblock %}

@@ -20,8 +20,6 @@ class RdvController extends AbstractController
     public function index(RdvRepository $rdvRepository, AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
-        $validatedRdvs = $rdvRepository->findValidatedRdvs();
-
         return $this->render('rdv/index.html.twig', [
             'rdvs' => $rdvRepository->findAll(),
             'add_creches' => $addCrecheRepository->findBy(['status' => 'validated']),
@@ -100,6 +98,11 @@ class RdvController extends AbstractController
     #[Route('/rdv_succes', name: 'app_rdv_success', methods: ['GET'])]
     public function success(): Response
     {
-        return $this->render('rdv/success.html.twig', []);
+        $user = $this->getUser();
+
+        return $this->render('rdv/success.html.twig', [
+            'user' => $user,
+
+        ]);
     }
 }

@@ -1,0 +1,63 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Detail Creche{% endblock %}
+
+{% block body %}
+    <h1>AddCreche</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ add_creche.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_user</th>
+                <td>{{ add_creche.idUser }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ add_creche.nom }}</td>
+            </tr>
+            <tr>
+                <th>Siret</th>
+                <td>{{ add_creche.siret }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ add_creche.tarif }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ add_creche.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ add_creche.email }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ add_creche.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ add_creche.status }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ add_creche.createdAt ? add_creche.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modified_at</th>
+                <td>{{ add_creche.modifiedAt ? add_creche.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ asset('uploads/brochures/' ~ add_creche.brochureFilename) }}">View brochure (PDF)</a>
+    <a href="{{ path('app_admin_demande') }}">back to list</a>
+    <a href="{{ path('app_admin_demande_validate', {'id': add_creche.id}) }}" class="btn btn-primary">Valider le professionnel</a>
+    <a href="{{ path('app_admin_demande_novalidate', {'id': add_creche.id}) }}" class="btn btn-primary">Refuser le professionnel</a>
+
+
+{% endblock %}

@@ -50,8 +50,8 @@ class AddCreche
         maxMessage: 'Le tarif doit contenir au maximum {{ limit }} caractères',
     )]
     #[Assert\Regex(
-    pattern: "/^\d+[\.,]?\d*$/",
-    message: "Ce champ ne doit contenir que des chiffres, des points ou des virgules"
+        pattern: "/^\d+[\.,]?\d*$/",
+        message: "Ce champ ne doit contenir que des chiffres, des points ou des virgules"
     )]
     private ?string $tarif = null;
 
@@ -110,7 +110,7 @@ class AddCreche
     #[Assert\Length(
         min: 2,
         minMessage: 'Veuillez uploader un document pdf',
-     )]
+    )]
     private ?string $agrement = null;
 
     #[ORM\Column]
@@ -137,13 +137,6 @@ class AddCreche
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(?int $id): static
-    {
-        $this->id_user = $id;
-
-        return $this;
     }
 
     public function getIdUser(): ?int
@@ -322,5 +315,4 @@ class AddCreche
 
         return $this;
     }
-
 }

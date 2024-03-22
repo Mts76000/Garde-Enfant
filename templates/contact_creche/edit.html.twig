@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ContactCreche{% endblock %}
+
+{% block body %}
+    <h1>Edit ContactCreche</h1>
+
+    {{ include('contact_creche/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_contact_creche_index') }}">back to list</a>
+
+    {{ include('contact_creche/_delete_form.html.twig') }}
+{% endblock %}

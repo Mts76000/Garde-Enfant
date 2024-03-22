@@ -72,6 +72,7 @@ class AddCrecheType extends AbstractType
 
             ->add('brochure', FileType::class, [
                 'label' => false,
+                'empty_data' => false,
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -89,7 +90,9 @@ class AddCrecheType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Veuillez ajouter un document .pdf',
+                        'uploadNoFileErrorMessage' => 'Veuillez ajouter un document .pdf',
+                        'disallowEmptyMessage' => 'Veuillez ajouter un document .pdf',
                     ])
                 ],
             ])

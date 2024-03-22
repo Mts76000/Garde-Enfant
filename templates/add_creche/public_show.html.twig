@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ add_creche.nom }} - Pitchoune{% endblock %}
+
+{% block body %}
+    {# <h1>AddCreche</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ add_creche.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_user</th>
+                <td>{{ add_creche.idUser }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ add_creche.nom }}</td>
+            </tr>
+            <tr>
+                <th>Siret</th>
+                <td>{{ add_creche.siret }}</td>
+            </tr>
+            <tr>
+                <th>Tarif</th>
+                <td>{{ add_creche.tarif }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ add_creche.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ add_creche.email }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ add_creche.telephone }}</td>
+            </tr>
+            {# <tr>
+                <th>Agrement</th>
+                <td>{{ add_creche.agrement }}</td>
+            </tr> 
+            <tr>
+                <th>Status</th>
+                <td>{{ add_creche.status }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ add_creche.createdAt ? add_creche.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modified_at</th>
+                <td>{{ add_creche.modifiedAt ? add_creche.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rdv_index') }}">back to list</a> #}
+
+    {# <a href="{{ path('app_add_creche_edit', {'id': add_creche.id}) }}">edit</a>
+
+    {{ include('add_creche/_delete_form.html.twig') }} #}
+
+
+    <section id="single_pro_public" class="form">
+    <div class="wrap">
+            <h2>{{ add_creche.nom }}</h2>
+            <div class="note">
+                <span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
+            </div>
+            <div class="container_horaire">
+                
+                <span><b>Lundi:</b> 7:30 - 17:30 </span>
+                <span><b>Mardi:</b> 7:30 - 17:30 </span>
+                <span><b>Mercredi:</b> 7:30 - 17:30 </span>
+                <span><b>Jeudi:</b> 7:30 - 17:30 </span>
+                
+                <span><b>Vendredi:</b> 7:30 - 17:30 </span>
+                <span><b>Samedi:</b> Fermé</span>
+                <span><b>Dimanche:</b> Fermé</span>
+                
+            </div>
+
+            <div class="container_info">
+                <span><b>Mail:</b> {{ add_creche.email }} </span>
+                <span><b>Tel:</b> {{ add_creche.telephone }} </span>
+                <br><br>
+                <span><b>Adresse:</b> {{ add_creche.adresse }}  </span>
+            </div>
+            <div id="map" style="width: 80vw; height: 300px; margin: 0 auto;"></div>
+                
+
+            <div class="img">
+                <a href="{{ path('app_rdv_index') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+                <a class="button" href="{{ path('app_rdv_new', {'id': add_creche.id}) }}">Réserver</a>
+                <a href="{{ path('app_contact_creche_new', {'id': add_creche.id}) }}"><img class="back" src="{{ asset('asset/img/message.png') }}" alt=""></a>
+            </div>
+        </div>
+    </section>
+    <script>
+        var address = "{{ add_creche.adresse }}";
+        var nomAdresse = "{{ add_creche.nom }}";
+    </script>
+{% endblock %}

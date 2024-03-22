@@ -62,3 +62,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+
+const key = '9zRf1qxrmW59rxxc0lzr';
+var map = L.map('map').setView([0, 0], 16); // Initialiser la carte avec une vue par défaut
+L.tileLayer(`https://api.maptiler.com/maps/basic-v2-dark/{z}/{x}/{y}.png?key=${key}`).addTo(map); // Fond de carte OpenStreetMap
+
+fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`)
+  .then(response => response.json())
+  .then(data => {
+    var latitude = parseFloat(data[0].lat);
+    var longitude = parseFloat(data[0].lon);
+
+    map.setView([latitude, longitude], 16);
+
+    var marker = L.marker([latitude, longitude]).addTo(map);
+    var popupContent = `<div style="text-align: center;"><h3 style="color: #344D67;"><b>${nomAdresse}</h3></b><br> ${address}</div>`;
+
+    marker.bindPopup(popupContent).openPopup();
+  })
+  .catch(error => console.error('Erreur lors du géocodage:', error));
+

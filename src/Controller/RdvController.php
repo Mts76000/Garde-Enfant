@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Rdv;
 use App\Form\RdvType;
+use App\Entity\AddCreche;
+use App\Repository\AddCrecheRepository;
 use App\Repository\RdvRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,24 +17,32 @@ use Symfony\Component\Routing\Attribute\Route;
 class RdvController extends AbstractController
 {
     #[Route('/', name: 'app_rdv_index', methods: ['GET'])]
-    public function index(RdvRepository $rdvRepository): Response
+    public function index(RdvRepository $rdvRepository, AddCrecheRepository $addCrecheRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('rdv/index.html.twig', [
             'rdvs' => $rdvRepository->findAll(),
+            'add_creches' => $addCrecheRepository->findBy(['status' => 'validated']),
+            'user' => $user,
+
         ]);
     }
 
-    #[Route('/new-rdv', name: 'app_rdv_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/new-rdv/{id}', name: 'app_rdv_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, $id): Response
     {
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
+
         $rdv = new Rdv();
-        $form = $this->createForm(RdvType::class, $rdv);
+
+        $addCreche = $entityManager->getRepository(AddCreche::class)->find($id);
+        $rdv->setPro($addCreche);
+        $form = $this->createForm(RdvType::class, $rdv, ['user' => $user]);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-
-            $rdv->setStatus('open');  
+            $rdv->setStatus('open');
             $entityManager->persist($rdv);
             $entityManager->flush();
 
@@ -41,7 +51,10 @@ class RdvController extends AbstractController
 
         return $this->render('rdv/new.html.twig', [
             'rdv' => $rdv,
-            'form' => $form,
+            'form' => $form->createView(),
+            'id' => $id,
+            'user' => $user,
+
         ]);
     }
 
@@ -85,6 +98,11 @@ class RdvController extends AbstractController
     #[Route('/rdv_succes', name: 'app_rdv_success', methods: ['GET'])]
     public function success(): Response
     {
-        return $this->render('rdv/success.html.twig', []);
+        $user = $this->getUser();
+
+        return $this->render('rdv/success.html.twig', [
+            'user' => $user,
+
+        ]);
     }
 }

@@ -23,6 +23,8 @@ class FullChildController extends AbstractController
 
         return $this->render('full_child/index.html.twig', [
             'full_children' => $enfants,
+            'user' => $user,
+      
         ]);
     }
 
@@ -32,8 +34,10 @@ class FullChildController extends AbstractController
         $fullChild = new FullChild();
         $form = $this->createForm(FullChildType::class, $fullChild);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $user = $this->getUser();
             $fullChild->setUser($user);
 
@@ -47,6 +51,7 @@ class FullChildController extends AbstractController
         return $this->render('full_child/new.html.twig', [
             'full_child' => $fullChild,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -64,6 +69,7 @@ class FullChildController extends AbstractController
     {
         $form = $this->createForm(FullChildType::class, $fullChild);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
@@ -74,6 +80,7 @@ class FullChildController extends AbstractController
         return $this->render('full_child/edit.html.twig', [
             'full_child' => $fullChild,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
@@ -83,8 +90,11 @@ class FullChildController extends AbstractController
     #[Route('/success', name: 'app_full_child_success', methods: ['GET'])]
     public function success(): Response
     {
+        $user = $this->getUser();
 
-        return $this->render('full_child/success.html.twig', []);
+        return $this->render('full_child/success.html.twig', [
+            'user' => $user,
+        ]);
     }
 
     #[Route('/{id}/sup', name: 'app_full_child_sup', methods: ['GET'])]

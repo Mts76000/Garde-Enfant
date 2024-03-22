@@ -15,32 +15,40 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
+        $user = $this->getUser();
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+            'user' => $user,
         ]);
     }
 
     #[Route('/admin_list_user', name: 'app_liste_utilisateur')]
     public function listing_user(): Response
     {
+        $user = $this->getUser();
         return $this->render('admin/user_listing.html.twig', [
             'controller_name' => 'AdminController',
+            'user' => $user,
         ]);
     }
     #[Route('/app_admin_message', name: 'app_admin_message')]
     public function message(): Response
     {
+        $user = $this->getUser();
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/message.html.twig', [
             'controller_name' => 'AdminController',
+            'user' => $user,
         ]);
+
     }
 
     #[Route('/app_admin_demande', name: 'app_admin_demande')]
     public function demande(AddCrecheRepository $addCrecheRepository): Response
     {
 
+        $user = $this->getUser();
 
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/demande.html.twig', [
@@ -54,15 +62,18 @@ class AdminController extends AbstractController
     {
         return $this->render('admin/show.html.twig', [
             'add_creche' => $addCreche,
+            'user' => $user,
         ]);
     }
 
     #[Route('/app_admin_detail', name: 'app_admin_detail')]
     public function detail(): Response
     {
+        $user = $this->getUser();
         // $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('admin/message.html.twig', [
             'controller_name' => 'AdminController',
+            'user' => $user,
         ]);
     }
     #[Route('/{id}/validate', name: 'app_admin_demande_validate', methods: ['GET'])]

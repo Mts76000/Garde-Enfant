@@ -83,6 +83,10 @@ class FullChild
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    #[ORM\ManyToOne(inversedBy: 'fullChildren')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'id_child', orphanRemoval: true)]
     private Collection $child;
 
@@ -92,10 +96,21 @@ class FullChild
         $this->setStatus('new');
     }
 
+
+
+public function setStatus(string $status): static
+{
+    $this->status = $status;
+
+    return $this;
+}
  
 
-   
-    
+public function getStatus()
+{
+    return $this->status;
+}
+ 
 
 
     public function getId(): ?int

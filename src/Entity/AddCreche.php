@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AddCrecheRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -28,41 +30,53 @@ class AddCreche
     )]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 14)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 2,
-        max: 50,
+        min: 9,
+        max: 14,
         minMessage: 'Le siret doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le siret doit contenir au maximum {{ limit }} caractères',
     )]
+    #[Assert\Regex(
+        pattern: "/^\d+$/",
+        message: "Ce champ ne doit contenir que des chiffres"
+    )]
     private ?string $siret = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 6)]
     #[Assert\NotBlank]
     #[Assert\Length(
         min: 1,
-        max: 50,
+        max: 6,
         minMessage: 'Le tarif doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le tarif doit contenir au maximum {{ limit }} caractères',
     )]
+    #[Assert\Regex(
+    pattern: "/^\d+[\.,]?\d*$/",
+    message: "Ce champ ne doit contenir que des chiffres, des points ou des virgules"
+    )]
     private ?string $tarif = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 4)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 2,
-        max: 50,
+        min: 1,
+        max: 4,
         minMessage: 'Le nombre de place doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le nombre de place doit contenir au maximum {{ limit }} caractères',
+    )]
+    #[Assert\Regex(
+        pattern: "/^\d+$/",
+        message: "Ce champ ne doit contenir que des chiffres"
     )]
     private ?string $maxEnfant = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(
-        min: 2,
-        max: 50,
+        min: 3,
+        max: 255,
         minMessage: 'L\'adresse doit contenir au moins {{ limit }} caractères',
         maxMessage: 'L\'adresse doit contenir au maximum {{ limit }} caractères',
     )]
@@ -70,6 +84,9 @@ class AddCreche
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Assert\Email(
+        message: 'Veuillez entrer une adresse mail valide'
+    )]
     #[Assert\Length(
         min: 2,
         max: 50,
@@ -86,23 +103,50 @@ class AddCreche
         minMessage: 'Le numéro de telephone doit contenir au moins {{ limit }} caractères',
         maxMessage: 'Le numéro de telephone doit contenir au maximum {{ limit }} caractères',
     )]
+    #[Assert\Regex(
+        pattern: "/^\d+$/",
+        message: "Ce champ ne doit contenir que des chiffres"
+    )]
     private ?string $telephone = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(
+        min: 2,
+        minMessage: 'Veuillez uploader un document pdf',
+     )]
     private ?string $agrement = null;
 
     #[ORM\Column]
     private ?string $status = null;
 
     #[ORM\Column]
+    #[Assert\DateTime]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\DateTime]
     private ?\DateTimeImmutable $modified_at = null;
+
+    #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'pro', orphanRemoval: true)]
+    private Collection $pro;
+
+    public function __construct()
+    {
+        $this->pro = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): static
+    {
+        $this->id_user = $id;
+
+        return $this;
     }
 
     public function getIdUser(): ?int
@@ -141,17 +185,6 @@ class AddCreche
         return $this;
     }
 
-//    public function getDescription(): ?string
-//    {
-//        return $this->description;
-//    }
-//
-//    public function setDescription(string $description): static
-//    {
-//        $this->description = $description;
-//
-//        return $this;
-//    }
 
     public function getTarif(): ?string
     {
@@ -211,18 +244,6 @@ class AddCreche
         return $this;
     }
 
-//    public function getAgrement(): ?string
-//    {
-//        return $this->agrement;
-//    }
-
-//    public function setAgrement(?string $agrement): static
-//    {
-//        $this->agrement = $agrement;
-//
-//        return $this;
-//    }
-
     public function getStatus(): ?string
     {
         return $this->status;
@@ -270,4 +291,39 @@ class AddCreche
 
         return $this;
     }
+
+
+    /**
+     * @return Collection<int, rdv>
+     */
+    public function getPro(): Collection
+
+    {
+        return $this->pro;
+    }
+
+    public function addPro(rdv $pro): static
+    {
+        if (!$this->pro->contains($pro)) {
+            $this->pro->add($pro);
+            $pro->setPro($this);
+        }
+
+
+        return $this;
+    }
+
+
+    public function removePro(rdv $pro): static
+    {
+        if ($this->pro->removeElement($pro)) {
+            // set the owning side to null (unless already changed)
+            if ($pro->getPro() === $this) {
+                $pro->setPro(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

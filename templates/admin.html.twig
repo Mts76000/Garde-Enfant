@@ -19,11 +19,12 @@
         <nav id="burger-menu">
             <i class="fa-solid fa-xmark close-burger"></i>
             <ul>
+                <a class="button nav_button" href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa-solid fa-user"></i> Profil</a>
                 <a class="button nav_button" href="{{ path('app_logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
                 <a class="button nav_button" href="{{ path('app_admin') }}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
                 <hr>
                 <li><a class="liste" href="{{ path('app') }}">Accueil</a></li>
-                <li><a class="liste" href="#">Contact</a></li>
+                <li><a class="liste" href="{{ path('app_contact') }}">Contact</a></li>
                 <li><a class="liste" href="{{ path('app_mentions') }}">Mentions Légales</a></li>
                 <li><a class="liste" href="{{ path('app_faq') }}">F.A.Q</a></li>
             </ul>
@@ -33,7 +34,7 @@
             <a class="burger" href="#"><i class="fa-solid fa-bars"></i></a>
             <ul class="nav_list"> 
                 <li><a class="liste" href="{{ path('app') }}">Accueil</a></li>
-                <li><a class="liste" href="#">Contact</a></li>
+                <li><a class="liste" href="{{ path('app_contact') }}">Contact</a></li>
                 <li><a class="liste" href="{{ path('app_mentions') }}">Mentions Légales</a></li>
                 <li><a class="liste" href="{{ path('app_faq') }}">F.A.Q</a></li>  
             </ul>

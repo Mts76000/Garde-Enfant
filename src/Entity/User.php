@@ -64,11 +64,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: FullChild::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $fullChildren;
 
+    #[ORM\OneToMany(targetEntity: RecupChild::class, mappedBy: 'user', orphanRemoval: true)]
+    private Collection $user;
+
+   
     public function __construct()
     {
         $this->setCreatedAt(new DateTimeImmutable());
         $this->setStatus(('new'));
         $this->fullChildren = new ArrayCollection();
+        $this->user = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -263,5 +268,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    /**
+     * @return Collection<int, RecupChild>
+     */
+    public function getUser(): Collection
+    {
+        return $this->user;
+    }
+
+    public function addUser(RecupChild $user): static
+    {
+        if (!$this->user->contains($user)) {
+            $this->user->add($user);
+            $user->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(RecupChild $user): static
+    {
+        if ($this->user->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getUser() === $this) {
+                $user->setUser(null);
+            }
+        }
+
+        return $this;
+    }
    
 }

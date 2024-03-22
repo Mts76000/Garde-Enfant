@@ -1,0 +1,40 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}User index
+{% endblock %}
+
+{% block body %}
+	<section id="listing-child" class="bouton">
+		<div class="wrap">
+			<div class="titre">
+				<h1>Utilisateurs :</h1>
+			</div>
+
+			<div class="listing">
+
+				{% for user in users %}
+					<div class="child">
+						<div class="left">
+							<i class="fa-solid fa-user"></i>
+						</div>
+						<div class="right">
+							<p>{{ user.prenom }}
+								{{ user.nom }}</p>
+							<p>{{ user.email }}</p>
+							<div class="btn">
+								<a class="sup" href="{{ path('app_admin_user_show', {'id': user.id}) }}">detail</a>
+								<a class="edit" href="{{ path('app_admin_user_edit', {'id': user.id}) }}">editer</a>
+							</div>
+						</div>
+					</div>
+
+				{% else %}
+					<tr>
+						<td colspan="10">no records found</td>
+					</tr>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

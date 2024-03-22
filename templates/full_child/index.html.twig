@@ -16,11 +16,14 @@
 			</div>
 			<div class="listing">
 
+				{% set hasNewChild = false %}
 
 				{% for full_child in full_children %}
 
-				
 					{% if full_child.status == 'new' %}
+
+						{% set hasNewChild = true %}
+
 						<div class="child">
 							<div class="left">
 								<i class="fa-solid fa-child-reaching"></i>
@@ -34,14 +37,14 @@
 							</div>
 						</div>
 					{% endif %}
-				{% else %}
-					<div class="link">
-						<p style="text-align: center;">Aucun enfant</p>
-					</div>
-
 				{% endfor %}
-				{# 
-												{% endif %} #}
+
+				{% if not hasNewChild %}
+
+					<p style="text-align: center;">Aucun enfant</p>
+
+				{% endif %}
+
 
 			</div>
 			<div class="img">

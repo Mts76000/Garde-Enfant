@@ -127,11 +127,13 @@ class AddCreche
     #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'pro', orphanRemoval: true)]
     private Collection $pro;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->pro = new ArrayCollection();
     }
-
 
 
     public function getId(): ?int
@@ -139,17 +141,7 @@ class AddCreche
         return $this->id;
     }
 
-    public function getIdUser(): ?int
-    {
-        return $this->id_user;
-    }
-
-    public function setIdUser(?int $id_user): static
-    {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
+  
 
     public function getNom(): ?string
     {
@@ -312,6 +304,18 @@ class AddCreche
                 $pro->setPro(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -67,6 +67,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: RecupChild::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $user;
 
+    #[ORM\OneToMany(targetEntity: AddCreche::class, mappedBy: 'user')]
+    private Collection $users;
+
+
    
     public function __construct()
     {
@@ -74,6 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->setStatus(('new'));
         $this->fullChildren = new ArrayCollection();
         $this->user = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -297,5 +302,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-   
+
+    /**
+     * @return Collection<int, AddCreche>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
 }

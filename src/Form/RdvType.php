@@ -29,9 +29,11 @@ class RdvType extends AbstractType
                     'label' => 'Votre enfant',
                     'query_builder' => function (EntityRepository $er) use ($user) {
                         return $er->createQueryBuilder('c')
-                            ->andWhere('c.user = :user')
-                            ->setParameter('user', $user);
-                    }
+                    ->andWhere('c.user = :user')
+                    ->andWhere('c.status = :status') // Ajouter cette ligne pour filtrer par le statut
+                    ->setParameter('user', $user)
+                    ->setParameter('status', 'new'); 
+            }
                 ]);
         }
     }

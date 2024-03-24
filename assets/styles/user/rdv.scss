@@ -74,7 +74,7 @@ section#rdv_index {
 
 section#single_pro_public {
 
-	
+
 
 	.wrap {
 		text-align: center;
@@ -87,19 +87,19 @@ section#single_pro_public {
 		}
 
 		.img {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		padding: 1rem 0;
-	}
-
-		.container_horaire {
 			display: flex;
-			flex-direction: column;
-			text-align: center;
-			justify-content: center;
-			padding: 2rem 0;
+			flex-direction: row;
+			justify-content: space-around;
+			padding: 1rem 0;
 		}
+
+		// .container_horaire {
+		// 	display: flex;
+		// 	flex-direction: column;
+		// 	text-align: center;
+		// 	justify-content: center;
+		// 	padding: 2rem 0;
+		// }
 
 		.container_info {
 			display: flex;
@@ -109,4 +109,22 @@ section#single_pro_public {
 		}
 
 	}
+}
+
+section#single_pro_public {
+	.wrap {
+		text-align: center;
+		display: flex;
+		align-items: center;
+		gap: 20px; 
+		
+		.button {
+			margin: 0 3rem;
+		}
+
+		i {
+			color: v.$orange;
+		}
+	}
+
 }

@@ -50,8 +50,6 @@ class RdvController extends AbstractController
             return $this->redirectToRoute('app_rdv_success', [], Response::HTTP_SEE_OTHER);
         }
 
-        dd($user);
-
         return $this->render('rdv/new.html.twig', [
             'rdv' => $rdv,
             'form' => $form->createView(),

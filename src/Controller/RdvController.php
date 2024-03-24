@@ -62,7 +62,10 @@ class RdvController extends AbstractController
     #[Route('/{id}', name: 'app_rdv_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(Rdv $rdv): Response
     {
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
+
         return $this->render('rdv/show.html.twig', [
+            'user' => $user,
             'rdv' => $rdv,
         ]);
     }
@@ -70,6 +73,8 @@ class RdvController extends AbstractController
     #[Route('/{id}/edit', name: 'app_rdv_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Rdv $rdv, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
+
         $form = $this->createForm(RdvType::class, $rdv);
         $form->handleRequest($request);
 
@@ -82,6 +87,8 @@ class RdvController extends AbstractController
         return $this->render('rdv/edit.html.twig', [
             'rdv' => $rdv,
             'form' => $form,
+            'user' => $user,
+
         ]);
     }
 

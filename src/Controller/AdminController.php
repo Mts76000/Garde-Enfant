@@ -9,16 +9,34 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\AddCreche;
+use App\Repository\ContactRepository;
+use App\Repository\FullChildRepository;
+use App\Repository\RdvRepository;
+use App\Repository\UserRepository;
 
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
-    public function index(): Response
+    public function index(ContactRepository $contactRepository): Response
     {
         $user = $this->getUser();
-        // $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        // Compter le nombre d'ajouts par mois
+        $additionsByMonth = $contactRepository->countAdditionsByMonth();
+
+        // Formatage des données pour Chart.js
+        $labels = [];
+        $data = [];
+        foreach ($additionsByMonth as $entry) {
+            $labels[] = $entry['month'];
+            $data[] = $entry['total'];
+        }
+
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+            'additions_by_month' => $additionsByMonth,
+            'labels' => json_encode($labels),
+            'data' => json_encode($data),
             'user' => $user,
         ]);
     }
@@ -69,16 +87,34 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/app_admin_detail', name: 'app_admin_detail')]
-    public function detail(): Response
+
+    #[Route('/admin-detail', name: 'app_admin_detail')]
+    public function detail(RdvRepository $rdvRepository, FullChildRepository $fullchildRepository): Response
     {
         $user = $this->getUser();
-        // $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        return $this->render('admin/message.html.twig', [
-            'controller_name' => 'AdminController',
+
+        // Récupérer tous les rendez-vous avec le statut "open"
+        $rdvs = $rdvRepository->findBy(['status' => 'open']);
+
+        // Récupérer les enfants correspondant aux rendez-vous
+        $childs = [];
+        foreach ($rdvs as $rdv) {
+            $childId = $rdv->getIdChild(); // Supposons que getIdChild() renvoie l'identifiant de l'enfant
+            if ($childId) {
+                $child = $fullchildRepository->find($childId);
+                if ($child) {
+                    $childs[$rdv->getId()] = $child;
+                }
+            }
+        }
+
+        return $this->render('admin/detail.html.twig', [
+            'rdvs' => $rdvs,
+            'childs' => $childs,
             'user' => $user,
         ]);
     }
+
     #[Route('/{id}/validate', name: 'app_admin_demande_validate', methods: ['GET'])]
     public function validatePro(Request $request, AddCreche $addCreche, EntityManagerInterface $entityManager): Response
     {

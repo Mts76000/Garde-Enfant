@@ -5,8 +5,34 @@
 {% block body %}
 
 
-    <section id="dashboard" class="bouton">
-        <h1>NOUVELLES DEMANDE :</h1>
+
+ 
+    <section id="rdv_index" class="form">
+    <div class="wrap">
+            <h2> CHOISISSEZ votre crèche:</h2>
+            <div class="creche_container">
+
+           {% for rdv in rdvs %}
+                <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}" class="box_creche">
+                    <div class="creche_text">
+                        <span><b>ID: {{ rdv.id }} </b></span> <br>
+                        <span>{{ childs[rdv.id].prenom }} - {{ childs[rdv.id].nom }}</span> <br>
+                        <span>{{ rdv.date|date('Y-m-d H:i') }}</span>
+                        
+                    </div>
+                </a>
+            {% else %}
+                    <tr>
+                        <td colspan="14">Aucune créche trouvée.</td>
+                    </tr>
+            {% endfor %}
+
+            </div>
+
+            <div class="img">
+                <a href="{{ path('app_user') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+            </div>
+        </div>
     </section>
 
 {% endblock %}

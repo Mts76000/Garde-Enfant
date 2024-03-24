@@ -64,12 +64,12 @@ class ContactCreche
     private ?string $status = null;
 
 
-    #[ORM\ManyToOne(inversedBy: 'creche')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?AddCreche $creche = null;
-
-    #[ORM\OneToMany(targetEntity: AddCreche::class, mappedBy: 'pro', orphanRemoval: true)]
-    private Collection $pro;
+//    #[ORM\ManyToOne(inversedBy: 'creche')]
+//    #[ORM\JoinColumn(nullable: false)]
+//    private ?AddCreche $creche = null;
+//
+//    #[ORM\OneToMany(targetEntity: AddCreche::class, mappedBy: 'pro', orphanRemoval: true)]
+//    private Collection $pro;
 
 
     public function __construct()

@@ -27,6 +27,7 @@ class RdvType extends AbstractType
                     'class' => FullChild::class,
                     'choice_label' => 'prenom',
                     'label' => 'Votre enfant',
+                    'placeholder' => 'Sélectionner un enfant', 
                     'query_builder' => function (EntityRepository $er) use ($user) {
                         return $er->createQueryBuilder('c')
                     ->andWhere('c.user = :user')

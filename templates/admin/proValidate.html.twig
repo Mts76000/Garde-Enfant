@@ -1,10 +1,10 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Pro en attente{% endblock %}
+{% block title %}Demande de pro. validé - Pitchoune{% endblock %}
 
 {% block body %}
 
-    <h1>En attente de validation</h1>
+    <h1>Validation acceptée</h1>
 
     <table class="table">
         <thead>
@@ -24,7 +24,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="14">no records found</td>
+                <td colspan="14">Aucune demande trouvée</td>
             </tr>
         {% endfor %}
         </tbody>

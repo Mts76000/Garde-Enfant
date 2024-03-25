@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Pro en attente
+{% block title %}Demande de pro. en attente - Pitchoune
 {% endblock %}
 
 {% block body %}
@@ -8,7 +8,7 @@
 	<section id="messagerie" class="bouton">
 		<div class="wrap">
 			<div class="titre">
-				<h1>Demande pro :</h1>
+				<h1>Demande de pro. en attente:</h1>
 
 			</div>
 			<div class="messagerie">
@@ -40,10 +40,15 @@
 
 					</div>
 				{% else %}
-					<p>aucune demande</p>
+					<tr>
+                        <td colspan="14">Aucun demande trouvé.</td>
+                    </tr>
 				</div>
 			{% endfor %}
 		</div>
+		<div class="img">
+               <a href="{{ path('app_admin') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+          </div>
 	</section>
 
 

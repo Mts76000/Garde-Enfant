@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Liste RDV{% endblock %}
+{% block title %}Liste des RDV - Pitchoune{% endblock %}
 
 {% block body %}
 
@@ -9,7 +9,7 @@
  
     <section id="rdv_index" class="form">
     <div class="wrap">
-            <h2> CHOISISSEZ votre crèche:</h2>
+            <h2> Liste des rendez-vous en cours:</h2>
             <div class="creche_container">
 
            {% for rdv in rdvs %}
@@ -30,7 +30,7 @@
             </div>
 
             <div class="img">
-                <a href="{{ path('app_user') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+                <a href="{{ path('app_admin') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
             </div>
         </div>
     </section>

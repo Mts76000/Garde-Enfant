@@ -19,23 +19,32 @@ class RdvType extends AbstractType
 
         if ($user instanceof UserInterface) {
             $builder
+            ->add('id_child', EntityType::class, [
+                'class' => FullChild::class,
+                'choice_label' => 'prenom',
+                'label' => 'Votre enfant',
+                'placeholder' => 'Sélectionner un enfant', 
+                'query_builder' => function (EntityRepository $er) use ($user) {
+                    return $er->createQueryBuilder('c')
+                ->andWhere('c.user = :user')
+                ->andWhere('c.status = :status') 
+                ->setParameter('user', $user)
+                ->setParameter('status', 'new'); 
+        }
+            ])
                 ->add('date', null, [
                     'widget' => 'single_text',
                     'label' => 'Date'
+                ])  
+                 ->add('heure_debut', null, [
+                    'widget' => 'single_text',
+                    'label' => 'Heure de début'
                 ])
-                ->add('id_child', EntityType::class, [
-                    'class' => FullChild::class,
-                    'choice_label' => 'prenom',
-                    'label' => 'Votre enfant',
-                    'placeholder' => 'Sélectionner un enfant', 
-                    'query_builder' => function (EntityRepository $er) use ($user) {
-                        return $er->createQueryBuilder('c')
-                    ->andWhere('c.user = :user')
-                    ->andWhere('c.status = :status') 
-                    ->setParameter('user', $user)
-                    ->setParameter('status', 'new'); 
-            }
+                 ->add('heure_fin', null, [
+                    'widget' => 'single_text',
+                    'label' => 'Heure de fin'
                 ]);
+             
         }
     }
 

@@ -46,4 +46,14 @@ class AddCrecheRepository extends ServiceEntityRepository
     //        ;
     //    }
 
+    public function findCrecheIdByUserId($userId)
+    {
+        return $this->createQueryBuilder('ac')
+            ->select('ac.id')
+            ->andWhere('ac.user = :userId')
+            ->setParameter('userId', $userId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 }

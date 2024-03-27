@@ -28,27 +28,18 @@ class ProTimeType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
             ])
-            ->add('heure_debut', ChoiceType::class, [
-                'label' => 'Heure de début',
-                'choices' => $this->generateHours(),
-
+            ->add('heure_debut', null, [
+                'widget' => 'single_text',
+                'label' => 'Heure de début'
             ])
-            ->add('heure_fin', ChoiceType::class, [
-                'label' => 'Heure de fin',
-                'choices' => $this->generateHours(),
+             ->add('heure_fin', null, [
+                'widget' => 'single_text',
+                'label' => 'Heure de fin'
             ]);
         ;
     }
 
-    private function generateHours(): array
-    {
-        $hours = [];
-        for ($i = 0; $i < 24; $i++) {
-            $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-            $hours["$hour:00"] = "$hour:00";
-        }
-        return $hours;
-    }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {

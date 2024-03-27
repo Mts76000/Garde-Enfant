@@ -130,9 +130,13 @@ class AddCreche
     #[ORM\ManyToOne(inversedBy: 'users')]
     private ?User $user = null;
 
+    #[ORM\OneToMany(targetEntity: ProTime::class, mappedBy: 'pro')]
+    private Collection $pros;
+
     public function __construct()
     {
         $this->pro = new ArrayCollection();
+        $this->pros = new ArrayCollection();
     }
 
 
@@ -318,5 +322,13 @@ class AddCreche
         $this->user = $user;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, ProTime>
+     */
+    public function getPros(): Collection
+    {
+        return $this->pros;
     }
 }

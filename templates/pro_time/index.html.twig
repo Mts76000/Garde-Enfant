@@ -20,7 +20,6 @@
         {% for pro_time in pro_times %}
             <tr>
                 <td>{{ pro_time.id }}</td>
-                <td>{{ pro_time.idPro }}</td>
                 <td>{{ pro_time.jour }}</td>
                 <td>{{ pro_time.heureDebut ? pro_time.heureDebut|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ pro_time.heureFin ? pro_time.heureFin|date('Y-m-d H:i:s') : '' }}</td>

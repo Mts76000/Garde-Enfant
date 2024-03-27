@@ -30,6 +30,9 @@ class Rdv
     #[ORM\JoinColumn(nullable: false)]
     private ?AddCreche $pro = null;
 
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $heure_fin = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -79,6 +82,18 @@ class Rdv
     public function setPro(?AddCreche $pro): static
     {
         $this->pro = $pro;
+
+        return $this;
+    }
+
+    public function getHeureFin(): ?\DateTimeInterface
+    {
+        return $this->heure_fin;
+    }
+
+    public function setHeureFin(\DateTimeInterface $heure_fin): static
+    {
+        $this->heure_fin = $heure_fin;
 
         return $this;
     }

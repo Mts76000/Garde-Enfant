@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Repository\FullChildRepository;
 use App\Repository\RdvRepository;
 
-
-
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
@@ -22,7 +20,6 @@ class UserController extends AbstractController
 
         $rdvs = $rdvRepository->findBy(['status' => 'open']);
 
-
         $childs = [];
         foreach ($rdvs as $rdv) {
             $childId = $rdv->getIdChild();
@@ -31,9 +28,10 @@ class UserController extends AbstractController
                 if ($child) {
                     $childs[$rdv->getId()] = $child;
                 }
-            } 
-            
-            $pros = [];
+            }
+        }
+
+        $pros = [];
         foreach ($rdvs as $rdv) {
             $pro = $rdv->getPro();
             if ($pro) {
@@ -50,7 +48,6 @@ class UserController extends AbstractController
             'pros' => $pros,
         ]);
     }
-}
 
     #[Route('/user_success', name: 'app_user_success')]
     public function success(): Response

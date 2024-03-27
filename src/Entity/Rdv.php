@@ -14,7 +14,7 @@ class Rdv
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
@@ -29,6 +29,12 @@ class Rdv
     #[ORM\ManyToOne(inversedBy: 'pro')]
     #[ORM\JoinColumn(nullable: false)]
     private ?AddCreche $pro = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $heure_fin = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $heure_debut = null;
 
     public function getId(): ?int
     {
@@ -79,6 +85,30 @@ class Rdv
     public function setPro(?AddCreche $pro): static
     {
         $this->pro = $pro;
+
+        return $this;
+    }
+
+    public function getheure_fin(): ?\DateTimeInterface
+    {
+        return $this->heure_fin;
+    }
+
+    public function setHeureFin(\DateTimeInterface $heure_fin): static
+    {
+        $this->heure_fin = $heure_fin;
+
+        return $this;
+    }
+
+    public function getheure_debut(): ?\DateTimeInterface
+    {
+        return $this->heure_debut;
+    }
+
+    public function setHeureDebut(\DateTimeInterface $heure_debut): static
+    {
+        $this->heure_debut = $heure_debut;
 
         return $this;
     }

@@ -24,10 +24,9 @@
 			<div class="box_dash">
 
 				{% for rdv in rdvs %}
-					{# <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}" class="box_creche"> #}
 					<div class="message-box">
 						<div class="top">
-							<p>Date: {{ rdv.date ? rdv.date|date('d/m/Y') : '' }}</p> 
+							<p>{{ rdv.date ? rdv.date|date('d/m/Y') : '' }}</p> 
 							
 						</div>
 						<div class="bot detail">
@@ -49,7 +48,7 @@
 
 				{% else %}
 					<tr>
-						<td colspan="14">Aucun rdv trouver.</td>
+						<td colspan="14">Aucun créneaux trouvé.</td>
 					</tr>
 				{% endfor %}
 

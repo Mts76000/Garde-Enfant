@@ -15,8 +15,12 @@ class ProController extends AbstractController
     #[Route('/pro', name: 'app_pro')]
     public function index(RdvRepository $rdvRepository, AddCrecheRepository $addCrecheRepository, FullChildRepository $fullchildRepository): Response
     {
-
         $user = $this->getUser();
+
+        $crechedata = $addCrecheRepository->findby(['user' => $user]);
+        if (!$crechedata) {
+            return $this->redirectToRoute('app_add_creche_new');
+        }
 
         $crecheId = $addCrecheRepository->findCrecheIdByUserId($user);
 
@@ -34,6 +38,7 @@ class ProController extends AbstractController
         }
 
 
+
         return $this->render('pro/index.html.twig', [
             'controller_name' => 'ProController',
             'user' => $user,
@@ -44,9 +49,14 @@ class ProController extends AbstractController
 
 
     #[Route('/pro_messsage', name: 'app_pro_message')]
-    public function message(): Response
+    public function message(AddCrecheRepository $addCrecheRepository): Response
     {
+
         $user = $this->getUser();
+        $crechedata = $addCrecheRepository->findby(['user' => $user]);
+        if (!$crechedata) {
+            return $this->redirectToRoute('app_add_creche_new');
+        }
         return $this->render('pro/message.html.twig', [
             'controller_name' => 'ProController',
             'user' => $user,
@@ -55,9 +65,13 @@ class ProController extends AbstractController
 
 
     #[Route('/pro_detail', name: 'app_pro_detail')]
-    public function detail(): Response
+    public function detail(AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
+        $crechedata = $addCrecheRepository->findby(['user' => $user]);
+        if (!$crechedata) {
+            return $this->redirectToRoute('app_add_creche_new');
+        }
         return $this->render('pro/detail.html.twig', [
             'controller_name' => 'ProController',
             'user' => $user,
@@ -65,9 +79,13 @@ class ProController extends AbstractController
     }
 
     #[Route('/pro_demande', name: 'app_pro_demande')]
-    public function demande(): Response
+    public function demande(AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
+        $crechedata = $addCrecheRepository->findby(['user' => $user]);
+        if (!$crechedata) {
+            return $this->redirectToRoute('app_add_creche_new');
+        }
         return $this->render('pro/demande.html.twig', [
             'controller_name' => 'ProController',
             'user' => $user,

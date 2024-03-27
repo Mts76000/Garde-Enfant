@@ -17,13 +17,14 @@ class ProTime
     #[ORM\Column(nullable: true)]
     private ?int $id_pro = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $jour = null;
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $jour = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heure_debut = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heure_fin = null;
 
     public function getId(): ?int
@@ -43,18 +44,17 @@ class ProTime
         return $this;
     }
 
-    public function getJour(): ?string
+    public function getJour(): ?array
     {
         return $this->jour;
     }
 
-    public function setJour(?string $jour): static
+    public function setJour(?array $jour): static
     {
         $this->jour = $jour;
 
         return $this;
     }
-
     public function getHeureDebut(): ?\DateTimeInterface
     {
         return $this->heure_debut;

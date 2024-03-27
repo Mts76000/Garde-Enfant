@@ -15,11 +15,14 @@
 			<div class="messagerie">
 
 				{% for rdv in rdvs %}
-					{# <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}" class="box_creche"> #}
 					<div class="message-box">
 						<div class="top">
-							<p>{{ rdv.date ? rdv.date|date('H : i') : '' }}</p>
-							<p>{{ rdv.date ? rdv.date|date('m/d') : '' }}</p>
+								<p>{{ rdv.date ? rdv.date|date('d/m/Y') : '' }}</p> 
+
+										<p>
+										{{ rdv.heure_debut ? rdv.heure_debut|date('H : i') : '' }} /
+										{{ rdv.heure_fin ? rdv.heure_fin|date('H : i') : '' }}
+										</p>
 						</div>
 						<div class="bot detail">
 							<div class="letter">

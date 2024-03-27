@@ -89,7 +89,7 @@ class Rdv
         return $this;
     }
 
-    public function getHeureFin(): ?\DateTimeInterface
+    public function getheure_fin(): ?\DateTimeInterface
     {
         return $this->heure_fin;
     }
@@ -101,7 +101,7 @@ class Rdv
         return $this;
     }
 
-    public function getHeureDebut(): ?\DateTimeInterface
+    public function getheure_debut(): ?\DateTimeInterface
     {
         return $this->heure_debut;
     }

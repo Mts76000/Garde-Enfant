@@ -27,12 +27,12 @@
 					{# <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}" class="box_creche"> #}
 					<div class="message-box">
 						<div class="top">
-							<p>{{ rdv.date ? rdv.date|date('H : i') : '' }}</p>
-							<p>{{ rdv.date ? rdv.date|date('m/d') : '' }}</p>
+							<p>Date: {{ rdv.date ? rdv.date|date('d/m/Y') : '' }}</p> 
+							
 						</div>
 						<div class="bot detail">
 							<div class="letter">
-					<i class="fa-solid fa-baby"></i>
+								<i class="fa-solid fa-baby"></i>
 							</div>
 							<div class="description">
 								<div class="info">
@@ -40,7 +40,10 @@
 										<h2>{{ childs[rdv.id].prenom }} {{ childs[rdv.id].nom }}</h2>
 									</div>
 								</div>
+								
 							</div>
+							<p><b>Heure début:</b> {{ rdv.heure_debut ? rdv.heure_debut|date('H\\hi') : '' }} </p>
+							<p><b>Heure fin:</b> {{ rdv.heure_fin ? rdv.heure_fin|date('H\\hi') : '' }} </p>
 						</div>
 
 					</div>

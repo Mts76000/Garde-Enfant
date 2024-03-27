@@ -68,7 +68,7 @@ class AddCrecheController extends AbstractController
             $entityManager->persist($addCreche);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_add_creche_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pro', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('add_creche/new.html.twig', [

@@ -9,7 +9,7 @@
 }
 
 
-.messagerie {
+.box_dash {
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -29,7 +29,7 @@
   .bot {
     display: flex;
     gap: 2rem;
-    align-items: baseline;
+    align-items: center;
 
     .letter {
       font-size: 2.1rem;

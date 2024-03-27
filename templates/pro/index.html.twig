@@ -21,7 +21,7 @@
 			<div class="creneaux">
 			<h2>Vos créneaux :</h2>
 			</div>
-			<div class="messagerie">
+			<div class="box_dash">
 
 				{% for rdv in rdvs %}
 					{# <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}" class="box_creche"> #}
@@ -38,11 +38,10 @@
 								<div class="info">
 									<div class="titre">
 										<h2>{{ childs[rdv.id].prenom }} {{ childs[rdv.id].nom }}</h2>
-										<p><b>Heure début:</b> {{ rdv.heure_debut ? rdv.heure_debut|date('H\\hi') : '' }} </p>
-							<p><b>Heure fin:</b> {{ rdv.heure_fin ? rdv.heure_fin|date('H\\hi') : '' }} </p>
 									</div>
+										<p><b>Heure début:</b> {{ rdv.heure_debut ? rdv.heure_debut|date('H\\hi') : '' }} </p>
+										<p><b>Heure fin:</b> {{ rdv.heure_fin ? rdv.heure_fin|date('H\\hi') : '' }} </p>	
 								</div>
-								
 							</div>
 						</div>
 

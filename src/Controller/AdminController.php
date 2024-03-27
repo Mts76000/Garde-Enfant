@@ -93,13 +93,13 @@ class AdminController extends AbstractController
     {
         $user = $this->getUser();
 
-        // Récupérer tous les rendez-vous avec le statut "open"
+
         $rdvs = $rdvRepository->findBy(['status' => 'open']);
 
-        // Récupérer les enfants correspondant aux rendez-vous
+
         $childs = [];
         foreach ($rdvs as $rdv) {
-            $childId = $rdv->getIdChild(); // Supposons que getIdChild() renvoie l'identifiant de l'enfant
+            $childId = $rdv->getIdChild();
             if ($childId) {
                 $child = $fullchildRepository->find($childId);
                 if ($child) {

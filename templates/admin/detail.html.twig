@@ -1,38 +1,55 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Liste des RDV - Pitchoune{% endblock %}
+{% block title %}Liste des RDV - Pitchoune
+{% endblock %}
 
 {% block body %}
 
 
+	<section id="messagerie" class="bouton">
+		<div class="wrap">
+			<div class="titre">
+				<h1>
+					Liste des rendez-vous en cours:</h1>
+			</div>
+			<div class="messagerie">
 
- 
-    <section id="rdv_index" class="form">
-    <div class="wrap">
-            <h2> Liste des rendez-vous en cours:</h2>
-            <div class="creche_container">
+				{% for rdv in rdvs %}
+					{# <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}" class="box_creche"> #}
+					<div class="message-box">
+						<div class="top">
+							<p>{{ rdv.date ? rdv.date|date('H : i') : '' }}</p>
+							<p>{{ rdv.date ? rdv.date|date('m/d') : '' }}</p>
+						</div>
+						<div class="bot detail">
+							<div class="letter">
+					<i class="fa-solid fa-baby"></i>
+							</div>
+							<div class="description">
+								<div class="info">
+									<div class="titre">
+										<h2>{{ childs[rdv.id].prenom }}
 
-           {% for rdv in rdvs %}
-                <a href="{{ path('app_rdv_show', {'id': rdv.id}) }}" class="box_creche">
-                    <div class="creche_text">
-                        <span><b>ID: {{ rdv.id }} </b></span> <br>
-                        <span>{{ childs[rdv.id].prenom }} - {{ childs[rdv.id].nom }}</span> <br>
-                        <span>{{ rdv.date|date('Y-m-d H:i') }}</span>
-                        
-                    </div>
-                </a>
-            {% else %}
-                    <tr>
-                        <td colspan="14">Aucune créche trouvée.</td>
-                    </tr>
-            {% endfor %}
+											{{ childs[rdv.id].nom }}</h2>
+									</div>
+								</div>
+							</div>
+						</div>
 
-            </div>
+					</div>
 
-            <div class="img">
-                <a href="{{ path('app_admin') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
-            </div>
-        </div>
-    </section>
+				{% else %}
+					<tr>
+						<td colspan="14">Aucun rdv trouver.</td>
+					</tr>
+				{% endfor %}
+
+			</div>
+
+			<div class="img">
+				<a href="{{ path('app_admin') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
+		</div>
+	</section>
 
 {% endblock %}

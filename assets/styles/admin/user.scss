@@ -165,10 +165,7 @@ section#rdv_index {
   }
 
   .creche_container {
-    padding: 18px;
-    border-radius: 15px;
-    background-color: #fafafa;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+   
 
     .box_creche {
       display: flex;
@@ -191,4 +188,15 @@ section#rdv_index {
     }
 
   }
+}
+
+
+.detail{
+  margin-top: 2rem;
+}
+
+.Stat{
+ display: flex;
+ flex-direction: column;
+ gap: 2rem;
 }

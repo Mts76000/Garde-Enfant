@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des enfants - Pitchoune
+
+{% endblock %}
+
+{% block body %}
+
+	<section id="pro" class="bouton">
+		<div class="wrap">
+			<div class="link">
+				<div class="top">
+						<a href="{{ path('app_add_creche_show', {'id': creche.id }) }}">Détail creche</a>
+						<a href="{{ path('app_contact_creche_index') }}">Voir mes message</a>
+					</div>
+						<div class="down">
+						<a href="{{ path('app_pro_liste_child') }}">Gérer les enfants</a>
+						<a  href="{{ path('app_pro') }}">Dashboard</a>
+					</div>
+			</div>
+			<div class="creneaux">
+			<h2>Listes des enfants :</h2>
+			</div>
+			<div class="box_dash">
+				<div class="listing">
+					
+
+						{% for child in children %}
+						<div class="child">
+							<details>
+								<summary>{{ child.nom }} {{ child.prenom }}</summary>
+								<ul>
+									<li>Age: {{child.age}}</li>
+									<li>Genre: {{child.genre}}</li>
+									<li>Consigne alimentaire: {{child.consignealimentaire}}</li>
+									<li>Traitement: {{child.traitement}}</li>
+									<li>Vaccin: {% if child.vaccin == 0 %}Non{% else %}Oui{% endif %}</li>
+									<li>Allergie: {{child.alergie}}</li>
+								</ul>
+							</details>
+						</div>
+						{% endfor %}
+					
+				</div>
+			</div>
+
+			<div class="img">
+				<a href="{{ path('app_admin') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
+		</div>
+	</section>
+	
+{% endblock %}

@@ -44,6 +44,7 @@ class ProController extends AbstractController
             'user' => $user,
             'childs' => $childs,
             'rdvs' => $rdvs,
+            'creche' => $crecheId,
         ]);
     }
 
@@ -53,6 +54,8 @@ class ProController extends AbstractController
     {
 
         $user = $this->getUser();
+        $crecheId = $addCrecheRepository->findCrecheIdByUserId($user);
+
         $crechedata = $addCrecheRepository->findby(['user' => $user]);
         if (!$crechedata) {
             return $this->redirectToRoute('app_add_creche_new');
@@ -60,6 +63,8 @@ class ProController extends AbstractController
         return $this->render('pro/message.html.twig', [
             'controller_name' => 'ProController',
             'user' => $user,
+            'creche' => $crecheId,
+
         ]);
     }
 
@@ -68,6 +73,8 @@ class ProController extends AbstractController
     public function detail(AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
+        $crecheId = $addCrecheRepository->findCrecheIdByUserId($user);
+
         $crechedata = $addCrecheRepository->findby(['user' => $user]);
         if (!$crechedata) {
             return $this->redirectToRoute('app_add_creche_new');
@@ -75,6 +82,8 @@ class ProController extends AbstractController
         return $this->render('pro/detail.html.twig', [
             'controller_name' => 'ProController',
             'user' => $user,
+            'creche' => $crecheId,
+
         ]);
     }
 
@@ -82,6 +91,8 @@ class ProController extends AbstractController
     public function demande(AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
+        $crecheId = $addCrecheRepository->findCrecheIdByUserId($user);
+
         $crechedata = $addCrecheRepository->findby(['user' => $user]);
         if (!$crechedata) {
             return $this->redirectToRoute('app_add_creche_new');
@@ -89,6 +100,39 @@ class ProController extends AbstractController
         return $this->render('pro/demande.html.twig', [
             'controller_name' => 'ProController',
             'user' => $user,
+            'creche' => $crecheId,
+
         ]);
     }
+    #[Route('/pro_liste-enfant', name: 'app_pro_liste_child')]
+public function listechild(AddCrecheRepository $addCrecheRepository, RdvRepository $rdvRepository, FullChildRepository $fullChildRepository): Response
+{
+    $user = $this->getUser();
+    $crecheIds = $addCrecheRepository->findCrecheIdByUserId($user);
+
+    if (empty($crecheIds)) {
+        return $this->redirectToRoute('app_add_creche_new');
+    }
+
+    $children = [];
+    foreach ($crecheIds as $crecheId) {
+        $childIds = $rdvRepository->findChildIdsByCrecheId($crecheId);
+
+        foreach ($childIds as $childId) {
+            $child = $fullChildRepository->find($childId);
+            if ($child) {
+                $children[] = $child;
+            }
+        }
+    }
+
+    // dd($children);
+
+    return $this->render('pro/liste_child.html.twig', [
+        'controller_name' => 'ProController',
+        'user' => $user,
+        'creche' => $crecheIds,
+        'children' => $children,
+    ]);
+}
 }

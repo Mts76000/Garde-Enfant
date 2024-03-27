@@ -18,7 +18,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/add/creche')]
 class AddCrecheController extends AbstractController
 {
-    #[Route('/', name: 'app_add_creche_index', methods: ['GET'])]
+    #[Route('/', name: 'app_pro', methods: ['GET'])]
     public function index(AddCrecheRepository $addCrecheRepository): Response
     {
 
@@ -107,10 +107,12 @@ class AddCrecheController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $addCreche->setStatus('waiting');
+            $addCreche->setUser($user);
             $addCreche->setModifiedAt(new \DateTimeImmutable());
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_add_creche_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pro', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('add_creche/edit.html.twig', [
@@ -129,7 +131,7 @@ class AddCrecheController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_add_creche_index', [
+        return $this->redirectToRoute('app_pro', [
             'user' => $user,
         ], Response::HTTP_SEE_OTHER);
     }

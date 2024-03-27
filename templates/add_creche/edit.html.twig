@@ -5,13 +5,13 @@
 {% block body %}
     <section id="addCreche" class="form">
         <div class="wrap">
-            <h1>Edit AddCreche</h1>
+            <h1>Demande de modification</h1>
 
-            {{ include('add_creche/_form.html.twig', {'button_label': 'Update'}) }}
-
-            <a href="{{ path('app_add_creche_index') }}">back to list</a>
-
-            {{ include('add_creche/_delete_form.html.twig') }}
+            {{ include('add_creche/_form.html.twig', {'button_label': 'Demander'}) }}
+            
+            <div class="img">
+                <a href="{{ path('app_pro') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+            </div>
         </div>
     </section>
 {% endblock %}

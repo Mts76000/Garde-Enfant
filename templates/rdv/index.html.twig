@@ -50,14 +50,18 @@
                     </div>
                     <div class="creche_data">
                         <i class="fa-solid fa-building-user"></i>
-                        <span>?/{{ add_creche.maxEnfant }}</span>
+                        {% set count = counts[add_creche.id] ?? 0 %}
+                        <span>{{ count }}/{{ add_creche.maxEnfant }}</span>
                     </div>
                 </a>
             {% else %}
-                    <tr>
-                        <td colspan="14">Aucune créche trouvée.</td>
-                    </tr>
+                <tr>
+                    <td colspan="14">Aucune crèche trouvée.</td>
+                </tr>
             {% endfor %}
+
+            </div>
+
 
             </div>
 

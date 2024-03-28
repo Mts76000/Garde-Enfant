@@ -21,13 +21,22 @@ class RdvController extends AbstractController
     public function index(RdvRepository $rdvRepository, AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
+        $crecheIds = $addCrecheRepository->findCrecheIdByUserId($user);
+
+        $counts = [];
+        foreach ($crecheIds as $crecheId) {
+            $counts[$crecheId] = count($rdvRepository->findChildIdsByCrecheId($crecheId));
+        }
+
         return $this->render('rdv/index.html.twig', [
-            'rdvs' => $rdvRepository->findAll(),
+            'rdvRepository' => $rdvRepository, // Transmettre rdvRepository à votre modèle Twig
             'add_creches' => $addCrecheRepository->findBy(['status' => 'validated']),
             'user' => $user,
-
+            'counts' => $counts,
         ]);
     }
+
+
 
     #[Route('/new-rdv/{id}', name: 'app_rdv_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, FullChildRepository  $fullChildRepository, int $id): Response

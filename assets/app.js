@@ -24,7 +24,7 @@ import "./styles/user/rdv.scss";
 import "./styles/user/success.scss";
 import "./styles/user/index.scss";
 import "./styles/user/addchild.scss";
-import "./styles/recupChild.scss";
+import "./styles/user/recupChild.scss";
 import "./styles/user/listing-child.scss";
 
 

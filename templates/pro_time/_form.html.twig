@@ -1,4 +1,19 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div id="pro_time_jour">
+{% for day in form.jour %}
+
+    <div class="day-container">
+     <div class="day-checkbox">{{ form_widget(day) }}</div>
+        <div class="day-name">{{ day.vars.label }}</div>
+    </div>
+  
+{% endfor %}
+  </div>
+
+{{ form_row(form.heure_debut) }}
+{{ form_row(form.heure_fin) }}
+
+<button class="btn">{{ button_label|default('Ajouter') }}</button>
+
 {{ form_end(form) }}

@@ -1,14 +1,25 @@
 {% extends 'essai.html.twig' %}
 
-{% block title %}New ProTime{% endblock %}
+{% block title %}Horaire
+{% endblock %}
 
 {% block body %}
-    <h1>Create new ProTime</h1>
 
-  
+	<section id="proTime" class="bouton">
+		<div class="wrap">
+			<div class="titre">
+				<h1>Ajouter vos horaires</h1>
+			</div>
+			<div class="form">
+				{{ include('pro_time/_form.html.twig') }}
+			</div>
 
-    
-    {{ include('pro_time/_form.html.twig') }}
+			<div class="img">
+				<a href="{{ path('app_pro') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
 
-    <a href="{{ path('app_pro_time_index') }}">back to list</a>
+		</div>
+	</section>
+
+
 {% endblock %}

@@ -1,0 +1,29 @@
+#proTime {
+  .form {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+  #pro_time {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    & > div:first-child {
+      .required {
+        font-size: 1.5rem;
+      }
+    }
+  }
+  #pro_time_jour {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    .day-container{
+        display: flex;
+        gap: 0.5rem;
+    }
+  }
+}

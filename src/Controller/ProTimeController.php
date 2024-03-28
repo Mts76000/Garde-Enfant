@@ -34,11 +34,19 @@ class ProTimeController extends AbstractController
         $user = $this->getUser();
         $crecheId = $addCrecheRepository->findCrecheIdByUserIdSingle($user);
         $addCreche = $entityManager->getRepository(AddCreche::class)->find($crecheId);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
+            // Vérifiez si une entrée existe déjà pour cette crèche
+            $existingProTime = $entityManager->getRepository(ProTime::class)->findOneBy(['pro' => $addCreche]);
+
+            // Si une entrée existe déjà, supprimez-la
+            if ($existingProTime) {
+                $entityManager->remove($existingProTime);
+                $entityManager->flush(); // Assurez-vous que cette action est confirmée en base de données
+            }
+
+            // Créez et insérez la nouvelle entrée
             $proTime->setPro($addCreche);
-
-
             $entityManager->persist($proTime);
             $entityManager->flush();
 

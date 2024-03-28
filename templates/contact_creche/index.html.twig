@@ -7,7 +7,7 @@
     <div class="wrap">
         <div class="link">
 				<div class="top">
-						<a href="{{ path('app_pro_detail') }}">Détail creche</a>
+						<a href="{{ path('app_add_creche_show', {'id': creche.id }) }}">Détail creche</a>
 						<a href="{{ path('app_contact_creche_index') }}">Voir mes message</a>
 					</div>
 						<div class="down">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 {% else %}
-                <p>aucun message</p>
+                <p>Aucun Message</p>
                 {% endfor %}
             </div>
         </div>

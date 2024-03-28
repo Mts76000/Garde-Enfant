@@ -1,0 +1,47 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+
+
+<section id="listing_user">
+    <div class="wrap">
+        <div class="title">
+                <h2>Listes des utilisateurs :</h2>
+            </div>
+
+            <div class="user_container">
+                <div class="user_box">
+                    <div class="user_box_top">
+                        <span>21:45</span>
+                        <span>12/05</span>
+                    </div>
+                    <div class="user_box_name">
+                        <span>Nom Prenom</span>
+                    </div>
+                    <div class="user_box_para">
+                        <span>veut devenir pro</span>
+                    </div>
+                </div>
+                <div class="user_box">
+                    <div class="user_box_top">
+                        <span>21:45</span>
+                        <span>12/05</span>
+                    </div>
+                    <div class="user_box_name">
+                        <span>Nom Prenom</span>
+                    </div>
+                    <div class="user_box_para">
+                        <span>veut devenir pro</span>
+                    </div>
+                </div>
+            </div>
+
+			<div class="img">
+			<a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+			</div>
+    </div>
+</section>
+
+{% endblock %}

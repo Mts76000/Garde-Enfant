@@ -11,10 +11,16 @@
     .a {
       display: flex;
       gap: 1rem;
+      div{
+        width: 100%;
+      }
     }
     .b {
       display: flex;
       gap: 1rem;
+      div{
+        width: 100%;
+      }
     }
     .condition {
       display: flex;

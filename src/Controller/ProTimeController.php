@@ -19,8 +19,10 @@ class ProTimeController extends AbstractController
     #[Route('/', name: 'app_pro_time_index', methods: ['GET'])]
     public function index(ProTimeRepository $proTimeRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('pro_time/index.html.twig', [
             'pro_times' => $proTimeRepository->findAll(),
+            'user' => $user,
         ]);
     }
 
@@ -36,16 +38,16 @@ class ProTimeController extends AbstractController
         $addCreche = $entityManager->getRepository(AddCreche::class)->find($crecheId);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Vérifiez si une entrée existe déjà pour cette crèche
+
             $existingProTime = $entityManager->getRepository(ProTime::class)->findOneBy(['pro' => $addCreche]);
 
-            // Si une entrée existe déjà, supprimez-la
+      
             if ($existingProTime) {
                 $entityManager->remove($existingProTime);
-                $entityManager->flush(); // Assurez-vous que cette action est confirmée en base de données
+                $entityManager->flush(); 
             }
 
-            // Créez et insérez la nouvelle entrée
+         
             $proTime->setPro($addCreche);
             $entityManager->persist($proTime);
             $entityManager->flush();
@@ -57,20 +59,24 @@ class ProTimeController extends AbstractController
             'pro_time' => $proTime,
             'form' => $form,
             'addCreche' => $addCreche,
+            'user' => $user,
         ]);
     }
 
     #[Route('/{id}', name: 'app_pro_time_show', methods: ['GET'])]
     public function show(ProTime $proTime): Response
     {
+        $user = $this->getUser();
         return $this->render('pro_time/show.html.twig', [
             'pro_time' => $proTime,
+            'user' => $user,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_pro_time_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ProTime $proTime, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         $form = $this->createForm(ProTimeType::class, $proTime);
         $form->handleRequest($request);
 
@@ -83,17 +89,21 @@ class ProTimeController extends AbstractController
         return $this->render('pro_time/edit.html.twig', [
             'pro_time' => $proTime,
             'form' => $form,
+            'user' => $user,
         ]);
     }
 
     #[Route('/{id}', name: 'app_pro_time_delete', methods: ['POST'])]
     public function delete(Request $request, ProTime $proTime, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser();
         if ($this->isCsrfTokenValid('delete' . $proTime->getId(), $request->request->get('_token'))) {
             $entityManager->remove($proTime);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_pro_time_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_pro_time_index', [
+            'user' => $user,
+        ], Response::HTTP_SEE_OTHER);
     }
 }

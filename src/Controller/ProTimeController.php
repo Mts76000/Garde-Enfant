@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\AddCreche;
 use App\Entity\ProTime;
 use App\Form\ProTimeType;
+use App\Repository\AddCrecheRepository;
 use App\Repository\ProTimeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,13 +25,22 @@ class ProTimeController extends AbstractController
     }
 
     #[Route('/new', name: 'app_pro_time_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, AddCrecheRepository $addCrecheRepository): Response
     {
         $proTime = new ProTime();
         $form = $this->createForm(ProTimeType::class, $proTime);
         $form->handleRequest($request);
 
+        $user = $this->getUser();
+        $crecheId = $addCrecheRepository->findCrecheIdByUserIdSingle($user);
+        $addCreche = $entityManager->getRepository(AddCreche::class)->find($crecheId);
+        
+       
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $proTime->setPro($addCreche);
+
+
             $entityManager->persist($proTime);
             $entityManager->flush();
 
@@ -39,6 +50,7 @@ class ProTimeController extends AbstractController
         return $this->render('pro_time/new.html.twig', [
             'pro_time' => $proTime,
             'form' => $form,
+            'addCreche' => $addCreche,
         ]);
     }
 
@@ -71,7 +83,7 @@ class ProTimeController extends AbstractController
     #[Route('/{id}', name: 'app_pro_time_delete', methods: ['POST'])]
     public function delete(Request $request, ProTime $proTime, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$proTime->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $proTime->getId(), $request->request->get('_token'))) {
             $entityManager->remove($proTime);
             $entityManager->flush();
         }

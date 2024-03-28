@@ -28,22 +28,10 @@ class ProTime
     #[ORM\ManyToOne(inversedBy: 'pros')]
     private ?AddCreche $pro = null;
 
+    
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-
-    public function getIdPro(): ?int
-    {
-        return $this->id_pro;
-    }
-
-    public function setIdPro(?int $id_pro): static
-    {
-        $this->id_pro = $id_pro;
-
-        return $this;
     }
 
     public function getJour(): ?array
@@ -58,6 +46,8 @@ class ProTime
 
         return $this;
     }
+
+
     public function getHeureDebut(): ?\DateTimeInterface
     {
         return $this->heure_debut;
@@ -87,10 +77,12 @@ class ProTime
         return $this->pro;
     }
 
-    public function setPro(?AddCreche $pro): static
+    public function setPro(?AddCreche $pro) 
     {
         $this->pro = $pro;
 
         return $this;
     }
+
+
 }

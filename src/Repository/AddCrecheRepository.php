@@ -56,4 +56,14 @@ class AddCrecheRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function findCrecheIdByUserIdSingle($userId)
+{
+    return $this->createQueryBuilder('ac')
+        ->select('ac.id')
+        ->andWhere('ac.user = :userId')
+        ->setParameter('userId', $userId)
+        ->getQuery()
+        ->getSingleScalarResult();
+}
+
 }

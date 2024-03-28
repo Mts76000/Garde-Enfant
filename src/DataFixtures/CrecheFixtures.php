@@ -12,8 +12,9 @@ class CrecheFixtures extends Fixture
     {
 
         $creche1 = new AddCreche();
-        $creche1->setId(1);
-        $creche1->setIdUser(1);
+        //$creche1->setIdUser(1);
+        // $creche1->setIdUser(1);
+    //    $creche1->setUser($user);
         $creche1->setNom('La Petite Crechette');
         $creche1->setSiret(454154);
         $creche1->setTarif('12');
@@ -28,8 +29,7 @@ class CrecheFixtures extends Fixture
         $manager->persist($creche1);
 
         $creche2 = new AddCreche();
-        $creche2->setId(1);
-        $creche2->setIdUser(1);
+        // $creche2->setUser(1);
         $creche2->setNom('Les filous');
         $creche2->setSiret(85475);
         $creche2->setTarif('15');
@@ -44,8 +44,7 @@ class CrecheFixtures extends Fixture
         $manager->persist($creche2);
 
         $creche3 = new AddCreche();
-        $creche3->setId(1);
-        $creche3->setIdUser(1);
+        // $creche3->setUser( );
         $creche3->setNom('Pitchoune');
         $creche3->setSiret(04475);
         $creche3->setTarif('10');

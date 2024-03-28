@@ -17,9 +17,6 @@ class AddCreche
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $id_user = null;
-
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     #[Assert\Length(
@@ -53,8 +50,8 @@ class AddCreche
         maxMessage: 'Le tarif doit contenir au maximum {{ limit }} caractères',
     )]
     #[Assert\Regex(
-    pattern: "/^\d+[\.,]?\d*$/",
-    message: "Ce champ ne doit contenir que des chiffres, des points ou des virgules"
+        pattern: "/^\d+[\.,]?\d*$/",
+        message: "Ce champ ne doit contenir que des chiffres, des points ou des virgules"
     )]
     private ?string $tarif = null;
 
@@ -113,7 +110,7 @@ class AddCreche
     #[Assert\Length(
         min: 2,
         minMessage: 'Veuillez uploader un document pdf',
-     )]
+    )]
     private ?string $agrement = null;
 
     #[ORM\Column]
@@ -130,11 +127,17 @@ class AddCreche
     #[ORM\OneToMany(targetEntity: Rdv::class, mappedBy: 'pro', orphanRemoval: true)]
     private Collection $pro;
 
+    #[ORM\ManyToOne(inversedBy: 'users')]
+    private ?User $user = null;
+
+    #[ORM\OneToMany(targetEntity: ProTime::class, mappedBy: 'pro')]
+    private Collection $pros;
+
     public function __construct()
     {
         $this->pro = new ArrayCollection();
+        $this->pros = new ArrayCollection();
     }
-
 
 
     public function getId(): ?int
@@ -142,24 +145,7 @@ class AddCreche
         return $this->id;
     }
 
-    public function setId(?int $id): static
-    {
-        $this->id_user = $id;
-
-        return $this;
-    }
-
-    public function getIdUser(): ?int
-    {
-        return $this->id_user;
-    }
-
-    public function setIdUser(?int $id_user): static
-    {
-        $this->id_user = $id_user;
-
-        return $this;
-    }
+  
 
     public function getNom(): ?string
     {
@@ -326,4 +312,23 @@ class AddCreche
         return $this;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProTime>
+     */
+    public function getPros(): Collection
+    {
+        return $this->pros;
+    }
 }

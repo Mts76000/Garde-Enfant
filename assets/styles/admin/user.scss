@@ -1,154 +1,204 @@
 @use '../variables' as v;
 
 #adminuser {
-    h1 {
-      margin: auto 0;
-      padding: 25px 0;
-      font-size: 25px;
-      line-height: 1.3;
-      color: v.$primary;
+  h1 {
+    margin: auto 0;
+    padding: 25px 0;
+    font-size: 25px;
+    line-height: 1.3;
+    color: v.$primary;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
     }
-  
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-  
-      th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-      }
-  
-      th {
-        background-color: #f2f2f2;
-      }
-  
-      td {
-        a {
-          color: v.$primary;
-          text-decoration: underline;
-        }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    td {
+      a {
+        color: v.$primary;
+        text-decoration: underline;
       }
     }
   }
-  
-  
-  
-  
-  #singleuser {
-  
-    .bouton {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-  
-    h1 {
-      margin: auto 0;
-      padding: 25px 0;
-      font-size: 40px;
-      line-height: 1.3;
-      color: v.$primary;
-    }
-  
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-  
-      th, td {
-        border: 1px solid #ccc;
-        padding: 8px;
-        text-align: left;
-      }
-  
-      th {
-        background-color: #f2f2f2;
-      }
-  
-      td {
-        a {
-          padding: 1rem;
-          color: v.$primary;
-          text-decoration: underline;
-  
-          &.sup {
-            margin-left: 10px;
-          }
-        }
-      }
-    }
-  
-  }
-  
-  
-  #edituser {
+}
+
+
+
+
+#singleuser {
+
+  .bouton {
     display: flex;
-    flex-direction: column;
-    text-align: center;
-    h1 {
-      margin: auto 0;
-      padding: 25px 0;
-      font-size: 25px;
-      line-height: 1.3;
-      color: v.$primary;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  h1 {
+    margin: auto 0;
+    padding: 25px 0;
+    font-size: 40px;
+    line-height: 1.3;
+    color: v.$primary;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
     }
-    .form-group {
-      margin-bottom: 20px;
+
+    th {
+      background-color: #f2f2f2;
     }
-  
-    .form-label {
-      text-align: start;
-      display: block;
-      font-weight: bold;
-      color: v.$primary;
-      margin-bottom: .5rem;
-    }
-  
-    .form-control {
-      margin-bottom: .5rem;
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-  
-    .form-control:focus {
-      border-color: v.$primary;
-      outline: none;
-      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    }
-  
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      background-color: v.$primary;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      margin: 1rem 0;
-    }
-  
-    .wrapuser {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-  
-    .btn:hover {
-      background-color: darken(v.$primary, 10%);
-    }
-  
-    .error {
-      color: red;
-      font-size: 14px;
+
+    td {
+      a {
+        padding: 1rem;
+        color: v.$primary;
+        text-decoration: underline;
+
+        &.sup {
+          margin-left: 10px;
+        }
+      }
     }
   }
-  
-  
+
+}
+
+
+#edituser {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  h1 {
+    margin: auto 0;
+    padding: 25px 0;
+    font-size: 25px;
+    line-height: 1.3;
+    color: v.$primary;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    text-align: start;
+    display: block;
+    font-weight: bold;
+    color: v.$primary;
+    margin-bottom: .5rem;
+  }
+
+  .form-control {
+    margin-bottom: .5rem;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .form-control:focus {
+    border-color: v.$primary;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: v.$primary;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 1rem 0;
+  }
+
+  .wrapuser {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .btn:hover {
+    background-color: darken(v.$primary, 10%);
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+  }
+}
+
+section#rdv_index {
+
+  h2 {
+    padding-top: 1rem;
+    font-size: 24px;
+    color: #6ECCAF;
+    text-transform: uppercase;
+  }
+
+  .creche_container {
+
+
+    .box_creche {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px;
+      border-radius: 15px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      font-size: 14px;
+      color: #000000;
+      margin: .7rem 0;
+      text-align: center;
+
+
+    }
+
+    .creche_text {
+      text-align: left;
+    }
+
+  }
+}
+
+
+.detail {
+  margin-top: 2rem;
+}
+
+.Stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+

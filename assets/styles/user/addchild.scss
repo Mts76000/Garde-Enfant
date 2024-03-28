@@ -5,19 +5,47 @@
   .btn {
     margin-bottom: 2rem;
   }
-  
+
   .namesurname {
     display: flex;
     gap: 1rem;
+    div{
+      width: 100%;
+    }
   }
 
   .agegenre {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    .age{
+  
+    .age {
       width: 150px;
     }
-    
+
+
+
   }
+
+  #map {
+    width: 80vw;
+    height: 300px;
+  }
+}
+
+
+@media screen and (min-width: 500px) {
+  #addchild{
+
+  .agegenre {
+    div {
+      width: 100%;
+    
+
+    .age {
+      width: 100%;
+    }
+  }
+  }
+}
 }

@@ -15,7 +15,7 @@ class ProTimeType extends AbstractType
     {
         $builder
             ->add('jour', ChoiceType::class, [
-                'label' => 'Jour de la semaine',
+                'label' => 'Jour de la semaine :',
                 'choices' => [
                     'Lundi'     => 'Lundi',
                     'Mardi'     => 'Mardi',
@@ -27,28 +27,22 @@ class ProTimeType extends AbstractType
                 ],
                 'expanded' => true,
                 'multiple' => true,
+                'label_attr' => ['class' => 'sr-only'],
             ])
-            ->add('heure_debut', ChoiceType::class, [
+            ->add('heure_debut', null, [
+                'widget' => 'single_text',
                 'label' => 'Heure de début',
-                'choices' => $this->generateHours(),
-
+                'attr' => ['class' => 'form-control'],
             ])
-            ->add('heure_fin', ChoiceType::class, [
+             ->add('heure_fin', null, [
+                'widget' => 'single_text',
                 'label' => 'Heure de fin',
-                'choices' => $this->generateHours(),
+                'attr' => ['class' => 'form-control'],
             ]);
         ;
     }
 
-    private function generateHours(): array
-    {
-        $hours = [];
-        for ($i = 0; $i < 24; $i++) {
-            $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
-            $hours["$hour:00"] = "$hour:00";
-        }
-        return $hours;
-    }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {

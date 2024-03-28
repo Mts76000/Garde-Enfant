@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}mes infos
+{% block title %}Mes infos - Pitchoune
 {% endblock %}
 
 {% block body %}
@@ -42,11 +42,58 @@
 				</div>
 			</div>
 			<div class="creneaux">
-				<h2>Vos créneaux :</h2>
-			</div>
-			<div class="img">
-				<a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
-			</div>
-		</div>
-	</section>
-{% endblock %}
+				<section id="messagerie" class="bouton">
+					<div class="wrap">
+						<div class="titre">
+							<h2>
+								vos creneaux</h2>
+						</div>
+						<div class="messagerie">
+
+							{% for rdv in rdvs %}
+								<div class="message-box">
+									<div class="top">
+										<p>{{ rdv.date ? rdv.date|date('d/m/Y') : '' }}</p> 
+
+										<p>
+										{{ rdv.heure_debut ? rdv.heure_debut|date('H : i') : '' }} /
+										{{ rdv.heure_fin ? rdv.heure_fin|date('H : i') : '' }}
+										</p>
+
+									</div>
+									<div class="bot detail">
+										<div class="letter">
+											<i class="fa-solid fa-baby"></i>
+										</div>
+										<div class="description">
+											<div class="info">
+												<div class="titre">
+													<h2>{{ childs[rdv.id].prenom }}
+
+														{{ childs[rdv.id].nom }}</h2>
+
+												</div>
+												<div>
+													<p>Creche :
+														{{ pros[rdv.id].nom }}</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+							{% else %}
+								<tr>
+									<td colspan="14">Aucun rdv trouver.</td>
+								</tr>
+							{% endfor %}
+
+						</div>
+					</div>
+					<div class="img">
+						<a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+					</div>
+				</div>
+			</section>
+		{% endblock %}

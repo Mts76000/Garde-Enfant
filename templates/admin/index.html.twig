@@ -1,29 +1,64 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Admin{% endblock %}
+{% block title %}Dashboard Admin - Pitchoune{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
 
 {% block body %}
-
 
 <section id="dashboard" class="bouton">
     <div class="wrap">
         <div class="link">
             <div class="top">
-				<a  href="{{ path('app_admin_user_index') }}">Voir les utilisateur</a>
+				<a  href="{{ path('app_admin_user_index') }}">Utilisateurs</a>
 				<a href="{{ path('app_messagerie_index') }}">Messagerie</a>
-                </div>
-                <div class="down">
+            </div>
+            <div class="down">
 				<a href="{{ path('app_admin_detail') }}">Liste RDV</a>
 				<a  href="{{ path('app_admin_demande') }}">Demande pro</a>
-                </div>
-			</div>
-            <div class="Stat">
-                <h2>Statistique :</h2>
             </div>
-			<div class="img">
-			<a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
-			</div>
+        </div>
+        <div class="Stat">
+            <h2>Statistique :</h2>
+            <h3>Nombre de nouveau utilisateur par mois</h3>
+            <canvas id="additionsChart" max-width="200" max-height="200"></canvas>
+            
+        </div>
+        <div class="img">
+            <a href="{{ path('app') }}"><img class="back" src="{{ asset('asset/img/back.svg') }}" alt="back"></a>
+        </div>
     </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('additionsChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels | raw }},
+            datasets: [{
+                label: 'Nombre de nouv. utilisateur',
+                data: {{ data | raw }},
+                fill: false,
+                borderColor: 'rgb(110, 204, 175)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1  // Définir l'espacement vertical à 1
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+ 
 {% endblock %}

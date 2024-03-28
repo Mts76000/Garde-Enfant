@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Rdv;
+use App\Entity\FullChild;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -54,4 +55,26 @@ class RdvRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
+public function findChildIdsByCrecheId(int $crecheId): array
+{
+    $qb = $this->createQueryBuilder('r')
+        ->select('c.id')
+        ->join('r.child', 'c') // Joindre l'entité FullChild
+        ->join('r.pro', 'p') // Joindre l'entité AddCreche
+        ->where('p.id = :crecheId')
+        ->setParameter('crecheId', $crecheId)
+        ->distinct();
+
+    $results = $qb->getQuery()->getResult();
+
+    $childIds = [];
+    foreach ($results as $result) {
+        $childIds[] = $result['id']; // Ajouter l'identifiant de l'enfant à la liste
+    }
+
+    return $childIds;
+}
+
 }

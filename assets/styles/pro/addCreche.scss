@@ -1,14 +1,31 @@
 @use "../variables" as v;
 
 #addCreche {
-  height: 80vh;
   text-align: center;
   .wrap {
     gap: 2rem;
+
+    h1 {
+      padding: 0rem;
+      padding-top: 2rem;
+  }
+
     .addCreche{
       display: flex;
       flex-direction: column;
       gap: 1rem;
+    }
+
+    .formAdd {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    #add_creche{
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+      
     }
   }
 

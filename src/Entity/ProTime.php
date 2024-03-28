@@ -14,46 +14,39 @@ class ProTime
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $id_pro = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $jour = null;
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private ?array $jour = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heure_debut = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heure_fin = null;
 
+    #[ORM\ManyToOne(inversedBy: 'pros')]
+    private ?AddCreche $pro = null;
+
+    
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdPro(): ?int
-    {
-        return $this->id_pro;
-    }
+    public function getJour(): ?array
 
-    public function setIdPro(?int $id_pro): static
-    {
-        $this->id_pro = $id_pro;
-
-        return $this;
-    }
-
-    public function getJour(): ?string
     {
         return $this->jour;
     }
 
-    public function setJour(?string $jour): static
+    public function setJour(?array $jour): static
     {
         $this->jour = $jour;
 
         return $this;
     }
+
 
     public function getHeureDebut(): ?\DateTimeInterface
     {
@@ -78,4 +71,18 @@ class ProTime
 
         return $this;
     }
+
+    public function getPro(): ?AddCreche
+    {
+        return $this->pro;
+    }
+
+    public function setPro(?AddCreche $pro) 
+    {
+        $this->pro = $pro;
+
+        return $this;
+    }
+
+
 }

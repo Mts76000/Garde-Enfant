@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\AddCreche;
+use App\Entity\User;
 use App\Form\AddCrecheType;
 use App\Repository\AddCrecheRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,7 +18,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[Route('/add/creche')]
 class AddCrecheController extends AbstractController
 {
-    #[Route('/', name: 'app_add_creche_index', methods: ['GET'])]
+    #[Route('/', name: 'app_pro', methods: ['GET'])]
     public function index(AddCrecheRepository $addCrecheRepository): Response
     {
 
@@ -30,51 +31,44 @@ class AddCrecheController extends AbstractController
     }
 
     #[Route('/new', name: 'app_add_creche_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, SluggerInterface $slugger,EntityManagerInterface $entityManager): Response
+    public function new(Request $request, SluggerInterface $slugger, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
+
         $addCreche = new AddCreche();
         $form = $this->createForm(AddCrecheType::class, $addCreche);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $addCreche->setStatus('waiting');
-//            $addCreche->setIdUser($user->getUserIdentifier());<---------------------------
+
+            $addCreche->setUser($user);
+
             $addCreche->setCreatedAt(new \DateTimeImmutable());
             /** @var UploadedFile $brochureFile */
             $brochureFile = $form->get('brochure')->getData();
-
-            // this condition is needed because the 'brochure' field is not required
-            // so the PDF file must be processed only when a file is uploaded
             if ($brochureFile) {
                 $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$brochureFile->guessExtension();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
 
-                // Move the file to the directory where brochures are stored
                 try {
                     $brochureFile->move(
                         $this->getParameter('brochures_directory'),
                         $newFilename,
                     );
                 } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
                 }
 
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
                 $addCreche->setBrochureFilename($newFilename);
-                $entityManager->persist($addCreche);
-                $entityManager->flush();
-
             } else {
-                $addCreche->setBrochureFilename('default_filename.pdf');//<------------ Possibilité d'erreur
+                $addCreche->setBrochureFilename('default_filename.pdf');
             }
 
+            $entityManager->persist($addCreche);
+            $entityManager->flush();
 
-
-            return $this->redirectToRoute('app_add_creche_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pro', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('add_creche/new.html.twig', [
@@ -83,6 +77,7 @@ class AddCrecheController extends AbstractController
             'user' => $user,
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_add_creche_show', methods: ['GET'])]
     public function show(AddCreche $addCreche): Response
@@ -112,10 +107,12 @@ class AddCrecheController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $addCreche->setStatus('waiting');
+            $addCreche->setUser($user);
             $addCreche->setModifiedAt(new \DateTimeImmutable());
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_add_creche_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pro', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('add_creche/edit.html.twig', [
@@ -129,12 +126,12 @@ class AddCrecheController extends AbstractController
     public function delete(Request $request, AddCreche $addCreche, EntityManagerInterface $entityManager): Response
     {
         $user = $this->getUser();
-        if ($this->isCsrfTokenValid('delete'.$addCreche->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $addCreche->getId(), $request->request->get('_token'))) {
             $entityManager->remove($addCreche);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_add_creche_index', [
+        return $this->redirectToRoute('app_pro', [
             'user' => $user,
         ], Response::HTTP_SEE_OTHER);
     }

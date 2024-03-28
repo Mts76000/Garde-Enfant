@@ -6,6 +6,7 @@ use App\Entity\Rdv;
 use App\Form\RdvType;
 use App\Entity\AddCreche;
 use App\Repository\AddCrecheRepository;
+use App\Repository\FullChildRepository;
 use App\Repository\RdvRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,16 +21,25 @@ class RdvController extends AbstractController
     public function index(RdvRepository $rdvRepository, AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
+        $crecheIds = $addCrecheRepository->findCrecheIdByUserId($user);
+
+        $counts = [];
+        foreach ($crecheIds as $crecheId) {
+            $counts[$crecheId] = count($rdvRepository->findChildIdsByCrecheId($crecheId));
+        }
+
         return $this->render('rdv/index.html.twig', [
-            'rdvs' => $rdvRepository->findAll(),
+            'rdvRepository' => $rdvRepository, // Transmettre rdvRepository à votre modèle Twig
             'add_creches' => $addCrecheRepository->findBy(['status' => 'validated']),
             'user' => $user,
-
+            'counts' => $counts,
         ]);
     }
 
+
+
     #[Route('/new-rdv/{id}', name: 'app_rdv_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, $id): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, FullChildRepository  $fullChildRepository, int $id): Response
     {
         $user = $this->getUser(); // Récupérer l'utilisateur connecté
 
@@ -61,7 +71,10 @@ class RdvController extends AbstractController
     #[Route('/{id}', name: 'app_rdv_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(Rdv $rdv): Response
     {
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
+
         return $this->render('rdv/show.html.twig', [
+            'user' => $user,
             'rdv' => $rdv,
         ]);
     }
@@ -69,6 +82,8 @@ class RdvController extends AbstractController
     #[Route('/{id}/edit', name: 'app_rdv_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Rdv $rdv, EntityManagerInterface $entityManager): Response
     {
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
+
         $form = $this->createForm(RdvType::class, $rdv);
         $form->handleRequest($request);
 
@@ -81,6 +96,8 @@ class RdvController extends AbstractController
         return $this->render('rdv/edit.html.twig', [
             'rdv' => $rdv,
             'form' => $form,
+            'user' => $user,
+
         ]);
     }
 

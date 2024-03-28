@@ -1,9 +1,108 @@
 @use "../variables" as v;
 
-#pro{
-.link {
-  .dashboard {
-    background-color: v.$orange;
+#pro {
+  .link {
+    .dashboard {
+      background-color: v.$orange;
+    }
   }
 }
+
+
+.box_dash {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+
+  .message-box {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 15px;
+    padding: 2rem;
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .bot {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    .letter {
+      font-size: 2.1rem;
+    }
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .text-limit {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: calc(15ch + 1px);
+        }
+
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .bouton {
+      display: flex;
+      gap: 1rem;
+
+      .edit {
+        background-color: v.$primary;
+      }
+
+      a {
+        text-align: center;
+        display: block;
+        color: v.$blanc;
+        border-radius: 25px;
+        padding: 0.3rem 1rem;
+      }
+    }
+  }
+}
+
+.listing {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .child {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 15px;
+    padding: 1.5rem;
+    width: 100%;
+
+    details {
+
+
+      summary {
+        font-size: 1.2rem;
+        margin: 0.7rem 0;
+      }
+    }
+  }
 }

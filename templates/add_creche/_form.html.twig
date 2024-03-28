@@ -1,5 +1,5 @@
-{{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+{{ form_start(form, {attr: {'novalidate': 'novalidate', 'class': 'formAdd' }}) }}
     {{ form_widget(form) }}
     {{ form_errors(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn">{{ button_label|default('Envoyer') }}</button>
 {{ form_end(form) }}

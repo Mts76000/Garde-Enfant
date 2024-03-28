@@ -66,7 +66,7 @@ class UserFixtures extends Fixture
         $manager->persist($user);
 
         $user = new User();
-        $user->setEmail('Booba@user.com');
+        $user->setEmail('Kaaris@user.com');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $user,
             'password'
@@ -124,7 +124,7 @@ class UserFixtures extends Fixture
         $manager->persist($pro);
 
         $pro = new User();
-        $pro->setEmail('pro@pro.com');
+        $pro->setEmail('profess@pro.com');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $pro,
             'password'

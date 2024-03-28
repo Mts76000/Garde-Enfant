@@ -8,7 +8,7 @@
 		<div class="wrap">
 			<div class="link">
 				<div class="top">
-					<a href="{{ path('app_add_creche_show', {'id': creche.id }) }}">Détail crèche</a>
+					<a href="{{ path('app_add_creche_show', {'id': creche.id }) }}">Détails crèche</a>
 					<a href="{{ path('app_contact_creche_index') }}">Voir mes messages</a>
 				</div>
 				<div class="down">
@@ -28,10 +28,10 @@
 								<ul>
 									<li>Âge : {{ child.age }}</li>
 									<li>Genre : {{ child.genre }}</li>
-									<li>Consigne alimentaire : {{ child.consignealimentaire }}</li>
-									<li>Traitement : {{ child.traitement }}</li>
-									<li>Vaccin : {% if child.vaccin == 0 %}Non{% else %}Oui{% endif %}</li>
-									<li>Allergie : {{ child.allergie }}</li>
+									<li>Consignes alimentaires : {{ child.consignealimentaire }}</li>
+									<li>Traitements : {{ child.traitement }}</li>
+									<li>Vaccins : {% if child.vaccin == 0 %}Non{% else %}Oui{% endif %}</li>
+									<li>Allergies : {{ child.allergie }}</li>
 								</ul>
 							</details>
 						</div>

@@ -3,18 +3,46 @@
 {% block title %}Hello PaymentController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/opt/lampp/htdocs/projet/p4g1/src/Controller/PaymentController.php</code></li>
-        <li>Your template at <code>/opt/lampp/htdocs/projet/p4g1/templates/payment/index.html.twig</code></li>
-    </ul>
-</div>
+    <div class="container">
+        <h1>Démo de Paiement avec Stripe</h1>
+        <div id="order-summary">
+            <h2>Récapitulatif de la commande</h2>
+            <p>Service: Garde d'enfant</p>
+            <p>Durée: 2 heures</p>
+            <p>Prix par heure: €4.51</p>
+            <p>Total: {{ 2 * 4.51 }} €</p>
+        </div>
+        <div id="error-message"></div>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="cardholder-name">Nom du titulaire de la carte</label>
+                <input type="text" id="cardholder-name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Adresse e-mail</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Adresse</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="form-group">
+                <label for="city">Ville</label>
+                <input type="text" id="city" required>
+            </div>
+            <div class="form-group">
+                <label for="zip">Code postal</label>
+                <input type="text" id="zip" required>
+            </div>
+            <div class="form-group">
+                <label for="country">Pays</label>
+                <input type="text" id="country" required>
+            </div>
+            <div class="form-group">
+                <label for="card-element">Informations de carte bancaire</label>
+                <div id="card-element" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></div>
+            </div>
+            <button type="submit" id="card-button">Payer maintenant</button>
+        </form>
+    </div>
 {% endblock %}

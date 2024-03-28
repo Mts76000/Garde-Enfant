@@ -15,7 +15,7 @@ class ProTimeType extends AbstractType
     {
         $builder
             ->add('jour', ChoiceType::class, [
-                'label' => 'Jour de la semaine',
+                'label' => 'Jour de la semaine :',
                 'choices' => [
                     'Lundi'     => 'Lundi',
                     'Mardi'     => 'Mardi',
@@ -27,14 +27,17 @@ class ProTimeType extends AbstractType
                 ],
                 'expanded' => true,
                 'multiple' => true,
+                'label_attr' => ['class' => 'sr-only'],
             ])
             ->add('heure_debut', null, [
                 'widget' => 'single_text',
-                'label' => 'Heure de début'
+                'label' => 'Heure de début',
+                'attr' => ['class' => 'form-control'],
             ])
              ->add('heure_fin', null, [
                 'widget' => 'single_text',
-                'label' => 'Heure de fin'
+                'label' => 'Heure de fin',
+                'attr' => ['class' => 'form-control'],
             ]);
         ;
     }

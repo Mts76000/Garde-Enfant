@@ -16,6 +16,7 @@ import "./styles/pro/detail.scss";
 import "./styles/pro/demande.scss";
 import "./styles/pro/addCreche.scss";
 import "./styles/pro/rdv.scss";
+import "./styles/pro/proHeure.scss";
 
 
 // user

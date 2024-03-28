@@ -35,8 +35,6 @@ class ProTimeController extends AbstractController
         $crecheId = $addCrecheRepository->findCrecheIdByUserIdSingle($user);
         $addCreche = $entityManager->getRepository(AddCreche::class)->find($crecheId);
         
-       
-
         if ($form->isSubmitted() && $form->isValid()) {
             $proTime->setPro($addCreche);
 
@@ -44,7 +42,7 @@ class ProTimeController extends AbstractController
             $entityManager->persist($proTime);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_pro_time_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_pro', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('pro_time/new.html.twig', [

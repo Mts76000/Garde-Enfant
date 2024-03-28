@@ -108,12 +108,11 @@ class AddCrecheController extends AbstractController
 
 
     #[Route('/{id}/public', name: 'app_add_creche_public_show', methods: ['GET'])]
-    public function public_show(AddCreche $addCreche, ProTimeRepository $timeRepository, AddCrecheRepository $addCrecheRepository): Response
+    public function public_show(AddCreche $addCreche, ProTimeRepository $timeRepository, AddCrecheRepository $addCrecheRepository, string $id): Response
     {
         $user = $this->getUser();
-        $crecheId = $addCrecheRepository->findCrecheIdByUserId($user);
 
-        $times = $timeRepository->findBy(['pro' => $crecheId]);
+        $times = $timeRepository->findBy(['pro' => $id]);
 
         $timeDetails = [];
         foreach ($times as $time) {
@@ -123,6 +122,8 @@ class AddCrecheController extends AbstractController
                 'heure_fin' => $time->getHeureFin(),
             ];
         }
+
+
         return $this->render('add_creche/public_show.html.twig', [
             'add_creche' => $addCreche,
             'user' => $user,

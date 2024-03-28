@@ -7,6 +7,10 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
 }
 .form-group {
   margin-bottom: 20px;
@@ -33,4 +37,23 @@ button {
 }
 button:hover {
   background-color: #0056b3;
+}
+
+#order-summary{
+  h2{
+  margin-bottom: 0.5rem;
+  }
+  p{
+  margin-bottom: 0.2rem;
+  
+  }
+}
+
+#payment-form{
+  .form-group{
+  display: flex;
+flex-direction: column;
+align-items: flex-start;
+  
+}
 }

@@ -34,25 +34,7 @@ class MessagerieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_messagerie_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(ContactType::class, $contact);
-        $form->handleRequest($request);
-        $user = $this->getUser();
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_messagerie_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('messagerie/edit.html.twig', [
-            'contact' => $contact,
-            'form' => $form,
-            'user' => $user,
-        ]);
-    }
+   
 
     #[Route('/{id}', name: 'app_messagerie_delete', methods: ['POST'])]
     public function delete(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response

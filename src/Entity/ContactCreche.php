@@ -63,6 +63,9 @@ class ContactCreche
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    #[ORM\Column]
+    private ?int $id_pro = null;
+
 
 //    #[ORM\ManyToOne(inversedBy: 'creche')]
 //    #[ORM\JoinColumn(nullable: false)]
@@ -202,6 +205,18 @@ class ContactCreche
                 $pro->setPro(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIdPro(): ?int
+    {
+        return $this->id_pro;
+    }
+
+    public function setIdPro(int $id_pro): static
+    {
+        $this->id_pro = $id_pro;
 
         return $this;
     }

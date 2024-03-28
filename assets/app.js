@@ -86,8 +86,6 @@ fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address
 
 // Gestion de Stripe
 
-src="https://js.stripe.com/v3/";
-
 var stripe = Stripe('pk_test_51OyxKeP2itdtN1tGWeSug7qNNbEf60ZpH2g0trZPPj7FJ7N4tBTT8GBFH3oIiZCgCDlfi0VdAaAYRlnpjNf7nWU400vG6dIzhB');
 var elements = stripe.elements();
 var cardElement = elements.create('card');

@@ -14,8 +14,10 @@ class PaymentController extends AbstractController
     #[Route('/payment', name: 'app_payment')]
     public function index(): Response
     {
+        $user = $this->getUser();
         return $this->render('payment/index.html.twig', [
             'controller_name' => 'PaymentController',
+            'user' => $user,
         ]);
     }
 

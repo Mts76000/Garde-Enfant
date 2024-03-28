@@ -1,8 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Hello PaymentController!{% endblock %}
 
 {% block body %}
+    <script src="https://js.stripe.com/v3/"></script>
     <div class="container">
         <h1>Démo de Paiement avec Stripe</h1>
         <div id="order-summary">

@@ -195,3 +195,19 @@ section#faq {
           }
      }
 }
+
+@media screen and (min-width: 700px) {
+
+section#services .wrap {
+          display: flex;
+          gap: 40px;
+          justify-content: center;
+          flex-direction: row;
+
+
+          img {
+               width: 25vw;
+          }
+     }
+     
+}

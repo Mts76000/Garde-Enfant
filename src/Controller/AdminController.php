@@ -100,7 +100,7 @@ class AdminController extends AbstractController
     public function validatePro(Request $request, AddCreche $addCreche, EntityManagerInterface $entityManager): Response
     {
         if ($addCreche->getStatus() === 'waiting' || $addCreche->getStatus() === 'noValidate') {
-            $addCreche->setStatus('validate');
+            $addCreche->setStatus('validated');
 
             $entityManager->persist($addCreche);
             $entityManager->flush();

@@ -10,17 +10,16 @@
                 <span><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></span>
             </div>
             <div class="container_horaire">
-                
-                <span><b>Lundi:</b> 7:30 - 17:30 </span>
-                <span><b>Mardi:</b> 7:30 - 17:30 </span>
-                <span><b>Mercredi:</b> 7:30 - 17:30 </span>
-                <span><b>Jeudi:</b> 7:30 - 17:30 </span>
-                
-                <span><b>Vendredi:</b> 7:30 - 17:30 </span>
-                <span><b>Samedi:</b> Fermé</span>
-                <span><b>Dimanche:</b> Fermé</span>
-                
-            </div>
+                 {% for time in times %}
+                    {% for jour in time.jour %}
+                        <span>
+                            <b>{{ jour }}:</b>
+                            {{ time.heure_debut|date('H\\hi') }} - 
+                            {{ time.heure_fin|date('H\\hi') }}
+                        </span>
+                    {% endfor %}
+                {% endfor %}
+            </div>  
 
             <div class="container_info">
                 <span><b>Mail:</b> {{ add_creche.email }} </span>

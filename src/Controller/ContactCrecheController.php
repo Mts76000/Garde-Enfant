@@ -19,12 +19,12 @@ class ContactCrecheController extends AbstractController
     public function index(ContactCrecheRepository $contactCrecheRepository, AddCrecheRepository $addCrecheRepository): Response
     {
         $user = $this->getUser();
-        $crecheId = $addCrecheRepository->findCrecheIdByUserIdSingle($user);
-
+        $crecheId = $addCrecheRepository->findCrecheIdByUserId($user);
 
         return $this->render('contact_creche/index.html.twig', [
             'contact_creches' => $contactCrecheRepository->findby(['id_pro' => $crecheId]),
             'user' => $user,
+            'creche' => $crecheId,
         ]);
     }
 

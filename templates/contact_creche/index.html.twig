@@ -1,4 +1,4 @@
-{% extends 'essai.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}ContactCreche index{% endblock %}
 
@@ -7,12 +7,14 @@
     <div class="wrap">
         <div class="link">
 				<div class="top">
-						<a href="{{ path('app_pro_detail') }}">Détail creche</a>
-						<a href="{{ path('app_contact_creche_index') }}">Voir mes message</a>
+
+						<a href="{{ path('app_add_creche_show', {'id': creche.id }) }}">Détail creche</a>
+
+						<a href="{{ path('app_contact_creche_index') }}">Voir mes messages</a>
 					</div>
 						<div class="down">
 						<a href="">Gérer les enfants</a>
-							<a  href="{{ path('app_pro_time_new') }}">Horaire</a>
+							<a  href="{{ path('app_pro_time_new') }}">Horaires</a>
 					</div>
 			</div>
         <div class="creneaux">
@@ -53,7 +55,7 @@
                     </div>
                 </div>
                 {% else %}
-                <p>aucun message</p>
+                <p>Aucun Message</p>
                 {% endfor %}
             </div>
         </div>

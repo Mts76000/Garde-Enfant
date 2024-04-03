@@ -1,7 +1,5 @@
 @use 'variables' as v;
 
-
-
 section#intro {
 
      .wrap {
@@ -196,4 +194,20 @@ section#faq {
                /* Pour les autres navigateurs */
           }
      }
+}
+
+@media screen and (min-width: 700px) {
+
+section#services .wrap {
+          display: flex;
+          gap: 40px;
+          justify-content: center;
+          flex-direction: row;
+
+
+          img {
+               width: 25vw;
+          }
+     }
+     
 }

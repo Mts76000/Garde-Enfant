@@ -24,10 +24,11 @@ class RdvController extends AbstractController
         $crecheIds = $addCrecheRepository->findCrecheIdByUserId($user);
 
         $counts = [];
-        foreach ($crecheIds as $crecheId) {
-            $counts[$crecheId] = count($rdvRepository->findChildIdsByCrecheId($crecheId));
+        if ($crecheIds !== null) {
+            foreach ($crecheIds as $crecheId) {
+                $counts[$crecheId] = count($rdvRepository->findChildIdsByCrecheId($crecheId));
+            }
         }
-
         return $this->render('rdv/index.html.twig', [
             'rdvRepository' => $rdvRepository, // Transmettre rdvRepository à votre modèle Twig
             'add_creches' => $addCrecheRepository->findBy(['status' => 'validated']),

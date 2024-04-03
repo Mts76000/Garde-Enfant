@@ -9,7 +9,7 @@
 	<section id="user" class="bouton">
 		<div class="wrap">
 			<div class="select">
-				<select name="child" id="child">
+				{# <select name="child" id="child">
 
 					{% set hasNewChild = false %}
 
@@ -28,7 +28,7 @@
 						<option>Aucun enfant</option>
 
 					{% endif %}
-				</select>
+				</select> #}
 
 			</div>
 			<div class="link">
@@ -37,16 +37,17 @@
 					<a href="{{ path('app_full_child_index') }}">Voir mes enfants</a>
 				</div>
 				<div class="down">
-					<a class="info" href="{{ path('app_recup_child_index') }}">Voir les tuteur</a>
-					<a class="dashboard" href="{{ path('app_recup_child_new') }}">Payement</a>
+					<a class="info" href="{{ path('app_recup_child_index') }}">Voir les tuteurs</a>
+
+					<a class="dashboard" href="{{ path('app_payment') }}">Paiement</a>
+
 				</div>
 			</div>
 			<div class="creneaux">
 				<section id="messagerie" class="bouton">
 					<div class="wrap">
 						<div class="titre">
-							<h2>
-								vos creneaux</h2>
+							<h2>Vos creneaux</h2>
 						</div>
 						<div class="messagerie">
 
@@ -85,7 +86,7 @@
 
 							{% else %}
 								<tr>
-									<td colspan="14">Aucun rdv trouver.</td>
+									<td colspan="14">Aucun rendez-vous trouvé.</td>
 								</tr>
 							{% endfor %}
 

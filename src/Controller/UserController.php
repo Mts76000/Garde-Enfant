@@ -12,7 +12,7 @@ use App\Repository\RdvRepository;
 
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
+    #[Route('/user', name: 'app_user')] 
     public function index(RdvRepository $rdvRepository, FullChildRepository $fullchildRepository): Response
     {
         $user = $this->getUser();
